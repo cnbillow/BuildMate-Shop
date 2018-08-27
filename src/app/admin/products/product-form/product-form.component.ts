@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { ProductCategoryComponent } from '../product-category/product-category.component';
 
 @Component({
   selector: 'app-product-form',
@@ -13,7 +15,7 @@ export class ProductFormComponent implements OnInit {
   fileToUpload: FileList;
   isHovering: boolean;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -35,6 +37,13 @@ export class ProductFormComponent implements OnInit {
 
   toggleHover($event: boolean) {
     this.isHovering = $event;
+  }
+
+  addCategory() {
+    this.dialog.open(ProductCategoryComponent, {
+      height: '500px',
+      width: '500px'
+    });
   }
 
   setStep(index: number) {

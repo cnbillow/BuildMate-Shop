@@ -132,6 +132,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTooltipModule,
     MatTreeModule,
   ],
+  entryComponents: [
+    ProductCategoryComponent
+  ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
   ],

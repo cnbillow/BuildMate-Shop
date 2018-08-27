@@ -1,4 +1,6 @@
+import { ProductCategoryService } from './../../../services/product-category.service';
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../../../models/product-category.model';
 
 @Component({
   selector: 'app-product-category',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductCategoryComponent implements OnInit {
 
-  constructor() { }
+  category: Category = {};
+
+  constructor(private categoryService: ProductCategoryService) { }
 
   ngOnInit() {
+  }
+
+  async onSubmit() {
+    await this.categoryService.addCategory(this.category);
   }
 
 }
