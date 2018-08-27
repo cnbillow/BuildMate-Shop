@@ -2,3 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body { margin: 0; }
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
