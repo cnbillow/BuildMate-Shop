@@ -1,3 +1,4 @@
+import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -39,6 +40,9 @@ const routes: Routes = [
       }, {
         path: 'products',
         component: ProductRegistryComponent
+      }, {
+        path: 'product-form',
+        component: ProductFormComponent
       }
     ]
   }, {

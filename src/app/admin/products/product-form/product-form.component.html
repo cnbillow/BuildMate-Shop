@@ -1,3 +1,105 @@
-<p>
-  product-form works!
-</p>
+<form #f="ngForm"> 
+
+  <div class="spc-30"></div>
+
+  <div class="submit-button">
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!f.valid"> 
+      <mat-icon>save</mat-icon> 
+      <span>Save Record</span> 
+    </button>    
+  </div> 
+
+  <div>
+
+    <mat-accordion class="example-headers-align">
+  
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Image Upload
+          </mat-panel-title>
+          <mat-panel-description>
+            Upload Image
+            <mat-icon>cloud_upload</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+  
+        <div class="image_upload">
+          <img class="profile-image" [src]="imageUrl" style="width:250px;height:250px;" alt="">
+          <br>
+          
+          <div class="dropzone" 
+            appDropZone
+            (hovered)="toggleHover($event)"
+            (dropped)="handleFileInput($event)"
+            [class.hovering]="isHovering">
+  
+            <!-- <h3>Drop Zone</h3> -->
+            <mat-icon>cloud_upload</mat-icon>
+            <input type="file" (change)="handleFileInput($event.target.files)">
+          </div>
+      
+        </div>
+  
+        <mat-action-row>
+          <button mat-raised-button type="button" color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+  
+      </mat-expansion-panel>
+  
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Product Information
+          </mat-panel-title>
+          <mat-panel-description>
+            Primary Details
+            <mat-icon>assignment</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+  
+        <div class="form-field-container">
+  
+          <mat-form-field>
+            <input matInput placeholder="Pattern Number">
+            <mat-error>
+              Pattern number is <strong>required</strong>
+            </mat-error>       
+          </mat-form-field>
+
+          <mat-form-field>
+            <textarea matInput placeholder="Description"></textarea>
+            <mat-hint>Enter brief description of product</mat-hint>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input matInput placeholder="Price" required>
+            <mat-error>
+              Price is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>  
+            
+          <mat-form-field>
+            <mat-select placeholder="Category" required>
+              <mat-option value=""></mat-option>
+              <mat-option value="WallPaper">WallPaper</mat-option>
+              <mat-option value="Bricks">Bricks</mat-option>
+            </mat-select>
+            <mat-error>
+              Product category is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+           
+        <mat-action-row>
+          <button mat-raised-button type="button" (click)="prevStep()">Previous</button>
+          <button mat-raised-button type="button" color="primary" (click)="nextStep()">Finish</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+      
+    </mat-accordion>
+
+  </div>
+
+</form>
