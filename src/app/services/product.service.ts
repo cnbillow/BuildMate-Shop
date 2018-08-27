@@ -9,18 +9,18 @@ import { TimestampService } from './timestamp.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductCategoryService {
+export class ProductService {
 
-  private categoryCol: AngularFirestoreCollection<Category>;
-  private categories: Observable<Category[]>
+  private productCol: AngularFirestoreCollection<Product>;
+  private products: Observable<Product[]>
 
   constructor(private db: AngularFirestore, private timestampService: TimestampService) { 
-    this.categoryCol = db.collection('categories');
+    this.productCol = db.collection('products');
 
-    this.categories = this.categoryCol.snapshotChanges().pipe(
+    this.products = this.productCol.snapshotChanges().pipe(
       map(change => {
         return change.map(a => {
-          const data = a.payload.doc.data() as Category;
+          const data = a.payload.doc.data() as Product;
           data.id = a.payload.doc.id;
 
           return data;
@@ -29,16 +29,24 @@ export class ProductCategoryService {
     )
   }
 
-  getCategories() {
-    return this.categories;
+  getProducts() {
+    return this.products;
   }
 
-  addCategory(category: Category) {
+  addProducts(product: Product) {
     const timestamp = this.timestampService.getTimestamp;
 
-    category.created = category.lastUpdate = timestamp;
-    return this.categoryCol.add(category);
+    product.created = product.lastUpdate = timestamp;
+    return this.productCol.add(product);
   }
 }
 
-
+interface Product {
+  id?: string;
+  pattern?: string;
+  description?: string;
+  unitPrice?: number;
+  category?: string;
+  created?: any;
+  lastUpdate?: any;
+}

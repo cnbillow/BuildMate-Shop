@@ -1,6 +1,10 @@
+import { ProductService } from './../../../services/product.service';
+import { ProductCategoryService } from './../../../services/product-category.service';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ProductCategoryComponent } from '../product-category/product-category.component';
+import { Category } from '../../../models/product-category.model';
 
 @Component({
   selector: 'app-product-form',
@@ -9,15 +13,25 @@ import { ProductCategoryComponent } from '../product-category/product-category.c
 })
 export class ProductFormComponent implements OnInit {
 
+  product = {};
+  categories$: Observable<Category[]>;
+
   step = 0;
 
   imageUrl = '../../../../assets/avatars/avatar3.png';
   fileToUpload: FileList;
   isHovering: boolean;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, 
+    private categoryService: ProductCategoryService,
+    private productService: ProductService) { }
 
   ngOnInit() {
+    this.categories$ = this.categoryService.getCategories();
+  }
+
+  onSubmit() {
+    this.productService.addProducts(this.product);
   }
 
   handleFileInput(file: FileList) {

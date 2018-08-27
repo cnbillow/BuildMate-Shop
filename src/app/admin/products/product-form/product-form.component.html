@@ -4,12 +4,12 @@
 
   <div class="submit-button">
     <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!f.valid"> 
-      <mat-icon>save</mat-icon> 
+      <mat-icon>save</mat-icon> &nbsp;
       <span>Save Record</span> 
     </button> &nbsp;
 
     <button mat-raised-button color="primary" (click)="addCategory()"> 
-      <mat-icon>add</mat-icon> 
+      <mat-icon>add</mat-icon> &nbsp;
       <span>Add Category</span> 
     </button>    
   </div> 
@@ -66,29 +66,31 @@
         <div class="form-field-container">
   
           <mat-form-field>
-            <input matInput placeholder="Pattern Number">
+            <input matInput [(ngModel)]="product.pattern" name="pattern" placeholder="Pattern Number">
             <mat-error>
               Pattern number is <strong>required</strong>
             </mat-error>       
           </mat-form-field>
 
           <mat-form-field>
-            <textarea matInput placeholder="Description"></textarea>
+            <textarea matInput [(ngModel)]="product.description" name="description" placeholder="Description"></textarea>
             <mat-hint>Enter brief description of product</mat-hint>
           </mat-form-field>
   
           <mat-form-field>
-            <input matInput placeholder="Price" required>
+            <input matInput [(ngModel)]="product.unitPrice" name="unitPrice" type="number" placeholder="Price">
+            <span matPrefix>Unit Price (Ghc)&nbsp;</span>
             <mat-error>
               Price is <strong>required</strong>
             </mat-error>
           </mat-form-field>  
             
           <mat-form-field>
-            <mat-select placeholder="Category" required>
+            <mat-select [(ngModel)]="product.category" name="category" placeholder="Category">
               <mat-option value=""></mat-option>
-              <mat-option value="WallPaper">WallPaper</mat-option>
-              <mat-option value="Bricks">Bricks</mat-option>
+              <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+                {{ category.name }}
+              </mat-option>
             </mat-select>
             <mat-error>
               Product category is <strong>required</strong>
