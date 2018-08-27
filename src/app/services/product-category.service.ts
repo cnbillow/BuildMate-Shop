@@ -1,3 +1,4 @@
+import { TimestampService } from './timestamp.service';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
@@ -12,7 +13,7 @@ export class ProductCategoryService {
   private categoryCol: AngularFirestoreCollection<Category>;
   private categories: Observable<Category[]>
 
-  constructor(private db: AngularFirestore) { 
+  constructor(private db: AngularFirestore, private timestampService: TimestampService) { 
     this.categoryCol = db.collection('categories');
 
     this.categories = this.categoryCol.snapshotChanges().pipe(
@@ -32,6 +33,9 @@ export class ProductCategoryService {
   }
 
   addCategory(category: Category) {
+    const timestamp = this.timestampService.getTimestamp;
+
+    category.created = category.lastUpdate = timestamp;
     return this.categoryCol.add(category);
   }
 }

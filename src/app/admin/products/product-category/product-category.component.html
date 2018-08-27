@@ -1,11 +1,10 @@
 <form #f="ngForm">
-
-  <h3 mat-header>Add Product Category</h3>
-
+  
   <div class="form-field-container">
+    <h1 mat-header>Add Product Category</h1>
 
     <mat-form-field>
-      <input matInput [(ngModel)]="category.name" name="name" placeholder="Category Name">
+      <input matInput [(ngModel)]="category.name" name="name" placeholder="Category Name" required>
       <mat-error>
         Category is <strong>required</strong>
       </mat-error>       
@@ -19,8 +18,8 @@
     <div class="spc-10"></div>
 
     <mat-card-actions>
-      <button mat-raised-button>Cancel</button> &nbsp;
-      <button mat-raised-button color="primary" (click)="onSubmit()">Save</button> 
+      <button mat-raised-button type="button" mat-dialog-close>Cancel</button> &nbsp;
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!f.valid">Save</button> 
     </mat-card-actions>
     
   </div>
