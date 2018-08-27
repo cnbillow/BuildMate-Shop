@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -39,12 +40,13 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { environment } from '../environments/environment';
-import { AddProductsComponent } from './admin/products/add-products/add-products.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
+import { AddProductsComponent } from './admin/products/add-products/add-products.component';
 import { AddStockComponent } from './admin/products/add-stock/add-stock.component';
+import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
 import { ProductRegistryComponent } from './admin/products/product-registry/product-registry.component';
 import { AddStaffsComponent } from './admin/staffs/add-staffs/add-staffs.component';
 import { StaffProfileComponent } from './admin/staffs/staff-profile/staff-profile.component';
@@ -57,6 +59,11 @@ import { HomePageComponent } from './general/home-page/home-page.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
+
+ 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   declarations: [
@@ -79,6 +86,8 @@ import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    FlexLayoutModule
+    PerfectScrollbarModule,
 
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -119,7 +128,9 @@ import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.
     MatTooltipModule,
     MatTreeModule,
   ],
-  providers: [],
+  providers: [
+    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

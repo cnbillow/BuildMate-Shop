@@ -1,0 +1,17 @@
+/* tool-bar */
+mat-toolbar {
+    /* background: url('../../../assets/banners/banner1.jpg');
+    background-repeat: no-repeat; */
+
+    height:  64px !important;
+    min-height: 64px !important;
+}
+
+mat-toolbar mat-toolbar-row {
+    height: 64px !important;
+}
+
+/* links */
+.activated {
+    background: #1c8adb;  
+}
