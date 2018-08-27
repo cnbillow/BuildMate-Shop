@@ -11,7 +11,7 @@ export const environment = {
     projectId: "buildmateshop",
     storageBucket: "buildmateshop.appspot.com",
     messagingSenderId: "154731635501"
-  }
+  },
 };
 
 /*

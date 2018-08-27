@@ -44,8 +44,7 @@ import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrol
 
 import { environment } from '../environments/environment';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { AddProductsComponent } from './admin/products/add-products/add-products.component';
-import { AddStockComponent } from './admin/products/add-stock/add-stock.component';
+import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
 import { ProductRegistryComponent } from './admin/products/product-registry/product-registry.component';
 import { AddStaffsComponent } from './admin/staffs/add-staffs/add-staffs.component';
@@ -74,19 +73,18 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HomePageComponent,
     DashboardComponent,
     LoginComponent,
-    AddProductsComponent,
     ProductProfileComponent,
     AddStaffsComponent,
     StaffsRegistryComponent,
     StaffProfileComponent,
-    AddStockComponent,
     StockOrdersComponent,
-    ProductRegistryComponent
+    ProductRegistryComponent,
+    ProductFormComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    FlexLayoutModule
+    FlexLayoutModule,
     PerfectScrollbarModule,
 
     AppRoutingModule,
