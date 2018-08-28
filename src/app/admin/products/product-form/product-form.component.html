@@ -8,9 +8,9 @@
       <span>Save Record</span> 
     </button> &nbsp;
 
-    <button mat-raised-button color="primary" (click)="addCategory()"> 
+    <button mat-button color="primary" matTooltip="Add Category" (click)="addCategory()"> 
       <mat-icon>add</mat-icon> &nbsp;
-      <span>Add Category</span> 
+      <span>Add Category</span>
     </button>    
   </div> 
 
@@ -18,7 +18,7 @@
 
     <mat-accordion class="example-headers-align">
   
-      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+      <mat-expansion-panel *ngIf="!productId" [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Image Upload

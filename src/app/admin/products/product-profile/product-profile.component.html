@@ -1,7 +1,7 @@
 
 <mat-card class="background-card">
 
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
 
     <div fxFlex fxFlexOrder.xs="1">
 
@@ -12,10 +12,11 @@
         <mat-card-content>
 
           <div class="profile-title">
-            <h1 mat-header>{{ product.pattern }}</h1>
-            <h3>{{ getCategorDetails(product.category) }}</h3>
-            <p>{{ product.description }}</p>
-            <h1 mat-header>Ghc {{ product.unitPrice }}</h1>
+            <h1 mat-header>{{ product?.pattern }}</h1>
+            <h3>{{ getCategorDetails(product?.category) }}</h3>
+            <p>{{ product?.description }}</p>
+            <h1 mat-header>Ghc {{ product?.unitPrice }}</h1>
+            <strong>(QTY: 20)</strong>
           </div>
 
           <div class="spc-10"></div>
@@ -50,11 +51,11 @@
       </mat-card>      
     </div>
     
-    <div fxFlex="70" fxFlexOrder.xs="2">
+    <div fxFlex="75" fxFlexOrder.xs="2">
 
       <div class="spc-10"></div>
 
-      <mat-card class="product-display-route">
+      <mat-card *ngIf="routeToDisplay === 'overview'" class="product-display-route">
         <mat-tab-group 
           (selectedTabChange)="onLinkClick($event)" 
           [selectedIndex]="selectedTab" 

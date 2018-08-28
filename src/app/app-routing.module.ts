@@ -1,3 +1,5 @@
+import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
+import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -40,7 +42,19 @@ const routes: Routes = [
         component: DashboardComponent
       }, {
         path: 'product/:id',
-        component: ProductProfileComponent
+        component: ProductProfileComponent,
+        children: [
+          {
+            path: 'transaction-log',
+            component: TransactionLogComponent
+          }, {
+            path: 'edit-product',
+            component: ProductFormComponent
+          }, {
+            path: 'manage-stock',
+            component: ManageStockComponent
+          }
+        ]
       }, {
         path: 'products',
         component: ProductRegistryComponent

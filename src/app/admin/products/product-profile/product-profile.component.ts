@@ -7,6 +7,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Category } from '../../../models/category.model';
 import { ProductCategoryService } from '../../../services/product-category.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-product-profile',
@@ -28,6 +29,9 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
     { path: 'manage-stock', label: 'Manage Stock', icon: 'updates' }
   ];
 
+  selectedTab: string;
+  parentUrl = `account/product/${this.productId}`;
+
   subscription: Subscription;
 
   constructor(private productService: ProductService,
@@ -39,12 +43,17 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get('id');
 
+    this.parentUrl = `account/product/${this.productId}`;
+
     this.subscription = this.categoryService.getCategories().pipe(switchMap(resp => {
       this.category = resp;
       return this.productService.getProduct(this.productId);
     })).subscribe(result => {
       this.product = result;
     });
+
+    // get the selected tab index
+    this.tabIndex;
   }
 
   ngOnDestroy(): void {
@@ -70,6 +79,38 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
 
     const index = this.category.findIndex(c => c.id === categoryId);
     return this.category[index].name;
+  }
+
+  onLinkClick(event: MatTabChangeEvent) {
+    const tabTitle = event.tab.textLabel;
+    const routerLink = this.navLinks.find(n => n.label === tabTitle ).path;
+
+    // if (routerLink === 'edit-product') {
+    //   this.ngOnDestroy();
+    // } else {
+    //   this.ngOnInit();
+    // }
+
+    this.router.navigate([this.parentUrl, routerLink]);
+  }
+
+  get tabIndex() {
+    const url = this.router.url;
+
+    if (url.includes('transaction-log')) {
+      return this.selectedTab = '0';
+    }
+    
+    if (url.includes('edit-product')) {
+      return this.selectedTab = '1';
+    }
+    if (url.includes('manage-stock')) {
+      return this.selectedTab = '2';
+    }
+  }
+
+  get tabIndexFromStorage() {
+    return localStorage.getItem(this.tabIndex);
   }
 
   navigate(routeToDisplay: string) {

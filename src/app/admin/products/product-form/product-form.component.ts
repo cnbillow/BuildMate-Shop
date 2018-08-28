@@ -1,21 +1,24 @@
 import { AlertService } from './../../../services/alert.service';
 import { ProductService } from './../../../services/product.service';
 import { ProductCategoryService } from './../../../services/product-category.service';
-import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ProductCategoryComponent } from '../product-category/product-category.component';
 import { Category } from '../../../models/category.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Product } from '../../../models/product.model';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit, OnDestroy {
 
-  product = {};
+  productId: string;
+
+  product: Product = {};
   categories$: Observable<Category[]>;
 
   step = 0;
@@ -24,20 +27,49 @@ export class ProductFormComponent implements OnInit {
   fileToUpload: FileList;
   isHovering: boolean;
 
+  subscription: Subscription;
+
   constructor(private dialog: MatDialog, 
               private categoryService: ProductCategoryService,
               private productService: ProductService,
               private alertService: AlertService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { 
+                this.categories$ = this.categoryService.getCategories();
+              }
 
   ngOnInit() {
-    this.categories$ = this.categoryService.getCategories();
+    this.productId = this.route.parent.snapshot.paramMap.get('id');
+
+    if (this.productId) {
+      this.subscription = this.productService.getProduct(this.productId).subscribe(resp => {
+        this.product = resp;
+      });
+    }
+
+    
+  }
+
+  ngOnDestroy(): void {
+   if (this.subscription) {
+     this.subscription.unsubscribe();
+    }
   }
 
   async onSubmit() {
     const confirm = await this.alertService.confirmUpdate();
     if (confirm.value) {
-      await this.productService.addProducts(this.product);
+
+      if (this.productId) {
+        await this.productService.updateProduct(this.productId, this.product);
+
+        this.alertService.afterUpdateSuccess();
+        // this.router.navigate(['account', 'products']);
+        return;
+      }
+
+      // else
+      await this.productService.addProduct(this.product);
 
       this.alertService.afterUpdateSuccess();
       this.router.navigate(['account', 'products']);

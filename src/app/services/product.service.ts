@@ -38,11 +38,18 @@ export class ProductService {
     return this.db.doc(`products/${productId}`).valueChanges();
   }
 
-  addProducts(product: Product) {
+  addProduct(product: Product) {
     const timestamp = this.timestampService.getTimestamp;
 
     product.created = product.lastUpdate = timestamp;
     return this.productCol.add(product);
+  }
+
+  updateProduct(productId: string, product: Product) {
+    const timestamp = this.timestampService.getTimestamp;
+
+    product.lastUpdate = timestamp;
+    this.db.doc(`products/${productId}`).set(product, { merge: true });
   }
 
   deleteProduct(productId: string) {

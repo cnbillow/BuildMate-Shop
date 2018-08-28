@@ -61,6 +61,8 @@ import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { FormsModule } from '@angular/forms';
 import { ProductCategoryComponent } from './admin/products/product-category/product-category.component';
+import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
+import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
 
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -84,7 +86,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProductRegistryComponent,
     ProductFormComponent,
     DropZoneDirective,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    TransactionLogComponent,
+    ManageStockComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
