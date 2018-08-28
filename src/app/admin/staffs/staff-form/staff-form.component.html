@@ -13,7 +13,7 @@
 
     <mat-accordion class="example-headers-align">
   
-      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+      <mat-expansion-panel *ngIf="!staffId" [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Image Upload

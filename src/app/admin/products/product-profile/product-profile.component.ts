@@ -21,7 +21,7 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
   product: Product = {};
   category: Category[] = [];
 
-  routeToDisplay: string = 'overview';
+  routeToDisplay = 'overview';
 
   navLinks = [
     { path: 'transaction-log', label: 'Transaction Log', icon: 'assessment' },
@@ -53,7 +53,7 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
     });
 
     // get the selected tab index
-    this.tabIndex;
+    return this.tabIndex;
   }
 
   ngOnDestroy(): void {
@@ -100,7 +100,7 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
     if (url.includes('transaction-log')) {
       return this.selectedTab = '0';
     }
-    
+
     if (url.includes('edit-product')) {
       return this.selectedTab = '1';
     }
@@ -114,8 +114,6 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
   }
 
   navigate(routeToDisplay: string) {
-    console.log(routeToDisplay);
-
     this.routeToDisplay = routeToDisplay;
   }
 

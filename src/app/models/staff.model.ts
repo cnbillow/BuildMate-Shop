@@ -1,6 +1,6 @@
 export interface Staff {
     id?: string;
-    name?: string;
+    names?: string;
     nick?: string;
     gender?: string;
     dob?: Date;

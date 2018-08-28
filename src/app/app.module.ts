@@ -65,7 +65,7 @@ import { TransactionLogComponent } from './admin/products/transaction-log/transa
 import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
 import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
 
- 
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -93,7 +93,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     FlexLayoutModule,
     FormsModule,
     PerfectScrollbarModule,

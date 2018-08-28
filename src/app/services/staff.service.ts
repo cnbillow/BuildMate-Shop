@@ -13,9 +13,9 @@ import { Staff } from '../models/staff.model';
 export class StaffService {
 
   private staffCol: AngularFirestoreCollection<Staff>;
-  private staffs: Observable<Staff[]>
+  private staffs: Observable<Staff[]>;
 
-  constructor(private db: AngularFirestore, private timestampService: TimestampService) { 
+  constructor(private db: AngularFirestore, private timestampService: TimestampService) {
     this.staffCol = db.collection('staffs');
 
     this.staffs = this.staffCol.snapshotChanges().pipe(
@@ -27,15 +27,15 @@ export class StaffService {
           return data;
         });
       })
-    )
+    );
   }
 
   getStaffs() {
     return this.staffs;
   }
 
-  getStaff(productId: string) {
-    return this.db.doc(`staffs/${productId}`).valueChanges();
+  getStaff(staffId: string): Observable<Staff> {
+    return this.db.doc(`staffs/${staffId}`).valueChanges();
   }
 
   addStaff(staff: Staff) {
@@ -45,15 +45,15 @@ export class StaffService {
     return this.staffCol.add(staff);
   }
 
-  updateProduct(productId: string, product: Product) {
+  updateStaff(staffId: string, staff: Staff) {
     const timestamp = this.timestampService.getTimestamp;
 
-    product.lastUpdate = timestamp;
-    this.db.doc(`staffs/${productId}`).set(product, { merge: true });
+    staff.lastUpdate = timestamp;
+    this.db.doc(`staffs/${staffId}`).set(staff, { merge: true });
   }
 
-  deleteProduct(productId: string) {
-    return this.db.doc(`staffs/${productId}`).delete();
+  deleteStaff(staffId: string) {
+    return this.db.doc(`staffs/${staffId}`).delete();
   }
 }
 

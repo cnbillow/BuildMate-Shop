@@ -29,12 +29,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private dialog: MatDialog, 
+  constructor(private dialog: MatDialog,
               private categoryService: ProductCategoryService,
               private productService: ProductService,
               private alertService: AlertService,
               private router: Router,
-              private route: ActivatedRoute) { 
+              private route: ActivatedRoute) {
                 this.categories$ = this.categoryService.getCategories();
               }
 
@@ -46,8 +46,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         this.product = resp;
       });
     }
-
-    
   }
 
   ngOnDestroy(): void {
@@ -64,7 +62,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         await this.productService.updateProduct(this.productId, this.product);
 
         this.alertService.afterUpdateSuccess();
-        // this.router.navigate(['account', 'products']);
+        this.router.navigate(['account', 'products']);
         return;
       }
 

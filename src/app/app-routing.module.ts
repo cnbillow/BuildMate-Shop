@@ -1,3 +1,5 @@
+import { StockOrdersComponent } from './admin/transactions/stock-orders/stock-orders.component';
+import { StaffProfileComponent } from './admin/staffs/staff-profile/staff-profile.component';
 import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
 import { StaffsRegistryComponent } from './admin/staffs/staffs-registry/staffs-registry.component';
 import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
@@ -64,10 +66,22 @@ const routes: Routes = [
         path: 'product-form',
         component: ProductFormComponent
       }, {
+        path: 'staff/:id',
+        component: StaffProfileComponent,
+        children: [
+          {
+            path: 'transaction-log',
+            component: StockOrdersComponent
+          }, {
+            path: 'staff-update',
+            component: StaffFormComponent
+          }
+        ]
+      }, {
         path: 'staffs',
         component: StaffsRegistryComponent
       }, {
-        path: 'staff-form', 
+        path: 'staff-form',
         component: StaffFormComponent
       }
     ]

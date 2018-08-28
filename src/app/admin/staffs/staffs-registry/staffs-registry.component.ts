@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 import { StaffService } from './../../../services/staff.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Staff } from '../../../models/staff.model';
 
 @Component({
@@ -7,18 +8,40 @@ import { Staff } from '../../../models/staff.model';
   templateUrl: './staffs-registry.component.html',
   styleUrls: ['./staffs-registry.component.css']
 })
-export class StaffsRegistryComponent implements OnInit {
+export class StaffsRegistryComponent implements OnInit, OnDestroy {
+
+  // search Qry
+  searchQry: string;
 
   staffs: Staff[] = [];
   filteredStaffs: Staff[] = [];
 
+  subscription: Subscription;
+
   constructor(private staffService: StaffService) { }
 
   ngOnInit() {
-    this.staffService.getStaffs().subscribe(resp => {
+    this.subscription = this.staffService.getStaffs().subscribe(resp => {
       this.staffs = this.filteredStaffs = resp;
-      console.log(resp);
     });
+  }
+
+  ngOnDestroy(): void {
+   if (this.subscription) {
+     this.subscription.unsubscribe();
+   }
+  }
+
+  search(qry: string) {
+
+    this.filteredStaffs = qry ?
+    this.staffs.filter(
+      p => p.names.toLowerCase().includes(qry.toLowerCase())) : this.staffs;
+  }
+
+  clearSearchField() {
+    this.search('');
+    this.searchQry = '';
   }
 
 }

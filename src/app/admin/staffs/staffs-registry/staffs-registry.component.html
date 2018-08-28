@@ -1,9 +1,5 @@
 
 <mat-card>
-  <button mat-raised-button color="primary" routerLink="/account/staff-form">Add Staff</button>
-</mat-card>
-
-<mat-card>
 
   <div fxLayout="row" fxLayout.xs="column" fxFlexAlign="center center">
 
@@ -27,9 +23,9 @@
 
         <section>
           <div class="add-new">
-              <a mat-raised-button color="primary" routerLink="/account/product-form">
+              <a mat-raised-button color="primary" routerLink="/account/staff-form">
               <mat-icon>add</mat-icon> &nbsp;
-              Add Product
+              Add Staff
             </a>
           </div>
         </section>
@@ -39,12 +35,12 @@
             <mat-divider></mat-divider>
             <h3 matLine>  
               <strong>                  
-                {{ filteredProduct?.length }} record(s) found.
+                {{ filteredStaffs?.length }} record(s) found.
               </strong>
             </h3>
           </mat-list-item>
 
-          <div *ngIf="filteredProduct?.length < 1"> 
+          <div *ngIf="filteredStaffs?.length < 1"> 
             <p>
               No record(s) found :(
             </p>
@@ -52,19 +48,16 @@
 
           <!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
 
-          <mat-list-item *ngFor="let product of filteredProduct" routerLink="/account/product/{{ product.id }}/transaction-log">
+          <mat-list-item *ngFor="let staff of filteredStaffs" routerLink="/account/staff/{{ staff.id }}">
             <mat-divider></mat-divider>
             <!-- <img *ngIf="people.profileImage; else noImageAvatar" matListAvatar [src]="getPeopleAvatar(people.profileImage)" [alt]="people.firstname"> -->
             <h3 matLine> 
               <strong>                  
-                <!-- {{ product?.pattern }}               -->
+                {{ staff?.names }}              
               </strong>
             </h3>
             <p matLine>
-              <!-- Category -- <strong>{{ getCategorDetails(product?.category) }}</strong> <br>   -->
-            </p>
-            <p matLine>
-              <!-- Unit Price (Ghc) -- <strong>{{ product?.unitPrice }}</strong>   -->
+              Contact -- <strong>{{ staff.contact?.phone }}</strong> <br>  
             </p>
 
             <button mat-icon-button>
