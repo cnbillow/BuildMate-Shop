@@ -3,15 +3,15 @@
   <div class="spc-30"></div>
 
   <div class="submit-button">
+    <button mat-button color="primary" matTooltip="Add Category" (click)="addCategory()"> 
+      <mat-icon>add</mat-icon> &nbsp;
+      <span>Add Category</span>
+    </button> &nbsp;
+
     <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!f.valid"> 
       <mat-icon>save</mat-icon> &nbsp;
       <span>Save Record</span> 
     </button> &nbsp;
-
-    <button mat-button color="primary" matTooltip="Add Category" (click)="addCategory()"> 
-      <mat-icon>add</mat-icon> &nbsp;
-      <span>Add Category</span>
-    </button>    
   </div> 
 
   <div>

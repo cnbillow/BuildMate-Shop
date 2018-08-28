@@ -19,6 +19,7 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
+  MatNativeDateModule,
   MatPaginatorModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
@@ -47,7 +48,6 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
 import { ProductRegistryComponent } from './admin/products/product-registry/product-registry.component';
-import { AddStaffsComponent } from './admin/staffs/add-staffs/add-staffs.component';
 import { StaffProfileComponent } from './admin/staffs/staff-profile/staff-profile.component';
 import { StaffsRegistryComponent } from './admin/staffs/staffs-registry/staffs-registry.component';
 import { StockOrdersComponent } from './admin/transactions/stock-orders/stock-orders.component';
@@ -63,6 +63,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductCategoryComponent } from './admin/products/product-category/product-category.component';
 import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
 import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
+import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
 
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -79,7 +80,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DashboardComponent,
     LoginComponent,
     ProductProfileComponent,
-    AddStaffsComponent,
     StaffsRegistryComponent,
     StaffProfileComponent,
     StockOrdersComponent,
@@ -88,7 +88,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DropZoneDirective,
     ProductCategoryComponent,
     TransactionLogComponent,
-    ManageStockComponent
+    ManageStockComponent,
+    StaffFormComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -118,6 +119,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,

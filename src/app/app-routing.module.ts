@@ -1,3 +1,5 @@
+import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
+import { StaffsRegistryComponent } from './admin/staffs/staffs-registry/staffs-registry.component';
 import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
 import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
@@ -61,6 +63,12 @@ const routes: Routes = [
       }, {
         path: 'product-form',
         component: ProductFormComponent
+      }, {
+        path: 'staffs',
+        component: StaffsRegistryComponent
+      }, {
+        path: 'staff-form', 
+        component: StaffFormComponent
       }
     ]
   }, {

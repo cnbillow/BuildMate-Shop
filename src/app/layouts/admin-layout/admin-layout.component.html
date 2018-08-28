@@ -69,12 +69,12 @@
                     <strong>Dashboard</strong>
                 </a>
     
-                <a mat-list-item routerLink="/account/products">
+                <a mat-list-item routerLink="/account/products" [class.activated]="currentUrl == '/account/products'">
                     <mat-icon>store</mat-icon> &nbsp;
                     <strong>Products</strong>
                 </a>
     
-                <a mat-list-item routerLink="/account/dashboard">
+                <a mat-list-item routerLink="/account/staffs" [class.activated]="currentUrl == '/account/staffs'">
                     <mat-icon>person</mat-icon> &nbsp;
                     <strong>Staffs</strong>
                 </a>
