@@ -1,15 +1,81 @@
-import { Component, OnInit } from '@angular/core';
+import { AlertService } from './../../../services/alert.service';
+import { switchMap } from 'rxjs/operators';
+import { Product } from './../../../models/product.model';
+import { Subscription } from 'rxjs';
+import { ProductService } from './../../../services/product.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Category } from '../../../models/category.model';
+import { ProductCategoryService } from '../../../services/product-category.service';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-profile',
   templateUrl: './product-profile.component.html',
-  styleUrls: ['./product-profile.component.css']
+  styleUrls: ['./product-profile.component.scss']
 })
-export class ProductProfileComponent implements OnInit {
+export class ProductProfileComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  productId: string;
+
+  product: Product = {};
+  category: Category[] = [];
+
+  routeToDisplay: string = 'overview';
+
+  navLinks = [
+    { path: 'transaction-log', label: 'Transaction Log', icon: 'assessment' },
+    { path: 'edit-product', label: 'Edit', icon: 'border_color' },
+    { path: 'manage-stock', label: 'Manage Stock', icon: 'updates' }
+  ];
+
+  subscription: Subscription;
+
+  constructor(private productService: ProductService,
+              private categoryService: ProductCategoryService,
+              private route: ActivatedRoute,
+              private alertService: AlertService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.productId = this.route.snapshot.paramMap.get('id');
+
+    this.subscription = this.categoryService.getCategories().pipe(switchMap(resp => {
+      this.category = resp;
+      return this.productService.getProduct(this.productId);
+    })).subscribe(result => {
+      this.product = result;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  async deleteProduct() {
+    const confirm = await this.alertService.confirmDelete();
+    if (confirm.value) {
+      await this.productService.deleteProduct(this.productId);
+
+      this.alertService.afterDeleteSuccess();
+      this.router.navigate(['account', 'products']);
+    }
+  }
+
+  getCategorDetails(categoryId: string) {
+    if (!categoryId) {
+      return;
+    }
+
+    const index = this.category.findIndex(c => c.id === categoryId);
+    return this.category[index].name;
+  }
+
+  navigate(routeToDisplay: string) {
+    console.log(routeToDisplay);
+
+    this.routeToDisplay = routeToDisplay;
   }
 
 }

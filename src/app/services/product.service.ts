@@ -34,11 +34,19 @@ export class ProductService {
     return this.products;
   }
 
+  getProduct(productId: string) {
+    return this.db.doc(`products/${productId}`).valueChanges();
+  }
+
   addProducts(product: Product) {
     const timestamp = this.timestampService.getTimestamp;
 
     product.created = product.lastUpdate = timestamp;
     return this.productCol.add(product);
+  }
+
+  deleteProduct(productId: string) {
+    return this.db.doc(`products/${productId}`).delete();
   }
 }
 

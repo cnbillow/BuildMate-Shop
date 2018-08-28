@@ -48,7 +48,7 @@
 
           <!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
 
-          <mat-list-item *ngFor="let product of filteredProduct">
+          <mat-list-item *ngFor="let product of filteredProduct" routerLink="/account/product/{{ product.id }}">
             <mat-divider></mat-divider>
             <!-- <img *ngIf="people.profileImage; else noImageAvatar" matListAvatar [src]="getPeopleAvatar(people.profileImage)" [alt]="people.firstname"> -->
             <h3 matLine> 

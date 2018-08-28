@@ -25,10 +25,10 @@ export class ProductFormComponent implements OnInit {
   isHovering: boolean;
 
   constructor(private dialog: MatDialog, 
-    private categoryService: ProductCategoryService,
-    private productService: ProductService,
-    private alertService: AlertService,
-    private router: Router) { }
+              private categoryService: ProductCategoryService,
+              private productService: ProductService,
+              private alertService: AlertService,
+              private router: Router) { }
 
   ngOnInit() {
     this.categories$ = this.categoryService.getCategories();
@@ -37,7 +37,7 @@ export class ProductFormComponent implements OnInit {
   async onSubmit() {
     const confirm = await this.alertService.confirmUpdate();
     if (confirm.value) {
-      this.productService.addProducts(this.product);
+      await this.productService.addProducts(this.product);
 
       this.alertService.afterUpdateSuccess();
       this.router.navigate(['account', 'products']);

@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './general/home-page/home-page.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ProductRegistryComponent } from './admin/products/product-registry/product-registry.component';
+import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,9 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      }, {
+        path: 'product/:id',
+        component: ProductProfileComponent
       }, {
         path: 'products',
         component: ProductRegistryComponent
