@@ -61,7 +61,7 @@
         <div class="form-field-container">
     
           <mat-form-field>
-            <input matInput placeholder="Names" required>
+            <input matInput [(ngModel)]="staff.names" name="names" placeholder="Names" required>
             <mat-hint>Surname, Firstname & Othernames if any</mat-hint>
             
             <mat-error>
@@ -70,14 +70,14 @@
           </mat-form-field>       
   
           <mat-form-field>
-            <input matInput placeholder="Nick-name" required>
+            <input matInput [(ngModel)]="staff.nick" name="nick" placeholder="Nick-name" required>
             <mat-error>
                 Nick name is <strong>required</strong>
             </mat-error>
           </mat-form-field>
   
           <mat-form-field>
-            <mat-select placeholder="Gender" required>
+            <mat-select [(ngModel)]="staff.gender" name="gender" placeholder="Gender" required>
               <mat-option value=""></mat-option>
               <mat-option value="Male">Male</mat-option>
               <mat-option value="Female">Female</mat-option>
@@ -89,7 +89,7 @@
   
           <mat-form-field>
             <!-- <span matSuffix> <mat-icon>date_range</mat-icon> &nbsp; </span> -->
-            <input matInput [matDatepicker]="DOB" placeholder="Date Of Birth" required disabled>
+            <input matInput [matDatepicker]="DOB" [(ngModel)]="staff.dob" name="dob" placeholder="Date Of Birth" required disabled>
             <mat-datepicker-toggle matPrefix [for]="DOB"></mat-datepicker-toggle>
             <mat-datepicker-toggle matSuffix [for]="DOB"></mat-datepicker-toggle>
             <mat-datepicker #DOB touchUi="true" disabled="false"></mat-datepicker>
@@ -123,8 +123,8 @@
   
           <mat-form-field>
             <span matPrefix> <mat-icon>phone</mat-icon> &nbsp; </span>
-            <input matInput type="tel" placeholder="Mobile Phone" required>
-            <mat-hint>With country code if international</mat-hint>
+            <input matInput type="tel" [(ngModel)]="staff.contact.phone" name="phone" placeholder="Mobile Phone" required>
+            <mat-hint>With country code if international!</mat-hint>
             
             <mat-error>
               Mobile phone number is <strong>required</strong>
@@ -133,17 +133,17 @@
   
           <mat-form-field>
             <span matPrefix> <mat-icon>phone_iphone</mat-icon> &nbsp; </span>
-            <input matInput type="tel" placeholder="Other Phone(s)">
+            <input matInput type="tel" [(ngModel)]="staff.contact.otherPhones" name="otherPhones" placeholder="Other Phone(s)">
           </mat-form-field>
     
           <mat-form-field>
             <span matPrefix> <mat-icon>email</mat-icon> &nbsp; </span>
-            <input matInput type="email" placeholder="Email Address">
+            <input matInput type="email" [(ngModel)]="staff.contact.email" name="email" placeholder="Email Address">
           </mat-form-field>              
               
           <mat-form-field>
             <span matPrefix> <mat-icon>location_on</mat-icon> &nbsp; </span>
-            <textarea matInput placeholder="Residential Address" required></textarea>
+            <textarea matInput [(ngModel)]="staff.contact.address" name="address" placeholder="Residential address" required></textarea>
             
             <mat-error>
               Residential address is <strong>required</strong>

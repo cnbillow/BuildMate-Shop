@@ -5,22 +5,23 @@ import { map } from 'rxjs/operators';
 
 import { Product } from '../models/product.model';
 import { TimestampService } from './timestamp.service';
+import { Staff } from '../models/staff.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class StaffService {
 
-  private productCol: AngularFirestoreCollection<Product>;
-  private products: Observable<Product[]>
+  private staffCol: AngularFirestoreCollection<Staff>;
+  private staffs: Observable<Staff[]>
 
   constructor(private db: AngularFirestore, private timestampService: TimestampService) { 
-    this.productCol = db.collection('products');
+    this.staffCol = db.collection('staffs');
 
-    this.products = this.productCol.snapshotChanges().pipe(
+    this.staffs = this.staffCol.snapshotChanges().pipe(
       map(change => {
         return change.map(a => {
-          const data = a.payload.doc.data() as Product;
+          const data = a.payload.doc.data() as Staff;
           data.id = a.payload.doc.id;
 
           return data;
@@ -29,31 +30,32 @@ export class ProductService {
     )
   }
 
-  getProducts() {
-    return this.products;
+  getStaffs() {
+    return this.staffs;
   }
 
-  getProduct(productId: string) {
-    return this.db.doc(`products/${productId}`).valueChanges();
+  getStaff(productId: string) {
+    return this.db.doc(`staffs/${productId}`).valueChanges();
   }
 
-  addProduct(product: Product) {
+  addStaff(staff: Staff) {
     const timestamp = this.timestampService.getTimestamp;
 
-    product.created = product.lastUpdate = timestamp;
-    return this.productCol.add(product);
+    staff.created = staff.lastUpdate = timestamp;
+    return this.staffCol.add(staff);
   }
 
   updateProduct(productId: string, product: Product) {
     const timestamp = this.timestampService.getTimestamp;
 
     product.lastUpdate = timestamp;
-    this.db.doc(`products/${productId}`).set(product, { merge: true });
+    this.db.doc(`staffs/${productId}`).set(product, { merge: true });
   }
 
   deleteProduct(productId: string) {
-    return this.db.doc(`products/${productId}`).delete();
+    return this.db.doc(`staffs/${productId}`).delete();
   }
 }
+
 
 
