@@ -1,7 +1,7 @@
 import { AlertService } from './../../../services/alert.service';
 import { ProductCategoryService } from './../../../services/product-category.service';
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../../models/product-category.model';
+import { Category } from '../../../models/category.model';
 import { MatDialogRef } from '@angular/material';
 
 @Component({

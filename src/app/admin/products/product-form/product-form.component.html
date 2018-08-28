@@ -66,7 +66,7 @@
         <div class="form-field-container">
   
           <mat-form-field>
-            <input matInput [(ngModel)]="product.pattern" name="pattern" placeholder="Pattern Number">
+            <input matInput [(ngModel)]="product.pattern" name="pattern" placeholder="Pattern Number" required>
             <mat-error>
               Pattern number is <strong>required</strong>
             </mat-error>       
@@ -78,7 +78,7 @@
           </mat-form-field>
   
           <mat-form-field>
-            <input matInput [(ngModel)]="product.unitPrice" name="unitPrice" type="number" placeholder="Price">
+            <input matInput [(ngModel)]="product.unitPrice" name="unitPrice" type="number" placeholder="Price" required>
             <span matPrefix>Unit Price (Ghc)&nbsp;</span>
             <mat-error>
               Price is <strong>required</strong>
@@ -86,7 +86,7 @@
           </mat-form-field>  
             
           <mat-form-field>
-            <mat-select [(ngModel)]="product.category" name="category" placeholder="Category">
+            <mat-select [(ngModel)]="product.category" name="category" placeholder="Category" required>
               <mat-option value=""></mat-option>
               <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
                 {{ category.name }}

@@ -1,10 +1,12 @@
+import { AlertService } from './../../../services/alert.service';
 import { ProductService } from './../../../services/product.service';
 import { ProductCategoryService } from './../../../services/product-category.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ProductCategoryComponent } from '../product-category/product-category.component';
-import { Category } from '../../../models/product-category.model';
+import { Category } from '../../../models/category.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -24,14 +26,22 @@ export class ProductFormComponent implements OnInit {
 
   constructor(private dialog: MatDialog, 
     private categoryService: ProductCategoryService,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private alertService: AlertService,
+    private router: Router) { }
 
   ngOnInit() {
     this.categories$ = this.categoryService.getCategories();
   }
 
-  onSubmit() {
-    this.productService.addProducts(this.product);
+  async onSubmit() {
+    const confirm = await this.alertService.confirmUpdate();
+    if (confirm.value) {
+      this.productService.addProducts(this.product);
+
+      this.alertService.afterUpdateSuccess();
+      this.router.navigate(['account', 'products']);
+    }
   }
 
   handleFileInput(file: FileList) {

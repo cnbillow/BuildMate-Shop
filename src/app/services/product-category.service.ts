@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Category } from '../models/product-category.model';
+import { Category } from '../models/category.model';
 import { TimestampService } from './timestamp.service';
 
 @Injectable({
