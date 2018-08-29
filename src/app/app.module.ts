@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -45,28 +46,29 @@ import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrol
 
 import { environment } from '../environments/environment';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
+import { ProductCategoryComponent } from './admin/products/product-category/product-category.component';
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
 import { ProductRegistryComponent } from './admin/products/product-registry/product-registry.component';
+import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
+import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
 import { StaffProfileComponent } from './admin/staffs/staff-profile/staff-profile.component';
 import { StaffsRegistryComponent } from './admin/staffs/staffs-registry/staffs-registry.component';
+import { PosCartComponent } from './admin/transactions/pos-cart/pos-cart.component';
+import { PosComponent } from './admin/transactions/pos/pos.component';
 import { StockOrdersComponent } from './admin/transactions/stock-orders/stock-orders.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
+import { NewLoginComponent } from './auth/new-login/new-login.component';
+import { DropZoneDirective } from './directives/drop-zone.directive';
 import { HomePageComponent } from './general/home-page/home-page.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
-import { DropZoneDirective } from './directives/drop-zone.directive';
-import { FormsModule } from '@angular/forms';
-import { ProductCategoryComponent } from './admin/products/product-category/product-category.component';
-import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
-import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
-import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
-import { PosComponent } from './admin/transactions/pos/pos.component';
-import { PosCartComponent } from './admin/transactions/pos-cart/pos-cart.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
+import { CheckOutComponent } from './admin/transactions/check-out/check-out.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -95,13 +97,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     StaffFormComponent,
     PosComponent,
     PosCartComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    NewLoginComponent,
+    CheckOutComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     PerfectScrollbarModule,
 
     AppRoutingModule,

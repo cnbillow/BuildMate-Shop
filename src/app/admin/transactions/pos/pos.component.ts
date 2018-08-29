@@ -22,6 +22,7 @@ export class PosComponent implements OnInit, OnDestroy {
   searchQry: string;
 
   cart: CartItem[] = [];
+  cartTotalQTY = 0;
 
   product: Product[] = [];
   filteredProduct: Product[] = [];
@@ -48,6 +49,8 @@ export class PosComponent implements OnInit, OnDestroy {
     })).subscribe(result1 => {
       this.product = this.filteredProduct = result1;
     });
+
+    this.getCartItemsTotalQTY(); // loads total QTY to check-out button
   }
 
   ngOnDestroy(): void {
@@ -82,6 +85,15 @@ export class PosComponent implements OnInit, OnDestroy {
 
     const index = this.cart.findIndex(p => p.product.id === productId);
     return index > -1 ? this.cart[index].quantity : 0;
+  }
+
+  getCartItemsTotalQTY() {
+
+    this.cart.forEach(item => {
+      this.cartTotalQTY = + item.quantity;
+    });
+
+    console.log(this.cartTotalQTY);
   }
 
   getCategorDetails(categoryId: string) {

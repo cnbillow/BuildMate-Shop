@@ -62,6 +62,11 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  editProduct() {
+    const url = `account/product/${this.productId}/edit-product`;
+    this.router.navigate([url]);
+  }
+
   async deleteProduct() {
     const confirm = await this.alertService.confirmDelete();
     if (confirm.value) {
@@ -71,6 +76,15 @@ export class ProductProfileComponent implements OnInit, OnDestroy {
       this.router.navigate(['account', 'products']);
     }
   }
+
+  // getLowQTYAlert() {
+  //   if (this.product.availableQTY <= 10) {
+  //     return 'warn';
+  //   }
+
+  //   // else
+  //   return 'primary';
+  // }
 
   getCategorDetails(categoryId: string) {
     if (!categoryId) {

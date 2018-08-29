@@ -16,6 +16,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { ProductRegistryComponent } from './admin/products/product-registry/product-registry.component';
 import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
 import { PosComponent } from './admin/transactions/pos/pos.component';
+import { NewLoginComponent } from './auth/new-login/new-login.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,7 @@ const routes: Routes = [
     children: [
       {
         path: 'login',
-        component: LoginComponent
+        component: NewLoginComponent
       }
     ]
   }, {

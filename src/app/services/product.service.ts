@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Product } from '../models/product.model';
+import { Product, ProductStock } from '../models/product.model';
 import { TimestampService } from './timestamp.service';
 
 @Injectable({
@@ -29,6 +29,30 @@ export class ProductService {
     );
   }
 
+ 
+
+ 
+  // getGivingByPerson(personId: string) {
+  //   return this.db.collection('giving', ref => ref
+  //     .where('data.person', '==', personId)
+  //     .orderBy('givingDate', 'asc'))
+  //     .snapshotChanges().pipe(
+  //     map(change => {
+  //       return change.map(a => {
+  //         const data = a.payload.doc.data() as Giving;
+  //         data.Id = a.payload.doc.id;
+
+  //         return data;
+  //       });
+  //     })
+  //   );
+  // }
+
+
+  getProductById(productId: string) {
+    return this.db.doc(`products/${productId}`).valueChanges();
+  }
+
   getProducts() {
     return this.products;
   }
@@ -37,9 +61,29 @@ export class ProductService {
     return this.db.doc(`products/${productId}`).valueChanges();
   }
 
+  // verify if product item exists
+  private async verifyProduct(productId) {
+    const doc = await this.db.doc(`products/${productId}`).ref.get();
+    const data = doc.data() as Product;
+
+    return doc.exists ? data : null;
+  }
+
+  async updateProductQTY(productId: string, newQTY: number) {
+    const isExist = await this.verifyProduct(productId);
+
+    const timestamp = this.timestampService.getTimestamp;
+
+    return this.db.doc(`products/${productId}`).set({
+      availableQTY: isExist.availableQTY + newQTY,
+      lastUpdate: timestamp
+    }, { merge: true });
+  }
+
   addProduct(product: Product) {
     const timestamp = this.timestampService.getTimestamp;
 
+    product.availableQTY = 0;
     product.created = product.lastUpdate = timestamp;
     return this.productCol.add(product);
   }
@@ -48,7 +92,7 @@ export class ProductService {
     const timestamp = this.timestampService.getTimestamp;
 
     product.lastUpdate = timestamp;
-    this.db.doc(`products/${productId}`).set(product, { merge: true });
+    return this.db.doc(`products/${productId}`).set(product, { merge: true });
   }
 
   deleteProduct(productId: string) {

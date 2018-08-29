@@ -16,15 +16,15 @@
             <h3>{{ getCategorDetails(product?.category) }}</h3>
             <p>{{ product?.description }}</p>
             <h1 mat-header>Ghc {{ product?.unitPrice }}</h1>
-            <strong>(QTY: 20)</strong>
+            <strong>(Quantity &nbsp; {{ product?.availableQTY }})</strong>
           </div>
 
           <div class="spc-10"></div>
 
           <div class="profile-actions">
-            <button mat-raised-button color="primary" matTooltip="Edit product information">
+            <!-- <button mat-raised-button color="primary" matTooltip="Edit product information">
               Edit Product
-            </button> &nbsp;
+            </button> &nbsp; -->
             <button mat-raised-button color="warn" matTooltip="Delete product!" (click)="deleteProduct()">
               Delete Product
             </button>
