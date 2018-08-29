@@ -40,6 +40,7 @@ export class PosComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.cartSubscription = (await this.cartService.getCart()).pipe(switchMap(resp => {
       this.cart = resp;
+      this.getCartItemsTotalQTY(); // loads total QTY to check-out button
 
       return this.categoryService.getCategories();
     }), switchMap(result => {
@@ -49,8 +50,6 @@ export class PosComponent implements OnInit, OnDestroy {
     })).subscribe(result1 => {
       this.product = this.filteredProduct = result1;
     });
-
-    this.getCartItemsTotalQTY(); // loads total QTY to check-out button
   }
 
   ngOnDestroy(): void {
@@ -88,12 +87,8 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   getCartItemsTotalQTY() {
-
-    this.cart.forEach(item => {
-      this.cartTotalQTY = + item.quantity;
-    });
-
-    console.log(this.cartTotalQTY);
+    const total = this.cartService.getCartTotalItemCount(this.cart);
+    this.cartTotalQTY = total;
   }
 
   getCategorDetails(categoryId: string) {

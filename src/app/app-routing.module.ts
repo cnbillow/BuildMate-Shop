@@ -17,6 +17,8 @@ import { ProductRegistryComponent } from './admin/products/product-registry/prod
 import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
 import { PosComponent } from './admin/transactions/pos/pos.component';
 import { NewLoginComponent } from './auth/new-login/new-login.component';
+import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shopping-cart.component';
+import { CheckOutComponent } from './admin/transactions/check-out/check-out.component';
 
 const routes: Routes = [
   {
@@ -88,6 +90,12 @@ const routes: Routes = [
       }, {
         path: 'pos',
         component: PosComponent
+      }, {
+        path: 'shopping-cart',
+        component: ShoppingCartComponent
+      }, {
+        path: 'check-out',
+        component: CheckOutComponent
       }
     ]
   }, {

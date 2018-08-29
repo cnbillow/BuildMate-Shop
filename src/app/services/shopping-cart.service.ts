@@ -14,6 +14,15 @@ export class ShoppingCartService {
 
   constructor(private db: AngularFirestore, private timestampService: TimestampService) { }
 
+  getCartTotalItemCount(cart) {
+    let count = 0;
+    count = cart.reduce(function(a, b) {
+        return a + b.quantity;
+      }, 0);
+
+    return count;
+  }
+
   private create() {
     return this.db.collection('shopping-carts').add(
       {
