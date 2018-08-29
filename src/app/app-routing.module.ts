@@ -19,6 +19,7 @@ import { PosComponent } from './admin/transactions/pos/pos.component';
 import { NewLoginComponent } from './auth/new-login/new-login.component';
 import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './admin/transactions/check-out/check-out.component';
+import { OrderSuccessComponent } from './admin/transactions/order-success/order-success.component';
 
 const routes: Routes = [
   {
@@ -96,6 +97,9 @@ const routes: Routes = [
       }, {
         path: 'check-out',
         component: CheckOutComponent
+      }, {
+        path: 'order-success/:id',
+        component: OrderSuccessComponent
       }
     ]
   }, {

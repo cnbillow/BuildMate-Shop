@@ -23,6 +23,21 @@ export class ShoppingCartService {
     return count;
   }
 
+  getCartTotalPrice(cart) {
+    let sum = 0;
+    let unitPrice = 0;
+    let unitQuantity = 0;
+
+    for (const item of cart) {
+      unitQuantity = item.quantity;
+      unitPrice = item.product.price;
+
+      sum += unitQuantity * unitPrice;
+    }
+
+    return sum;
+  }
+
   private create() {
     return this.db.collection('shopping-carts').add(
       {

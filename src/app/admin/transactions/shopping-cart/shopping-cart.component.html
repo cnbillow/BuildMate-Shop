@@ -1,9 +1,9 @@
 
 <mat-card>
 
-  <div class="spc-30"></div>
+  <div *ngIf="!hideControls" class="spc-30"></div>
   
-  <h1 mat-header>BuildMate-Shop Cart</h1>
+  <h1 *ngIf="!hideControls" mat-header>BuildMate-Shop Cart</h1>
   
   <p>You have {{ getTotalItemCount() }} item(s) in your cart.</p>
 
@@ -46,8 +46,8 @@
       </table>
     
       <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>      
-      <mat-card class="mat-elevation-z2">
-        <button *ngIf="cart.length > 0" mat-raised-button color="primary" routerLink="/account/check-out">Check Out</button> &nbsp;
+      <mat-card *ngIf="!hideControls" class="mat-elevation-z2">
+        <button *ngIf="cart.length > 0 " mat-raised-button color="primary" routerLink="/account/check-out">Check Out</button> &nbsp;
         <button *ngIf="cart.length > 0" mat-button color="warn" (click)="clearCart()">Clear Transaction Cart</button>
       </mat-card>
     </div>

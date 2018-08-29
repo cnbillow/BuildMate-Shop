@@ -77,8 +77,6 @@ export class ManageStockComponent implements OnInit, OnDestroy {
       return;
     }
 
-    console.log(productId, this.products);
-
     this.newStock.product = productId; // assign selected person id to model
 
     const index = this.products.findIndex(p => p.id === productId);
@@ -104,7 +102,7 @@ export class ManageStockComponent implements OnInit, OnDestroy {
   async onSubmit() {
 
     if (!this.newStock.supplied) {
-      return this.openSnackBar('Select date for giving before proceeding operation', 'Error');
+      return this.openSnackBar('Select date for supplies before proceeding operation', 'Error');
     }
 
     const confirm = await this.alertService.confirmUpdate();

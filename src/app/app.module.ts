@@ -70,6 +70,7 @@ import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { CheckOutComponent } from './admin/transactions/check-out/check-out.component';
 import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shopping-cart.component';
+import { OrderSuccessComponent } from './admin/transactions/order-success/order-success.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -101,7 +102,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoadingSpinnerComponent,
     NewLoginComponent,
     CheckOutComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    OrderSuccessComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

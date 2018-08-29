@@ -2,7 +2,7 @@ import { AlertService } from './../../../services/alert.service';
 import { ProductService } from './../../../services/product.service';
 import { CartItem } from './../../../models/cartItem.model';
 import { ShoppingCartService } from './../../../services/shopping-cart.service';
-import { Component, OnInit, ViewChild, NgZone, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone, OnDestroy, Input } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { Product } from '../../../models/product.model';
@@ -13,6 +13,8 @@ import { Product } from '../../../models/product.model';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit, OnDestroy {
+
+  @Input() hideControls;
 
   cartMap = [];
   cart = [];
