@@ -1,10 +1,11 @@
-import { Category } from './../../../models/category.model';
-import { ProductService } from './../../../services/product.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 import { Product } from '../../../models/product.model';
 import { ProductCategoryService } from '../../../services/product-category.service';
-import { switchMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Category } from './../../../models/category.model';
+import { ProductService } from './../../../services/product.service';
 
 @Component({
   selector: 'app-product-registry',

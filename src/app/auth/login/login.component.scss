@@ -1,0 +1,9 @@
+.full-background {
+    // overflow: hidden;
+    background: url('../../../assets/banners/banner1.jpg');
+    // background-size: cover;
+
+    mat-card {
+        width: calc(100% / 4);
+    }
+}

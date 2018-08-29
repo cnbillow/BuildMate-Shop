@@ -64,6 +64,9 @@ import { ProductCategoryComponent } from './admin/products/product-category/prod
 import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
 import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
 import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
+import { PosComponent } from './admin/transactions/pos/pos.component';
+import { PosCartComponent } from './admin/transactions/pos-cart/pos-cart.component';
+import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -89,7 +92,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProductCategoryComponent,
     TransactionLogComponent,
     ManageStockComponent,
-    StaffFormComponent
+    StaffFormComponent,
+    PosComponent,
+    PosCartComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -139,7 +145,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTreeModule,
   ],
   entryComponents: [
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    PosCartComponent
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }

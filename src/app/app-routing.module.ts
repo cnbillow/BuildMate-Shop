@@ -15,6 +15,7 @@ import { HomePageComponent } from './general/home-page/home-page.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ProductRegistryComponent } from './admin/products/product-registry/product-registry.component';
 import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
+import { PosComponent } from './admin/transactions/pos/pos.component';
 
 const routes: Routes = [
   {
@@ -83,6 +84,9 @@ const routes: Routes = [
       }, {
         path: 'staff-form',
         component: StaffFormComponent
+      }, {
+        path: 'pos',
+        component: PosComponent
       }
     ]
   }, {

@@ -12,9 +12,9 @@ import { TimestampService } from './timestamp.service';
 export class ProductService {
 
   private productCol: AngularFirestoreCollection<Product>;
-  private products: Observable<Product[]>
+  private products: Observable<Product[]>;
 
-  constructor(private db: AngularFirestore, private timestampService: TimestampService) { 
+  constructor(private db: AngularFirestore, private timestampService: TimestampService) {
     this.productCol = db.collection('products');
 
     this.products = this.productCol.snapshotChanges().pipe(
@@ -26,7 +26,7 @@ export class ProductService {
           return data;
         });
       })
-    )
+    );
   }
 
   getProducts() {
