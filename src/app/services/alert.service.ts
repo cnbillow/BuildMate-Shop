@@ -24,6 +24,25 @@ export class AlertService {
     });
   }
 
+  addToCart() {
+    return swal({
+      title: 'Cart! Are you sure of proceeding with this operation?',
+      text: 'You won\'t be able to revert this!',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm!'
+    });
+  }
+
+  addToCartSuccess() {
+    return this.toast({
+      type: 'success',
+      title: 'Order successfully placed'
+    });
+  }
+
   confirmUpdate() {
     return swal({
       title: 'Record Update!',

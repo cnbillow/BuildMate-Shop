@@ -29,6 +29,8 @@ export class PosComponent implements OnInit, OnDestroy {
 
   category: Category[] = [];
 
+  showSpinner = true;
+
   subscription: Subscription;
   cartSubscription: Subscription;
 
@@ -40,6 +42,7 @@ export class PosComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.cartSubscription = (await this.cartService.getCart()).pipe(switchMap(resp => {
       this.cart = resp;
+      this.showSpinner = false;
       this.getCartItemsTotalQTY(); // loads total QTY to check-out button
 
       return this.categoryService.getCategories();

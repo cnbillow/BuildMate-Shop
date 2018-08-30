@@ -30,7 +30,7 @@ export class ShoppingCartService {
 
     for (const item of cart) {
       unitQuantity = item.quantity;
-      unitPrice = item.product.price;
+      unitPrice = item.product.unitPrice;
 
       sum += unitQuantity * unitPrice;
     }

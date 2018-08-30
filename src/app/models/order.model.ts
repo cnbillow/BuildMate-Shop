@@ -7,6 +7,8 @@ export class Order {
 
     constructor(public staff, cart) {
 
+        this.dataPlaced = new Date().getTime();
+
         this.items = cart.map(i => {
             return {
               product: {

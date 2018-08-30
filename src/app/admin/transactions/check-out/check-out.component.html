@@ -39,11 +39,39 @@
           Product is <strong>required</strong>
         </mat-error>
       </mat-form-field> 
-    
+
+    </div>
+
+    <div class="spc-5"></div>
+    <h3 style="padding-bottom:0;"> Transaction Details</h3>
+
+    <mat-form-field appearance="outline">
+      <mat-select [(ngModel)]="checkOutTransactionInfo.transactionType" name="transactionType" required>
+        <mat-option>--Select Transaction Type--</mat-option>
+        <mat-option value="Cash">Cash</mat-option>
+        <mat-option value="Credit">Credit</mat-option>
+      </mat-select>
+      <mat-error>
+        Transaction type is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Amount Paid (Ghc)</mat-label>
+      <input type="number" matInput [(ngModel)]="checkOutTransactionInfo.amountPaid" 
+        name="amountPaid" placeholder="Enter Amount Paid" 
+        [disabled]="checkOutTransactionInfo.transactionType === 'Credit' || !checkOutTransactionInfo.transactionType">
+      <mat-icon matSuffix>moneytization_on</mat-icon>
+    </mat-form-field>
+
+    <div>
+      <p *ngIf="checkOutTransactionInfo.transactionType === 'Cash' && cart.length > 0">
+        Outstanding Bill -- {{ getOutStandingPayment() }}
+      </p>
     </div>
 
     <mat-action-row>
-        <button mat-raised-button type="button" color="primary" (click)="placeOrder()" [disabled]="!f.valid">Place Order</button>
+      <button mat-raised-button type="button" color="primary" (click)="placeOrder()" [disabled]="!f.valid || cart.length < 1">Place Order</button>
     </mat-action-row>
   </form>
   
@@ -58,7 +86,7 @@
           </mat-panel-title>
           <mat-panel-description>
             Product Details
-            <mat-icon  matBadge="{{ cartTotalQTY }}" matBadgeColor="accent" [matBadgeHidden]="!cartTotalQTY">shopping_cart</mat-icon>
+            <mat-icon>shopping_cart</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
   

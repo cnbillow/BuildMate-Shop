@@ -1,3 +1,4 @@
+import { AlertService } from './../../../services/alert.service';
 import { MatSnackBar } from '@angular/material';
 import { OrderService } from './../../../services/order.service';
 import { CartItem } from './../../../models/cartItem.model';
@@ -29,8 +30,14 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   cart: CartItem[] = [];
   cartTotalQTY = 0;
+  cartTotalPrice = 0;
 
-  checkOutStaffId;
+  checkOutTransactionInfo = {
+    staff: '',
+    transactionType: '',
+    amountPaid: 0,
+    balance: 0
+  };
 
   step = 0;
 
@@ -42,7 +49,8 @@ export class CheckOutComponent implements OnInit, OnDestroy {
               private timestampService: TimestampService,
               private orderService: OrderService,
               private snackBar: MatSnackBar,
-              private router: Router) { }
+              private router: Router,
+              private alertService: AlertService) { }
 
   async ngOnInit() {
     this.staffSubscription = this.staffService.getStaffs().subscribe(resp => {
@@ -82,15 +90,19 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   async placeOrder() {
 
-    if (!this.checkOutStaffId) {
-      return this.openSnackBar('Select collecting staff proceeding operation', 'Error');
+    if (!this.checkOutTransactionInfo.staff) {
+      return this.openSnackBar('Select collecting staff before proceeding operation!', 'Error');
     }
 
-    const x = new Order(this.checkOutStaffId, this.cart);
+    if (this.checkOutTransactionInfo.transactionType === 'Cash' &&
+      (!this.checkOutTransactionInfo.amountPaid ||
+      this.checkOutTransactionInfo.amountPaid < 1)) {
+      return this.openSnackBar('Enter amount paid for cash transactions before proceeding operation!', 'Error');
+    }
 
     const date = this.timestampService.getTimestamp;
     const order = {
-      staff: this.checkOutStaffId,
+      transactionDetails: this.checkOutTransactionInfo,
       datePlace: date,
       items: this.cart.map(i => {
         return {
@@ -105,13 +117,30 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       })
     };
 
-    const result = await this.orderService.placeOrder(order);
-    this.router.navigate(['account', 'order-success', result.id]);
+    const confirm = await this.alertService.addToCart();
+    if (confirm.value) {
+      const result = await this.orderService.placeOrder(order);
+      this.router.navigate(['account', 'order-success', result.id]);
+
+      this.alertService.addToCartSuccess();
+    }
+
   }
 
   getCartItemsTotalQTY() {
-    const total = this.cartService.getCartTotalItemCount(this.cart);
-    this.cartTotalQTY = total;
+    const totalQTY = this.cartService.getCartTotalItemCount(this.cart);
+    return totalQTY;
+  }
+
+  getCartItemsTotalPrice() {
+    const totalPrice = this.cartService.getCartTotalPrice(this.cart);
+    return totalPrice;
+  }
+
+  getOutStandingPayment() {
+    const balance = this.getCartItemsTotalPrice() - this.checkOutTransactionInfo.amountPaid;
+    this.checkOutTransactionInfo.balance = balance;
+    return balance;
   }
 
   private _filter(name: string): Product[] {
@@ -127,7 +156,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.checkOutStaffId = staffId; // assign selected person id to model
+    this.checkOutTransactionInfo.staff = staffId; // assign selected person id to model
 
     const index = this.staffs.findIndex(p => p.id === staffId);
     return this.staffs[index].names;
