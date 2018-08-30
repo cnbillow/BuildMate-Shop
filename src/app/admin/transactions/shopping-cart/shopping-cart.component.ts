@@ -26,6 +26,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  showSpinner = true;
   cartSubcription: Subscription;
   productSubsciption: Subscription;
 
@@ -40,6 +41,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
       this.cartSubcription = (await this.cartService.getCart()).subscribe(result => {
         this.cart = result;
+        this.showSpinner = false;
 
         this.cartMap = result.map(c => {
           return {

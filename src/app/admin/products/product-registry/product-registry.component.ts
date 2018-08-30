@@ -22,6 +22,7 @@ export class ProductRegistryComponent implements OnInit, OnDestroy {
 
   category: Category[] = [];
 
+  showSpinner = true;
   subscription: Subscription;
 
   constructor(private productService: ProductService, private categoryService: ProductCategoryService) { }
@@ -29,6 +30,7 @@ export class ProductRegistryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.categoryService.getCategories().pipe(switchMap(resp => {
       this.category = resp;
+      this.showSpinner = false;
       return this.productService.getProducts();
     })).subscribe(result => {
       this.product = this.filteredProduct = result;

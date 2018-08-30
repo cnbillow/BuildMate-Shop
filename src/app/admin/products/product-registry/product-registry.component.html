@@ -46,7 +46,7 @@
             </p>
           </div>
 
-          <!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
+          <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
 
           <mat-list-item *ngFor="let product of filteredProduct" routerLink="/account/product/{{ product.id }}/transaction-log">
             <mat-divider></mat-divider>

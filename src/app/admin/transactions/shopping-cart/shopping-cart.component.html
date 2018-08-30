@@ -10,6 +10,7 @@
   <div class="form-field-container">
           
     <div class="mat-elevation-z8">
+
       <table mat-table [dataSource]="dataSource" matSort>
             
         <!-- Product Column -->
@@ -44,6 +45,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;">
         <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
       </table>
+
+      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
     
       <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>      
       <mat-card *ngIf="!hideControls" class="mat-elevation-z2">

@@ -16,12 +16,14 @@ export class StaffsRegistryComponent implements OnInit, OnDestroy {
   staffs: Staff[] = [];
   filteredStaffs: Staff[] = [];
 
+  showSpinner = true;
   subscription: Subscription;
 
   constructor(private staffService: StaffService) { }
 
   ngOnInit() {
     this.subscription = this.staffService.getStaffs().subscribe(resp => {
+      this.showSpinner = false;
       this.staffs = this.filteredStaffs = resp;
     });
   }
