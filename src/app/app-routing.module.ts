@@ -1,9 +1,7 @@
-import { StockOrdersComponent } from './admin/transactions/stock-orders/stock-orders.component';
 import { StaffProfileComponent } from './admin/staffs/staff-profile/staff-profile.component';
 import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
 import { StaffsRegistryComponent } from './admin/staffs/staffs-registry/staffs-registry.component';
 import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
-import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -20,6 +18,8 @@ import { NewLoginComponent } from './auth/new-login/new-login.component';
 import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './admin/transactions/check-out/check-out.component';
 import { OrderSuccessComponent } from './admin/transactions/order-success/order-success.component';
+import { ProductTransactionLogComponent } from './admin/transactions/product-transaction-log/product-transaction-log.component';
+import { StaffTransactionLogComponent } from './admin/transactions/staff-transaction-log/staff-transaction-log.component';
 
 const routes: Routes = [
   {
@@ -55,7 +55,7 @@ const routes: Routes = [
         children: [
           {
             path: 'transaction-log',
-            component: TransactionLogComponent
+            component: ProductTransactionLogComponent
           }, {
             path: 'edit-product',
             component: ProductFormComponent
@@ -76,7 +76,7 @@ const routes: Routes = [
         children: [
           {
             path: 'transaction-log',
-            component: StockOrdersComponent
+            component: StaffTransactionLogComponent
           }, {
             path: 'staff-update',
             component: StaffFormComponent

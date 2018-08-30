@@ -51,6 +51,12 @@ export class ManageStockComponent implements OnInit, OnDestroy {
         map(name => name ? this._filter(name) : this.products.slice())
       );
 
+      if (this.productId) {
+        // set default value for person
+        this.myControl.setValue(this.productId);
+        this.myControl.disable();
+      }
+
     });
   }
 
@@ -114,8 +120,6 @@ export class ManageStockComponent implements OnInit, OnDestroy {
           // double ensuring that all giving is recorded for this product
           this.newStock.product = this.productId;
 
-          console.log('private-stock', this.newStock);
-
           // save record
           await this.stockService.addStock(this.newStock);
 
@@ -128,7 +132,6 @@ export class ManageStockComponent implements OnInit, OnDestroy {
 
         }
 
-        console.log('general-stock', this.newStock);
       // else save record
       await this.stockService.addStock(this.newStock);
 
@@ -177,9 +180,9 @@ export class ManageStockComponent implements OnInit, OnDestroy {
    this.newStock.lastUpdate = null;
    this.newStock.product = null;
    this.newStock.quantity = null;
-   this.newStock.supplied = null;
    this.newStock.unitCostPrice = null;
    this.newStock.unitSalePrice = null;
+   this.newStock.invoice = null;
   }
 
 

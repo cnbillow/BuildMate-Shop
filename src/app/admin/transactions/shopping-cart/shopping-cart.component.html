@@ -30,15 +30,15 @@
         <!-- Quantity Column -->
         <ng-container matColumnDef="quantity">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Qauntity </th>
-          <td mat-cell *matCellDef="let row"> {{row.quantity | number}} </td>
-          <td mat-footer-cell *matFooterCellDef> Total </td>
+          <td mat-cell *matCellDef="let row"> {{ row.quantity | number }} </td>
+          <td mat-footer-cell *matFooterCellDef> Total (GHC)</td>
         </ng-container>
 
         <!-- Total Price Column -->
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
           <td mat-cell *matCellDef="let row"> {{row.total | number}} </td>
-          <td mat-footer-cell *matFooterCellDef> Ghc{{getTotalCost() | number}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{ getTotalCost() | number }} </td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

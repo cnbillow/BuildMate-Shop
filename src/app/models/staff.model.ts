@@ -4,11 +4,12 @@ export interface Staff {
     nick?: string;
     gender?: string;
     dob?: Date;
+    avatar?: string;
     contact?: Contact;
     created?: any;
     lastUpdate?: any;
 }
-  
+
 interface Contact {
     phone?: string;
     otherPhones?: string;

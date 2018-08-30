@@ -1,24 +1,26 @@
-import { CartItem } from './cartItem.model';
-import { TimestampService } from './../services/timestamp.service';
 
-export class Order {
-    dataPlaced: any;
-    items: any[];
 
-    constructor(public staff, cart) {
+export interface Order {
+    id?: string;
+    items?: OrderProduct[];
+    transactionDetails?: Details;
+    datePlaced?: any;
+}
 
-        this.dataPlaced = new Date().getTime();
+interface OrderProduct {
+    product?: {
+        id?: string;
+        pattern?: string;
+        unitPrice?: number;
+    };
+    quantity?: number;
+    totalPrice?: number;
+    transactionDetails?: Details;
+}
 
-        this.items = cart.map(i => {
-            return {
-              product: {
-                id: i.product.id,
-                pattern: i.product.pattern,
-                unitPrice: i.product.unitPrice
-              },
-              quantity: i.quantity,
-              totalPrice: i.product.unitPrice * i.quantity
-            };
-        });
-    }
+interface Details {
+    staff?: string;
+    transactionType?: string;
+    amountPaid?: number;
+    balance?: number;
 }

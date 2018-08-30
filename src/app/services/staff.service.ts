@@ -41,8 +41,13 @@ export class StaffService {
   addStaff(staff: Staff) {
     const timestamp = this.timestampService.getTimestamp;
 
+    const avatarId = this.db.createId();
+
+    staff.avatar = avatarId;
     staff.created = staff.lastUpdate = timestamp;
-    return this.staffCol.add(staff);
+    const staffData = this.staffCol.add(staff);
+
+    return { staff: staffData, avatar: avatarId };
   }
 
   updateStaff(staffId: string, staff: Staff) {

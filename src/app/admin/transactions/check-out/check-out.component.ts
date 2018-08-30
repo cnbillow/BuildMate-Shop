@@ -101,9 +101,9 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     }
 
     const date = this.timestampService.getTimestamp;
-    const order = {
+    const order: Order = {
       transactionDetails: this.checkOutTransactionInfo,
-      datePlace: date,
+      datePlaced: date,
       items: this.cart.map(i => {
         return {
           product: {
@@ -112,7 +112,8 @@ export class CheckOutComponent implements OnInit, OnDestroy {
             unitPrice: i.product.unitPrice
           },
           quantity: i.quantity,
-          totalPrice: i.product.unitPrice * i.quantity
+          totalPrice: i.product.unitPrice * i.quantity,
+          transactionDetails: this.checkOutTransactionInfo
         };
       })
     };

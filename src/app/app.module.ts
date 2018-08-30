@@ -51,7 +51,6 @@ import { ProductCategoryComponent } from './admin/products/product-category/prod
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { ProductProfileComponent } from './admin/products/product-profile/product-profile.component';
 import { ProductRegistryComponent } from './admin/products/product-registry/product-registry.component';
-import { TransactionLogComponent } from './admin/products/transaction-log/transaction-log.component';
 import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
 import { StaffProfileComponent } from './admin/staffs/staff-profile/staff-profile.component';
 import { StaffsRegistryComponent } from './admin/staffs/staffs-registry/staffs-registry.component';
@@ -71,6 +70,8 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
 import { CheckOutComponent } from './admin/transactions/check-out/check-out.component';
 import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shopping-cart.component';
 import { OrderSuccessComponent } from './admin/transactions/order-success/order-success.component';
+import { StaffTransactionLogComponent } from './admin/transactions/staff-transaction-log/staff-transaction-log.component';
+import { ProductTransactionLogComponent } from './admin/transactions/product-transaction-log/product-transaction-log.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -94,7 +95,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProductFormComponent,
     DropZoneDirective,
     ProductCategoryComponent,
-    TransactionLogComponent,
     ManageStockComponent,
     StaffFormComponent,
     PosComponent,
@@ -103,11 +103,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NewLoginComponent,
     CheckOutComponent,
     ShoppingCartComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    StaffTransactionLogComponent,
+    ProductTransactionLogComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
+    // AngularFirestoreModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,

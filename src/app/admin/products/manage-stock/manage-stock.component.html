@@ -105,7 +105,7 @@
             
             <mat-list>
               <mat-list-item *ngFor="let item of stockProducts">
-                <h3 matLine> 
+                <h3 matLine *ngIf="!productId"> 
                   <strong>{{ getProductDetails(item.product) }}</strong>  
                 </h3>
                 <p matLine>
@@ -113,7 +113,7 @@
                   <span class="demo-2"> Supplied Date -- {{ item?.supplied?.toDate() | date:'longDate' }} </span>
                 </p>      
                 <p matLine>                
-                  <span> Cost Price (Ghc) -- <strong>{{ item?.unitCostPrice | number }}</strong></span> <br>
+                  <span> Cost Price (Ghc) -- <strong>{{ item?.unitCostPrice | number }}</strong></span> &nbsp;
                   Sale Price (Ghc) --<strong> {{ item?.unitSalePrice | number }}</strong> 
                 </p>
                 

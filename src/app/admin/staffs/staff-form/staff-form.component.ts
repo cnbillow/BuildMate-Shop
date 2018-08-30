@@ -1,3 +1,4 @@
+import { UploadService } from './../../../services/upload.service';
 import { TimestampService } from './../../../services/timestamp.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -32,7 +33,8 @@ export class StaffFormComponent implements OnInit, OnDestroy {
               private alertService: AlertService,
               private route: ActivatedRoute,
               private timestampService: TimestampService,
-              private router: Router) { }
+              private router: Router,
+              private uploadService: UploadService) { }
 
   ngOnInit() {
     this.staffId = this.route.parent.snapshot.paramMap.get('id');
@@ -64,11 +66,30 @@ export class StaffFormComponent implements OnInit, OnDestroy {
       }
 
       // else
-      await this.staffService.addStaff(this.staff);
+      const staffData = await this.staffService.addStaff(this.staff);
+      const staffId = (await staffData.staff).id;
+      const avatar = staffData.avatar;
+
+      this.uploadService.pushUpload(this.fileToUpload, staffId, avatar);
 
       this.alertService.afterUpdateSuccess();
       this.router.navigate(['account', 'staffs']);
     }
+  }
+
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file;
+
+    // if (this.fileToUpload.item(0).type !== 'image') {
+    //   console.log('unsupported file type :( ');
+    // }
+
+    // show image preview
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    };
+    reader.readAsDataURL(this.fileToUpload.item(0));
   }
 
   setStep(index: number) {
