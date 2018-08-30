@@ -1,3 +1,4 @@
+import { UploadService } from './../../../services/upload.service';
 import { AlertService } from './../../../services/alert.service';
 import { ProductService } from './../../../services/product.service';
 import { ProductCategoryService } from './../../../services/product-category.service';
@@ -8,6 +9,7 @@ import { ProductCategoryComponent } from '../product-category/product-category.c
 import { Category } from '../../../models/category.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../../models/product.model';
+import { Upload } from '../../../models/upload.model';
 
 @Component({
   selector: 'app-product-form',
@@ -34,7 +36,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
               private productService: ProductService,
               private alertService: AlertService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private uploadService: UploadService) {
                 this.categories$ = this.categoryService.getCategories();
               }
 
@@ -67,19 +70,27 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       }
 
       // else
-      await this.productService.addProduct(this.product);
+      const productData = await this.productService.addProduct(this.product);
+      const productId = (await productData.product).id;
+      const avatar = productData.avatar;
+
+      this.uploadService.pushUpload(this.fileToUpload, productId, avatar);
 
       this.alertService.afterUpdateSuccess();
       this.router.navigate(['account', 'products']);
     }
   }
 
+  toggleHover($event: boolean) {
+    this.isHovering = $event;
+  }
+
   handleFileInput(file: FileList) {
     this.fileToUpload = file;
 
-    if (this.fileToUpload.item(0).type !== 'image') {
-      console.log('unsupported file type :( ');
-    }
+    // if (this.fileToUpload.item(0).type !== 'image') {
+    //   console.log('unsupported file type :( ');
+    // }
 
     // show image preview
     const reader = new FileReader();
@@ -87,10 +98,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       this.imageUrl = event.target.result;
     };
     reader.readAsDataURL(this.fileToUpload.item(0));
-  }
-
-  toggleHover($event: boolean) {
-    this.isHovering = $event;
   }
 
   addCategory() {

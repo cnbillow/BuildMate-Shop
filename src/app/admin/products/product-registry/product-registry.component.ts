@@ -3,9 +3,11 @@ import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { Product } from '../../../models/product.model';
+import { Upload } from '../../../models/upload.model';
 import { ProductCategoryService } from '../../../services/product-category.service';
 import { Category } from './../../../models/category.model';
 import { ProductService } from './../../../services/product.service';
+import { UploadService } from './../../../services/upload.service';
 
 @Component({
   selector: 'app-product-registry',
@@ -20,21 +22,39 @@ export class ProductRegistryComponent implements OnInit, OnDestroy {
   product: Product[] = [];
   filteredProduct: Product[] = [];
 
+  galleryFiles: Upload[] = [];
+
   category: Category[] = [];
 
   showSpinner = true;
   subscription: Subscription;
 
-  constructor(private productService: ProductService, private categoryService: ProductCategoryService) { }
+  constructor(private productService: ProductService,
+              private categoryService: ProductCategoryService,
+              private uploadService: UploadService) { }
 
   ngOnInit() {
-    this.subscription = this.categoryService.getCategories().pipe(switchMap(resp => {
-      this.category = resp;
+
+    this.subscription = this.uploadService.getAllGallery().pipe(switchMap(resp => {
+      this.galleryFiles = resp;
       this.showSpinner = false;
+
+      return this.categoryService.getCategories();
+    })).pipe(switchMap(resp => {
+      this.category = resp;
+
       return this.productService.getProducts();
     })).subscribe(result => {
       this.product = this.filteredProduct = result;
     });
+
+    // this.subscription = this.categoryService.getCategories().pipe(switchMap(resp => {
+    //   this.category = resp;
+    //   this.showSpinner = false;
+    //   return this.productService.getProducts();
+    // })).subscribe(result => {
+    //   this.product = this.filteredProduct = result;
+    // });
   }
 
   ngOnDestroy(): void {
@@ -42,6 +62,16 @@ export class ProductRegistryComponent implements OnInit, OnDestroy {
      this.subscription.unsubscribe();
     }
   }
+
+  getAvatarDetails(avatarId: string) {
+    if (!avatarId) {
+      return;
+    }
+
+    const index = this.galleryFiles.findIndex(g => g.Id === avatarId);
+    return this.galleryFiles[index].url;
+  }
+
 
   getCategorDetails(categoryId: string) {
     if (!categoryId) {

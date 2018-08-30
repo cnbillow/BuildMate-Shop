@@ -1,11 +1,13 @@
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Subscription } from 'rxjs';
+
+import { Product } from '../../../models/product.model';
+import { Upload } from '../../../models/upload.model';
+import { Category } from './../../../models/category.model';
 import { AlertService } from './../../../services/alert.service';
 import { ShoppingCartService } from './../../../services/shopping-cart.service';
-import { Category } from './../../../models/category.model';
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { ProductCategoryService } from '../../../services/product-category.service';
-import { Subscription } from 'rxjs';
-import { Product } from '../../../models/product.model';
+import { UploadService } from './../../../services/upload.service';
 
 @Component({
   selector: 'app-pos-cart',
@@ -16,20 +18,28 @@ export class PosCartComponent implements OnInit, OnDestroy {
 
   product: Product = {};
   category: Category[] = [];
+
+  galleryFiles: Upload[] = [];
+
   productQty: number;
 
   isLoading = true;
   subscription: Subscription;
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any,
-              private categoryService: ProductCategoryService,
               private cartService: ShoppingCartService,
               private dialogRef: MatDialogRef<PosCartComponent>,
-              private alertService: AlertService) { }
+              private alertService: AlertService,
+              private uploadService: UploadService) { }
 
   ngOnInit() {
-    this.category = this.data['category'];
-    this.product = this.data['product'];
+
+    this.subscription = this.uploadService.getAllGallery().subscribe(resp => {
+      this.galleryFiles = resp;
+
+      this.category = this.data['category'];
+      this.product = this.data['product'];
+    });
 
     // add item to cart
     this.addToCart();
@@ -39,6 +49,16 @@ export class PosCartComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  getAvatarDetails() {
+    const avatarId = this.product.avatar;
+    if (!avatarId) {
+      return;
+    }
+
+    const index = this.galleryFiles.findIndex(g => g.Id === avatarId);
+    return this.galleryFiles[index].url;
   }
 
   async addToCart() {

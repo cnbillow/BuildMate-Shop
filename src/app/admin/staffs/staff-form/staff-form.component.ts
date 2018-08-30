@@ -77,6 +77,10 @@ export class StaffFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  toggleHover($event: boolean) {
+    this.isHovering = $event;
+  }
+
   handleFileInput(file: FileList) {
     this.fileToUpload = file;
 

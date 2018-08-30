@@ -50,7 +50,7 @@
 
           <mat-list-item *ngFor="let staff of filteredStaffs" routerLink="/account/staff/{{ staff.id }}">
             <mat-divider></mat-divider>
-            <!-- <img *ngIf="people.profileImage; else noImageAvatar" matListAvatar [src]="getPeopleAvatar(people.profileImage)" [alt]="people.firstname"> -->
+            <img *ngIf="staff?.avatar; else noImageAvatar" matListAvatar [src]="getAvatarDetails(staff?.avatar)" [alt]="staff?.nick">
             <h3 matLine> 
               <strong>                  
                 {{ staff?.names }}              

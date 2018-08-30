@@ -7,7 +7,8 @@
       <div class="spc-10"></div>
 
       <mat-card class="product-card">
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img *ngIf="staff.avatar; else noImageAvatar" mat-card-image [src]="getAvatarDetails()" [alt]="staff.nick">
+        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
         <mat-card-content>
 
           <div class="profile-title">

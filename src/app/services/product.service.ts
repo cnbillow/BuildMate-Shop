@@ -29,26 +29,6 @@ export class ProductService {
     );
   }
 
- 
-
- 
-  // getGivingByPerson(personId: string) {
-  //   return this.db.collection('giving', ref => ref
-  //     .where('data.person', '==', personId)
-  //     .orderBy('givingDate', 'asc'))
-  //     .snapshotChanges().pipe(
-  //     map(change => {
-  //       return change.map(a => {
-  //         const data = a.payload.doc.data() as Giving;
-  //         data.Id = a.payload.doc.id;
-
-  //         return data;
-  //       });
-  //     })
-  //   );
-  // }
-
-
   getProductById(productId: string) {
     return this.db.doc(`products/${productId}`).valueChanges();
   }
@@ -83,9 +63,14 @@ export class ProductService {
   addProduct(product: Product) {
     const timestamp = this.timestampService.getTimestamp;
 
+    const avatarId = this.db.createId();
+
+    product.avatar = avatarId;
     product.availableQTY = 0;
     product.created = product.lastUpdate = timestamp;
-    return this.productCol.add(product);
+    const productData = this.productCol.add(product);
+
+    return { product: productData, avatar: avatarId };
   }
 
   updateProduct(productId: string, product: Product) {

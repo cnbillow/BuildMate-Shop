@@ -10,6 +10,8 @@ import { AlertService } from '../../../services/alert.service';
 import { switchMap } from 'rxjs/operators';
 import { MatTabChangeEvent } from '@angular/material';
 import { Staff } from '../../../models/staff.model';
+import { Upload } from '../../../models/upload.model';
+import { UploadService } from '../../../services/upload.service';
 
 @Component({
   selector: 'app-staff-profile',
@@ -24,6 +26,8 @@ export class StaffProfileComponent implements OnInit, OnDestroy {
     contact: {}
   };
 
+  galleryFiles: Upload[] = [];
+
   parentUrl: string;
   routeToDisplay = 'overview';
 
@@ -34,15 +38,24 @@ export class StaffProfileComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private staffService: StaffService,
               private alertService: AlertService,
-              private router: Router) { }
+              private router: Router,
+              private uploadService: UploadService) { }
 
   ngOnInit() {
     this.staffId = this.route.snapshot.paramMap.get('id');
     this.parentUrl = `account/staff/${this.staffId}`;
 
-    this.subscription = this.staffService.getStaff(this.staffId).subscribe(resp => {
-      this.staff = resp;
+    this.subscription = this.uploadService.getAllGallery().pipe(switchMap(resp => {
+      this.galleryFiles = resp;
+
+      return this.staffService.getStaff(this.staffId);
+    })).subscribe(result => {
+      this.staff = result;
     });
+
+    // this.subscription = this.staffService.getStaff(this.staffId).subscribe(resp => {
+    //   this.staff = resp;
+    // });
 
     this.pushNavLinks();
   }
@@ -51,6 +64,16 @@ export class StaffProfileComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  getAvatarDetails() {
+    const avatarId = this.staff.avatar;
+    if (!avatarId) {
+      return;
+    }
+
+    const index = this.galleryFiles.findIndex(g => g.Id === avatarId);
+    return this.galleryFiles[index].url;
   }
 
   async deleteStaff() {

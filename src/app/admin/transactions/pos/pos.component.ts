@@ -1,3 +1,4 @@
+import { UploadService } from './../../../services/upload.service';
 import { PosCartComponent } from './../pos-cart/pos-cart.component';
 import { MatDialog } from '@angular/material';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -10,6 +11,7 @@ import { Category } from './../../../models/category.model';
 import { ProductService } from './../../../services/product.service';
 import { ShoppingCartService } from '../../../services/shopping-cart.service';
 import { CartItem } from '../../../models/cartItem.model';
+import { Upload } from 'src/app/models/upload.model';
 
 @Component({
   selector: 'app-pos',
@@ -27,6 +29,8 @@ export class PosComponent implements OnInit, OnDestroy {
   product: Product[] = [];
   filteredProduct: Product[] = [];
 
+  galleryFiles: Upload[] = [];
+
   category: Category[] = [];
 
   showSpinner = true;
@@ -37,13 +41,19 @@ export class PosComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService,
               private categoryService: ProductCategoryService,
               private dialog: MatDialog,
-              private cartService: ShoppingCartService) { }
+              private cartService: ShoppingCartService,
+              private uploadService: UploadService) { }
 
   async ngOnInit() {
+
     this.cartSubscription = (await this.cartService.getCart()).pipe(switchMap(resp => {
       this.cart = resp;
       this.showSpinner = false;
       this.getCartItemsTotalQTY(); // loads total QTY to check-out button
+
+      return this.uploadService.getAllGallery();
+    }), switchMap(resp => {
+      this.galleryFiles = resp;
 
       return this.categoryService.getCategories();
     }), switchMap(result => {
@@ -63,6 +73,15 @@ export class PosComponent implements OnInit, OnDestroy {
    if (this.cartSubscription) {
      this.cartSubscription.unsubscribe();
     }
+  }
+
+  getAvatarDetails(avatarId: string) {
+    if (!avatarId) {
+      return;
+    }
+
+    const index = this.galleryFiles.findIndex(g => g.Id === avatarId);
+    return this.galleryFiles[index].url;
   }
 
   addToCart(product: Product) {

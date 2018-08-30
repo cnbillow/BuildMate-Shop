@@ -72,6 +72,7 @@ import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shoppi
 import { OrderSuccessComponent } from './admin/transactions/order-success/order-success.component';
 import { StaffTransactionLogComponent } from './admin/transactions/staff-transaction-log/staff-transaction-log.component';
 import { ProductTransactionLogComponent } from './admin/transactions/product-transaction-log/product-transaction-log.component';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -108,9 +109,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProductTransactionLogComponent
   ],
   imports: [
+    AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
     // AngularFirestoreModule,
+
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,

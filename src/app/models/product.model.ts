@@ -5,6 +5,7 @@ export interface Product {
     unitPrice?: number;
     category?: string;
     availableQTY?: number;
+    avatar?: string;
     created?: any;
     lastUpdate?: any;
 }

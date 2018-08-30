@@ -109,6 +109,8 @@ export class UploadService {
           this.fileToUpload.path = path;
           this.fileToUpload.createdDate = new Date();
 
+          console.log(url);
+
           this.saveFileData(this.fileToUpload, avatar); // save file data to firestore gallery
         });
       })).subscribe();

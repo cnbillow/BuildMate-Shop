@@ -1,7 +1,10 @@
+import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { StaffService } from './../../../services/staff.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Staff } from '../../../models/staff.model';
+import { UploadService } from '../../../services/upload.service';
+import { Upload } from '../../../models/upload.model';
 
 @Component({
   selector: 'app-staffs-registry',
@@ -16,22 +19,49 @@ export class StaffsRegistryComponent implements OnInit, OnDestroy {
   staffs: Staff[] = [];
   filteredStaffs: Staff[] = [];
 
+  galleryFiles: Upload[] = [];
+
   showSpinner = true;
   subscription: Subscription;
+  gallerySubscription: Subscription;
 
-  constructor(private staffService: StaffService) { }
+  constructor(private staffService: StaffService,
+              private uploadService: UploadService) { }
 
   ngOnInit() {
-    this.subscription = this.staffService.getStaffs().subscribe(resp => {
+    // this.subscription = this.staffService.getStaffs().subscribe(resp => {
+    //   this.showSpinner = false;
+    //   this.staffs = this.filteredStaffs = resp;
+    // });
+
+    this.subscription = this.uploadService.getAllGallery().pipe(switchMap(resp => {
+      this.galleryFiles = resp;
       this.showSpinner = false;
-      this.staffs = this.filteredStaffs = resp;
+
+      return this.staffService.getStaffs();
+    })).subscribe(result => {
+      this.staffs = this.filteredStaffs = result;
     });
+
   }
 
   ngOnDestroy(): void {
    if (this.subscription) {
      this.subscription.unsubscribe();
    }
+
+   if (this.gallerySubscription) {
+     this.gallerySubscription.unsubscribe();
+   }
+  }
+
+  getAvatarDetails(avatarId: string) {
+    if (!avatarId) {
+      return;
+    }
+
+    const index = this.galleryFiles.findIndex(g => g.Id === avatarId);
+    return this.galleryFiles[index].url;
   }
 
   search(qry: string) {

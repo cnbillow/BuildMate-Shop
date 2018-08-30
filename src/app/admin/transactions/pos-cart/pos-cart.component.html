@@ -1,5 +1,6 @@
 <mat-card class="product-card">
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+  <img *ngIf="product.avatar; else noImageAvatar" mat-card-image [src]="getAvatarDetails()" [alt]="product.pattern">
   <mat-card-content>
 
     <div class="profile-title">
