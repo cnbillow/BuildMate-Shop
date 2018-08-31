@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Order } from '../models/order.model';
 import { Observable } from 'rxjs';
 import { SummarySaleService } from './summary-sale.service';
+import { SummaryStaffOrdersService } from './summary-staff-orders.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class OrderService {
   constructor(private db: AngularFirestore,
             private cartService: ShoppingCartService,
             private saleSummaryService: SummarySaleService,
-            private timestampService: TimestampService) {
+            private timestampService: TimestampService,
+            private orderSummaryService: SummaryStaffOrdersService) {
     this.orderCol = db.collection('staff-orders');
 
     this.orders = this.orderCol.snapshotChanges().pipe(
@@ -68,13 +70,31 @@ export class OrderService {
 
     const isExist = await this.saleSummaryCheck(result.id);
     if (isExist) {
-      const totalAmount = isExist.transactionDetails.amountPaid + isExist.transactionDetails.balance;
-      const datePlaced = this.timestampService.timestampToDate(isExist.datePlaced);
-
-      this.saleSummaryService.addOrUpdateSummary(datePlaced, totalAmount);
+      // update general summaries
+      this.updateSaleSummary(isExist);
+      this.updateOrderSummary(isExist);
     }
 
     return result;
+  }
+
+  private updateSaleSummary(order: Order) {
+    const totalAmount = order.transactionDetails.amountPaid + order.transactionDetails.balance;
+    const datePlaced = this.timestampService.timestampToDate(order.datePlaced);
+
+    this.saleSummaryService.addOrUpdateSummary(datePlaced, totalAmount);
+  }
+
+  private updateOrderSummary(order: Order) {
+    const datePlaced = this.timestampService.timestampToDate(order.datePlaced);
+
+    let totalQty = 0;
+    order.items.forEach(item => {
+      totalQty += item.quantity;
+    });
+
+    // console.log(totalQty);
+    this.orderSummaryService.addOrUpdateSummary(datePlaced, totalQty);
   }
 }
 

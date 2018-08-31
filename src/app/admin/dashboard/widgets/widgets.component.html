@@ -6,14 +6,12 @@
         <span mat-header>Total Sales</span>
         
         <mat-card-content>
-            <h1 class="widget-value">22,450</h1>
+            <h1 class="widget-value">{{ saleTotal | number }}</h1>
             <pre>Monthly</pre>
         </mat-card-content>
       </mat-card>
 
   </div>
-
-  <!-- <div class="spc-5"></div> -->
 
   <div fxFlex="25" fxFlexOrder.xs="2">
 
@@ -21,38 +19,34 @@
         <span mat-header>Orders</span>
 
         <mat-card-content>
-            <h1 class="widget-value">220,450</h1>
+            <h1 class="widget-value">{{ orderTotal | number }}</h1>
             <pre>Monthly</pre>
         </mat-card-content>
     </mat-card>
 
   </div>
-
-  <!-- <div class="spc-5"></div> -->
 
   <div fxFlex="25" fxFlexOrder.xs="3">
-
-    <mat-card class="widgets">
-        <span mat-header>Staffs</span>
-
-        <mat-card-content>
-            <h1 class="widget-value">22,450</h1>
-            <pre>Monthly</pre>
-        </mat-card-content>
-    </mat-card>
-
-  </div>
-
-  <!-- <div class="spc-5"></div> -->
-
-  <div fxFlex="25" fxFlexOrder.xs="4">
 
     <mat-card class="widgets">       
         <span mat-header>In-Stock</span>
     
         <mat-card-content>
-            <h1 class="widget-value">12,450</h1>
+            <h1 class="widget-value">{{ stockTotal | number }}</h1>
             <pre>Monthly</pre>
+        </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <div fxFlex="25" fxFlexOrder.xs="4">
+
+    <mat-card class="widgets">
+        <span mat-header>Staff(s)</span>
+
+        <mat-card-content>
+            <h1 class="widget-value">{{ staffTotal | number }}</h1>
+            <pre>General</pre>
         </mat-card-content>
     </mat-card>
 

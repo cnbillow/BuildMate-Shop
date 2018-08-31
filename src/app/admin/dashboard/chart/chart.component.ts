@@ -15,6 +15,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,
+    maintainAspectRatio: false,
     showScale: false,
     scales: {
       xAxes: [{
@@ -50,7 +51,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   constructor(private saleSummaryService: SummarySaleService) { }
 
   ngOnInit() {
-    this.subscription = this.saleSummaryService.getGivingSummaryCurrentYear().subscribe(summary => {
+    this.subscription = this.saleSummaryService.getSaleSummaryCurrentYear().subscribe(summary => {
       this.saleSummary = summary;
 
       this.populateChart(this.saleSummary);

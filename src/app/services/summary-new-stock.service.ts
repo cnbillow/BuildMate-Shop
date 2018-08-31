@@ -41,12 +41,18 @@ export class SummaryNewStockService {
     const suppliedYear = (jsDate.toLocaleDateString('en', { year: 'numeric' }));
     const suppliedMonth = (jsDate.toLocaleDateString('en', { month: 'long' }));
 
-    return { docId: suppliedYear + '-' + suppliedMonth, month: suppliedMonth };
+    return { docId: suppliedYear + '-' + suppliedMonth, month: suppliedMonth, year: suppliedYear};
   }
 
-  getGivingSummary() {
+  getStockSummary() {
     return this.sumStocks;
   }
+
+  getStockSummaryCurrentMonth() {
+    const currentMonth = this.getStockSummaryId(new Date()).month;
+    return this.db.collection('summary-stock', ref => ref.where('month', '==', currentMonth)).valueChanges();
+  }
+
 
   async addOrUpdateSummary(suppliedDate: Date, quantity: number) {
     const docId = this.getStockSummaryId(suppliedDate).docId;

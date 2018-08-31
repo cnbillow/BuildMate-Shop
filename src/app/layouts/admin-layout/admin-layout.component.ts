@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
@@ -10,6 +10,12 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
+
+  // clientHeight: number;
+  // footerHeight: number;
+  // @ViewChild('footer') footerDiv: ElementRef;
+
+  clientHeight: number;
 
   currentUrl: string;
 
@@ -25,9 +31,14 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver, private router: Router) {
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
+    this.clientHeight = window.innerHeight;
   }
 
   ngOnInit() {
   }
+
+//   ngAfterViewInit() {
+//     this.footerHeight = this.footerDiv.nativeElement.offsetHeight;
+//  }
 
 }

@@ -79,6 +79,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
+import { RecentOrdersComponent } from './admin/dashboard/recent-orders/recent-orders.component';
+import { QuickStaffsComponent } from './admin/dashboard/quick-staffs/quick-staffs.component';
+import { QuickProductsComponent } from './admin/dashboard/quick-products/quick-products.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -115,7 +118,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProductTransactionLogComponent,
     WidgetsComponent,
     ChartComponent,
-    QuickNavsComponent
+    QuickNavsComponent,
+    RecentOrdersComponent,
+    QuickStaffsComponent,
+    QuickProductsComponent
   ],
   imports: [
     AngularFireStorageModule,

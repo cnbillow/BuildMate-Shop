@@ -1,19 +1,26 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
 
-  <div fxFlex="50" fxFlexOrder.xs="1">
+    
+    <div fxFlex="35" fxFlexOrder.xs="1">
+        
+        <div class="quick-staffs">
+            <app-quick-staffs></app-quick-staffs>
+        </div>
+        
+    </div>
 
-      <mat-card class="quick-staffs">
-          Quick Staff Contacts
-      </mat-card>
+    <div fxFlex="65" fxFlexOrder.xs="2">
 
-  </div>
+        <mat-card class="recent-orders">
+            <app-recent-orders></app-recent-orders>
+        </mat-card>        
 
-  <div fxFlex="50" fxFlexOrder.xs="2">
+        <div class="spc-5"></div>
 
-      <mat-card class="quick-products">
-          Quick products
-      </mat-card>
-
-  </div>
+        <mat-card class="quick-products">
+            <app-quick-products></app-quick-products>
+        </mat-card>
+    
+    </div>
 
 </div>

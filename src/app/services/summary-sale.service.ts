@@ -44,16 +44,16 @@ export class SummarySaleService {
     return { docId: saleYear + '-' + saleMonth, month: saleMonth, year: saleYear };
   }
 
-  getGivingSummary() {
+  getSaleSummary() {
     return this.sumSales;
   }
 
-  getGivingSummaryCurrentYear() {
+  getSaleSummaryCurrentYear() {
     const currentYear = new Date().getFullYear();
     return this.db.collection('summary-sale', ref => ref.where('year', '==', currentYear.toString())).valueChanges();
   }
 
-  getGivingSummaryCurrentMonth() {
+  getSaleSummaryCurrentMonth() {
     const currentMonth = this.getSaleSummaryId(new Date()).month;
     return this.db.collection('summary-sale', ref => ref.where('month', '==', currentMonth)).valueChanges();
   }
