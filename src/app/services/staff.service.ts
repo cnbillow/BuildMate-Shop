@@ -3,9 +3,8 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Product } from '../models/product.model';
-import { TimestampService } from './timestamp.service';
 import { Staff } from '../models/staff.model';
+import { TimestampService } from './timestamp.service';
 
 @Injectable({
   providedIn: 'root'

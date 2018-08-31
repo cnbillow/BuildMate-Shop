@@ -27,6 +27,7 @@ export class QuickStaffsComponent implements OnInit, OnDestroy {
 
   showSpinner = true;
   subscription: Subscription;
+  staffSubscription: Subscription;
 
   constructor(private staffService: StaffService,
               private uploadService: UploadService) {
@@ -38,7 +39,7 @@ export class QuickStaffsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.staffService.getStaffs().subscribe(resp => {
+    this.staffSubscription = this.staffService.getStaffs().subscribe(resp => {
       this.staffs = resp;
       this.showSpinner = false;
 
@@ -59,6 +60,10 @@ export class QuickStaffsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+
+    if (this.staffSubscription) {
+      this.staffSubscription.unsubscribe();
     }
   }
 
