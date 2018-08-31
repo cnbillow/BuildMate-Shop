@@ -82,6 +82,10 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     }
   }
 
+  transactionOnChange(event) {
+    return this.checkOutTransactionInfo.amountPaid = 0;
+  }
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,

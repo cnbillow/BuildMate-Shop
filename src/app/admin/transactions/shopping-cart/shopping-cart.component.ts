@@ -1,11 +1,14 @@
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Subscription } from 'rxjs';
+
+import { Product } from '../../../models/product.model';
 import { AlertService } from './../../../services/alert.service';
 import { ProductService } from './../../../services/product.service';
-import { CartItem } from './../../../models/cartItem.model';
 import { ShoppingCartService } from './../../../services/shopping-cart.service';
-import { Component, OnInit, ViewChild, NgZone, OnDestroy, Input } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Subscription } from 'rxjs';
-import { Product } from '../../../models/product.model';
+import { Upload } from '../../../models/upload.model';
+import { UploadService } from '../../../services/upload.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,6 +23,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   cart = [];
   products: Product[] = [];
 
+  galleryFiles: Upload[] = [];
+
   displayedColumns: string[] = ['image', 'product', 'quantity', 'total'];
   dataSource: MatTableDataSource<any>;
 
@@ -27,24 +32,31 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
 
   showSpinner = true;
+  subscription: Subscription;
   cartSubcription: Subscription;
   productSubsciption: Subscription;
 
   constructor(private cartService: ShoppingCartService,
               private productService: ProductService,
-              private alertService: AlertService) { }
+              private alertService: AlertService,
+              private uploadService: UploadService) { }
 
   async ngOnInit() {
 
-    this.productSubsciption = this.productService.getProducts().subscribe(async resp => {
-      this.products = resp;
+    this.subscription = this.uploadService.getAllGallery().pipe(switchMap(gallery => {
+      this.galleryFiles = gallery;
+      this.showSpinner = false;
 
-      this.cartSubcription = (await this.cartService.getCart()).subscribe(result => {
-        this.cart = result;
-        this.showSpinner = false;
+      return this.productService.getProducts();
+    })).subscribe(async products => {
+      this.products = products;
 
-        this.cartMap = result.map(c => {
+      this.cartSubcription = (await this.cartService.getCart()).subscribe(cart => {
+        this.cart = cart;
+
+        this.cartMap = cart.map(c => {
           return {
+            avatar: c.product.avatar,
             product: c.product.id,
             quantity: c.quantity,
             total: c.product.unitPrice * c.quantity
@@ -64,10 +76,20 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       this.cartSubcription.unsubscribe();
     }
 
-    if (this.productSubsciption) {
-      this.productSubsciption.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
+
+  getAvatarDetails(avatarId: string) {
+    if (!avatarId) {
+      return;
+    }
+
+    const index = this.galleryFiles.findIndex(g => g.Id === avatarId);
+    return this.galleryFiles[index].url;
+  }
+
 
   /** Gets the total cost of all transactions. */
   getTotalCost() {

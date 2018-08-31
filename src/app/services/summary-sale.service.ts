@@ -37,8 +37,9 @@ export class SummarySaleService {
   }
 
   private getSaleSummaryId(saleDate: Date) {
-    const saleYear = (saleDate.toLocaleDateString('en', { year: 'numeric' }));
-    const saleMonth = (saleDate.toLocaleDateString('en', { month: 'long' }));
+    const jsDate = new Date(saleDate);
+    const saleYear = (jsDate.toLocaleDateString('en', { year: 'numeric' }));
+    const saleMonth = (jsDate.toLocaleDateString('en', { month: 'long' }));
 
     return { docId: saleYear + '-' + saleMonth, month: saleMonth };
   }
@@ -54,17 +55,19 @@ export class SummarySaleService {
     // verify if record exists
     const isExist = await this.saleSummaryCheck(docId);
 
-    if (isExist) {
-      // update existing
-      return this.db.doc(`summary-sale/${docId}`)
-        .set({ month: docMonth, total: isExist.total + amount, lastUpdate: this.timestampService.getTimestamp // sets server timestamp
-      }, { merge: true });
-    }
+    console.log(amount);
 
-    // create new
-    return this.db.doc(`summary-sale/${docId}`)
-      .set({ month: docMonth, total: amount, lastUpdate: this.timestampService.getTimestamp // sets server timestamp
-    }, { merge: true });
+      return this.db.doc(`summary-sale/${docId}`)
+        .set({
+          month: docMonth,
+          total: isExist ? isExist.total + amount : amount,
+          lastUpdate: this.timestampService.getTimestamp // sets server timestamp
+      }, { merge: true });
+
+    // // create new
+    // return this.db.doc(`summary-sale/${docId}`)
+    //   .set({ month: docMonth, total: amount, lastUpdate: this.timestampService.getTimestamp // sets server timestamp
+    // }, { merge: true });
   }
 
 }

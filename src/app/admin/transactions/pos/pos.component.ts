@@ -96,7 +96,7 @@ export class PosComponent implements OnInit, OnDestroy {
 
   getCartItemDetails(productId: string) {
     if (!productId) {
-      return 0;
+      return;
     }
 
     if (this.cart.length < 1) { return 0; }

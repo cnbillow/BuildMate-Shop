@@ -72,7 +72,6 @@ export class ProductRegistryComponent implements OnInit, OnDestroy {
     return this.galleryFiles[index].url;
   }
 
-
   getCategorDetails(categoryId: string) {
     if (!categoryId) {
       return;

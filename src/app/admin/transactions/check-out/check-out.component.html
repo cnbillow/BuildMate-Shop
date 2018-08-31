@@ -46,7 +46,7 @@
     <h3 style="padding-bottom:0;"> Transaction Details</h3>
 
     <mat-form-field appearance="outline">
-      <mat-select [(ngModel)]="checkOutTransactionInfo.transactionType" name="transactionType" required>
+      <mat-select [(ngModel)]="checkOutTransactionInfo.transactionType" name="transactionType" (ngModelChange)="transactionOnChange($event)" required>
         <mat-option>--Select Transaction Type--</mat-option>
         <mat-option value="Cash">Cash</mat-option>
         <mat-option value="Credit">Credit</mat-option>
@@ -65,7 +65,7 @@
     </mat-form-field>
 
     <div>
-      <p *ngIf="checkOutTransactionInfo.transactionType === 'Cash' && cart.length > 0">
+      <p *ngIf="cart.length > 0">
         Outstanding Bill -- {{ getOutStandingPayment() }}
       </p>
     </div>

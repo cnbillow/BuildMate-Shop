@@ -1,9 +1,11 @@
+import { TimestampService } from './timestamp.service';
 import { ShoppingCartService } from './shopping-cart.service';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Order } from '../models/order.model';
 import { Observable } from 'rxjs';
+import { SummarySaleService } from './summary-sale.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,10 @@ export class OrderService {
   orderCol: AngularFirestoreCollection<Order>;
   orders: Observable<Order[]>;
 
-  constructor(private db: AngularFirestore, private cartService: ShoppingCartService) {
+  constructor(private db: AngularFirestore,
+            private cartService: ShoppingCartService,
+            private saleSummaryService: SummarySaleService,
+            private timestampService: TimestampService) {
     this.orderCol = db.collection('staff-orders');
 
     this.orders = this.orderCol.snapshotChanges().pipe(
@@ -50,9 +55,24 @@ export class OrderService {
     );
   }
 
+  private async saleSummaryCheck(docId) {
+    const doc = await this.db.doc(`staff-orders/${docId}`).ref.get();
+    const data = doc.data() as Order;
+
+    return doc.exists ? data : null;
+  }
+
   async placeOrder(order: Order) {
     const result = await this.db.collection('staff-orders').add(order);
     this.cartService.clearCart();
+
+    const isExist = await this.saleSummaryCheck(result.id);
+    if (isExist) {
+      const totalAmount = isExist.transactionDetails.amountPaid + isExist.transactionDetails.balance;
+      const datePlaced = this.timestampService.timestampToDate(isExist.datePlaced);
+
+      this.saleSummaryService.addOrUpdateSummary(datePlaced, totalAmount);
+    }
 
     return result;
   }

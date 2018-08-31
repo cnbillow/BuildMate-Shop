@@ -32,14 +32,14 @@ export class PosCartComponent implements OnInit, OnDestroy {
               private alertService: AlertService,
               private uploadService: UploadService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     this.subscription = this.uploadService.getAllGallery().subscribe(resp => {
       this.galleryFiles = resp;
-
-      this.category = this.data['category'];
-      this.product = this.data['product'];
     });
+
+    this.category = this.data['category'];
+    this.product = this.data['product'];
 
     // add item to cart
     this.addToCart();

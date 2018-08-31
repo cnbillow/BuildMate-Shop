@@ -16,7 +16,10 @@
         <!-- Product Column -->
         <ng-container matColumnDef="image">
           <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-          <td mat-cell *matCellDef="let row"> <img class="product-img" src="../../../../assets/avatars/avatar3.png" alt=""> </td>
+          <td mat-cell *matCellDef="let row"> 
+            <!-- <img class="product-img" src="../../../../assets/avatars/avatar3.png" alt="">  -->
+            <img class="product-img" matListAvatar src="{{getAvatarDetails(row.avatar)}}" alt="">
+          </td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
@@ -54,6 +57,10 @@
         <button *ngIf="cart.length > 0" mat-button color="warn" (click)="clearCart()">Clear Transaction Cart</button>
       </mat-card>
     </div>
+
+    <ng-template #noImageAvatar>
+      <img matListAvatar class="product-img" src="../../../../assets/avatars/avatar3.png" alt="..."> &nbsp; &nbsp;
+    </ng-template>
 
   </div>
 </mat-card>

@@ -50,7 +50,7 @@
 
           <mat-list-item *ngFor="let product of filteredProduct" routerLink="/account/product/{{ product.id }}/transaction-log">
             <mat-divider></mat-divider>
-            <img *ngIf="product?.avatar; else noImageAvatar" matListAvatar [src]="getAvatarDetails(product?.avatar)" [alt]="product?.pattern">
+            <img *ngIf="product?.avatar && galleryFiles.length > 0; else noImageAvatar" matListAvatar [src]="getAvatarDetails(product?.avatar)" [alt]="product?.pattern">
             <h3 matLine> 
               <strong>                  
                 {{ product?.pattern }}              
