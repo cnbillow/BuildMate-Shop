@@ -73,6 +73,9 @@ import { OrderSuccessComponent } from './admin/transactions/order-success/order-
 import { StaffTransactionLogComponent } from './admin/transactions/staff-transaction-log/staff-transaction-log.component';
 import { ProductTransactionLogComponent } from './admin/transactions/product-transaction-log/product-transaction-log.component';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { ChartComponent } from './admin/dashboard/chart/chart.component';
+import { QuickNavsComponent } from './admin/dashboard/quick-navs/quick-navs.component';
+import { WidgetsComponent } from './admin/dashboard/widgets/widgets.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -106,7 +109,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ShoppingCartComponent,
     OrderSuccessComponent,
     StaffTransactionLogComponent,
-    ProductTransactionLogComponent
+    ProductTransactionLogComponent,
+    WidgetsComponent,
+    ChartComponent,
+    QuickNavsComponent
   ],
   imports: [
     AngularFireStorageModule,

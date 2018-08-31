@@ -46,22 +46,22 @@ export class PosComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
 
-    this.cartSubscription = (await this.cartService.getCart()).pipe(switchMap(resp => {
-      this.cart = resp;
+    this.cartSubscription = (await this.cartService.getCart()).pipe(switchMap(cart => {
+      this.cart = cart;
       this.showSpinner = false;
       this.getCartItemsTotalQTY(); // loads total QTY to check-out button
 
       return this.uploadService.getAllGallery();
-    }), switchMap(resp => {
-      this.galleryFiles = resp;
+    }), switchMap(gallery => {
+      this.galleryFiles = gallery;
 
       return this.categoryService.getCategories();
-    }), switchMap(result => {
-      this.category = result;
+    }), switchMap(categories => {
+      this.category = categories;
 
       return this.productService.getProducts();
-    })).subscribe(result1 => {
-      this.product = this.filteredProduct = result1;
+    })).subscribe(products => {
+      this.product = this.filteredProduct = products;
     });
   }
 
