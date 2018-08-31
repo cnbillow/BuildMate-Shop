@@ -1,11 +1,24 @@
 <div fxLayout="row" fxLayout.xs="column" fxFlexAlign="center center">
 
-  <div fxFlex fxFlexOrder.xs="1">
+    <div fxFlex fxFlexOrder.xs="1">
 
-      <mat-card class="chart">
-          Chart
-      </mat-card>
+        <mat-card class="chart">
+            
+            <div style="width:100%; display:block">
+                <canvas *ngIf="loaded" baseChart 
+                    width="500" height="100"
+                    [datasets]="barChartData" 
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions" 
+                    [legend]="barChartLegend" 
+                    [chartType]="barChartType">
+                </canvas>
+                <!-- (chartHover)="chartHovered($event)" 
+                (chartClick)="chartClicked($event)" -->
+            </div>
 
-  </div>
+        </mat-card>
+
+    </div>
 
 </div>

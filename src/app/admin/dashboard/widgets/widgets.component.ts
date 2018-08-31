@@ -1,3 +1,4 @@
+import { SummarySaleService } from './../../../services/summary-sale.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private saleSummaryService: SummarySaleService) { }
 
   ngOnInit() {
+    this.saleSummaryService.getGivingSummaryCurrentMonth().subscribe(sales => {
+      console.log(sales)
+    });
   }
 
 }

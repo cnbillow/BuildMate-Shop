@@ -41,25 +41,35 @@ export class SummarySaleService {
     const saleYear = (jsDate.toLocaleDateString('en', { year: 'numeric' }));
     const saleMonth = (jsDate.toLocaleDateString('en', { month: 'long' }));
 
-    return { docId: saleYear + '-' + saleMonth, month: saleMonth };
+    return { docId: saleYear + '-' + saleMonth, month: saleMonth, year: saleYear };
   }
 
   getGivingSummary() {
     return this.sumSales;
   }
 
+  getGivingSummaryCurrentYear() {
+    const currentYear = new Date().getFullYear();
+    return this.db.collection('summary-sale', ref => ref.where('year', '==', currentYear.toString())).valueChanges();
+  }
+
+  getGivingSummaryCurrentMonth() {
+    const currentMonth = this.getSaleSummaryId(new Date()).month;
+    return this.db.collection('summary-sale', ref => ref.where('month', '==', currentMonth)).valueChanges();
+  }
+
   async addOrUpdateSummary(saleDate: Date, amount: number) {
     const docId = this.getSaleSummaryId(saleDate).docId;
     const docMonth = this.getSaleSummaryId(saleDate).month;
+    const docYear = this.getSaleSummaryId(saleDate).year;
 
     // verify if record exists
     const isExist = await this.saleSummaryCheck(docId);
 
-    console.log(amount);
-
       return this.db.doc(`summary-sale/${docId}`)
         .set({
           month: docMonth,
+          year: docYear,
           total: isExist ? isExist.total + amount : amount,
           lastUpdate: this.timestampService.getTimestamp // sets server timestamp
       }, { merge: true });
