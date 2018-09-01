@@ -61,7 +61,6 @@ export class RemitFormComponent implements OnInit, OnDestroy {
         };
       });
 
-      console.log(this.staffOrder);
       // initialised parameters
       this.remitOrderTransactionDetails.staff = this.staffOrder.transactionDetails.staff;
       this.remitOrderTransactionDetails.transactionType = 'Cash';

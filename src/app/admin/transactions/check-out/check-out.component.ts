@@ -120,7 +120,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
           },
           quantity: i.quantity,
           totalPrice: i.product.unitPrice * i.quantity,
-          transactionDetails: this.checkOutTransactionInfo
+          transactionDetails: this.checkOutTransactionInfo,
         };
       })
     };

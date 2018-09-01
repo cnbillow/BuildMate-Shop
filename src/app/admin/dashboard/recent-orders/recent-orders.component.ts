@@ -20,7 +20,7 @@ export class RecentOrdersComponent implements OnInit, OnDestroy {
 
   staffs: Staff[] = [];
 
-  displayedColumns: string[] = ['date', 'staff', 'transactionType', 'paid', 'balance'];
+  displayedColumns: string[] = ['date', 'staff', 'transactionType', 'paid', 'balance', 'remitStatus'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -41,15 +41,14 @@ export class RecentOrdersComponent implements OnInit, OnDestroy {
       return this.orderService.getOrders();
     })).subscribe(orders => {
 
-      console.log(orders);
-
       this.orderMap = orders.map(c => {
         return {
           date: c.datePlaced,
           staff: c.transactionDetails.staff,
           transactionType: c.transactionDetails.transactionType,
           paid: c.transactionDetails.amountPaid,
-          balance: c.transactionDetails.balance
+          balance: c.transactionDetails.balance,
+          remitStatus: c.remitStatus
         };
       });
 

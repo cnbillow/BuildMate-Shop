@@ -130,8 +130,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence(),
-    // AngularFirestoreModule,
+    // AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule,
 
     ChartsModule,
     FlexLayoutModule,

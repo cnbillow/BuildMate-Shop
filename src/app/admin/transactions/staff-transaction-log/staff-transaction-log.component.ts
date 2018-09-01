@@ -14,7 +14,7 @@ export class StaffTransactionLogComponent implements OnInit, OnDestroy {
 
   orderMap = [];
 
-  displayedColumns: string[] = ['date', 'transactionType', 'paid', 'balance'];
+  displayedColumns: string[] = ['date', 'transactionType', 'paid', 'balance', 'remitStatus'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,7 +38,8 @@ export class StaffTransactionLogComponent implements OnInit, OnDestroy {
           date: c.datePlaced,
           transactionType: c.transactionDetails.transactionType,
           paid: c.transactionDetails.amountPaid,
-          balance: c.transactionDetails.balance
+          balance: c.transactionDetails.balance,
+          remitStatus: c.remitStatus
         };
       });
 
