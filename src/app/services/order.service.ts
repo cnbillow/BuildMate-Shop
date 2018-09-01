@@ -57,6 +57,21 @@ export class OrderService {
     );
   }
 
+  // getUnremittedOrderByStaff(staffId: string) {
+  //   return this.db.collection('staff-orders', ref => ref
+  //     .where('transactionDetails.staff', '==', staffId).where('transactionDetails.balance', '<', 1))
+  //     .snapshotChanges().pipe(
+  //     map(change => {
+  //       return change.map(a => {
+  //         const data = a.payload.doc.data() as Order;
+  //         data.id = a.payload.doc.id;
+
+  //         return data;
+  //       });
+  //     })
+  //   );
+  // }
+
   private async saleSummaryCheck(docId) {
     const doc = await this.db.doc(`staff-orders/${docId}`).ref.get();
     const data = doc.data() as Order;

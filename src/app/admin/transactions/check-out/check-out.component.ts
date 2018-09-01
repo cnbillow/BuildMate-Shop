@@ -1,18 +1,19 @@
-import { AlertService } from './../../../services/alert.service';
-import { MatSnackBar } from '@angular/material';
-import { OrderService } from './../../../services/order.service';
-import { CartItem } from './../../../models/cartItem.model';
-import { ShoppingCartService } from './../../../services/shopping-cart.service';
-import { Staff } from './../../../models/staff.model';
-import { Subscription, Observable } from 'rxjs';
-import { StaffService } from './../../../services/staff.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { startWith, map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+import { Order } from '../../../models/order.model';
 import { Product } from '../../../models/product.model';
 import { TimestampService } from '../../../services/timestamp.service';
-import { Order } from '../../../models/order.model';
-import { Router } from '@angular/router';
+import { CartItem } from './../../../models/cartItem.model';
+import { Staff } from './../../../models/staff.model';
+import { AlertService } from './../../../services/alert.service';
+import { OrderService } from './../../../services/order.service';
+import { ShoppingCartService } from './../../../services/shopping-cart.service';
+import { StaffService } from './../../../services/staff.service';
 
 @Component({
   selector: 'app-check-out',
@@ -25,6 +26,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   myControl = new FormControl;
 
+  staffId: string;
   staffs: Staff[] = [];
   filteredOptions: Observable<Staff[]>;
 
@@ -63,6 +65,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
         map(value => typeof value === 'string' ? value : value.pattern),
         map(name => name ? this._filter(name) : this.staffs.slice())
       );
+
     });
 
     const cart$ = await this.cartService.getCart();

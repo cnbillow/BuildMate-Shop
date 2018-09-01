@@ -90,7 +90,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     return this.galleryFiles[index].url;
   }
 
-
   /** Gets the total cost of all transactions. */
   getTotalCost() {
     return this.cartMap.map(t => t.total).reduce((acc, value) => acc + value, 0);

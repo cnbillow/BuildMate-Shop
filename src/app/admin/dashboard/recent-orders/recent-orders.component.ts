@@ -41,6 +41,8 @@ export class RecentOrdersComponent implements OnInit, OnDestroy {
       return this.orderService.getOrders();
     })).subscribe(orders => {
 
+      console.log(orders);
+
       this.orderMap = orders.map(c => {
         return {
           date: c.datePlaced,

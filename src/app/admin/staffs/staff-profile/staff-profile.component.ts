@@ -1,17 +1,14 @@
-import { StaffService } from './../../../services/staff.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Product } from '../../../models/product.model';
-import { Category } from '../../../models/category.model';
-import { Subscription } from 'rxjs';
-import { ProductService } from '../../../services/product.service';
-import { ProductCategoryService } from '../../../services/product-category.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AlertService } from '../../../services/alert.service';
-import { switchMap } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 import { Staff } from '../../../models/staff.model';
 import { Upload } from '../../../models/upload.model';
+import { AlertService } from '../../../services/alert.service';
 import { UploadService } from '../../../services/upload.service';
+import { StaffService } from './../../../services/staff.service';
 
 @Component({
   selector: 'app-staff-profile',
@@ -114,7 +111,7 @@ export class StaffProfileComponent implements OnInit, OnDestroy {
     this.navLinks = [];
     return this.navLinks.push(
       { path: 'staff-update', label: 'Staff Update', icon: 'update' },
-      { path: 'privacy-settings', label: 'Privacy Settings', icon: 'settings' },
+      { path: 'order-remit', label: 'Order Remit', icon: 'transit_enterexit' },
     );
   }
 

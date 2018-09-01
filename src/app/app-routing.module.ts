@@ -1,3 +1,4 @@
+import { StaffOrderRemitComponent } from './admin/transactions/staff-order-remit/staff-order-remit.component';
 import { StaffProfileComponent } from './admin/staffs/staff-profile/staff-profile.component';
 import { StaffFormComponent } from './admin/staffs/staff-form/staff-form.component';
 import { StaffsRegistryComponent } from './admin/staffs/staffs-registry/staffs-registry.component';
@@ -80,6 +81,9 @@ const routes: Routes = [
           }, {
             path: 'staff-update',
             component: StaffFormComponent
+          }, {
+            path: 'order-remit',
+            component: StaffOrderRemitComponent
           }
         ]
       }, {

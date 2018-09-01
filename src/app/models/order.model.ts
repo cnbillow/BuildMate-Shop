@@ -5,6 +5,7 @@ export interface Order {
     items?: OrderProduct[];
     transactionDetails?: Details;
     datePlaced?: any;
+    remitStatus?: boolean;
 }
 
 interface OrderProduct {

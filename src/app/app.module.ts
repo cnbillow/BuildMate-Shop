@@ -82,6 +82,8 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
 import { RecentOrdersComponent } from './admin/dashboard/recent-orders/recent-orders.component';
 import { QuickStaffsComponent } from './admin/dashboard/quick-staffs/quick-staffs.component';
 import { QuickProductsComponent } from './admin/dashboard/quick-products/quick-products.component';
+import { StaffOrderRemitComponent } from './admin/transactions/staff-order-remit/staff-order-remit.component';
+import { RemitFormComponent } from './admin/transactions/remit-form/remit-form.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -121,7 +123,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     QuickNavsComponent,
     RecentOrdersComponent,
     QuickStaffsComponent,
-    QuickProductsComponent
+    QuickProductsComponent,
+    StaffOrderRemitComponent,
+    RemitFormComponent
   ],
   imports: [
     AngularFireStorageModule,
