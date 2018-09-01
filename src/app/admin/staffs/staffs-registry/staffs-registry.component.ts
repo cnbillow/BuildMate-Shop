@@ -1,3 +1,4 @@
+import { SummarySale } from './../../../models/summary-sales.model';
 import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { StaffService } from './../../../services/staff.service';
@@ -5,6 +6,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Staff } from '../../../models/staff.model';
 import { UploadService } from '../../../services/upload.service';
 import { Upload } from '../../../models/upload.model';
+import { SummarySaleService } from '../../../services/summary-sale.service';
 
 @Component({
   selector: 'app-staffs-registry',

@@ -49,13 +49,13 @@ export class SummarySaleService {
   }
 
   getSaleSummaryCurrentYear() {
-    const currentYear = new Date().getFullYear();
+    const currentYear = this.getSaleSummaryId(new Date()).year;
     return this.db.collection('summary-sale', ref => ref.where('year', '==', currentYear.toString())).valueChanges();
   }
 
   getSaleSummaryCurrentMonth() {
-    const currentMonth = this.getSaleSummaryId(new Date()).month;
-    return this.db.collection('summary-sale', ref => ref.where('month', '==', currentMonth)).valueChanges();
+    const docId = this.getSaleSummaryId(new Date()).docId;
+    return this.db.doc(`summary-sale/${docId}`).valueChanges();
   }
 
   async addOrUpdateSummary(saleDate: Date, amount: number) {

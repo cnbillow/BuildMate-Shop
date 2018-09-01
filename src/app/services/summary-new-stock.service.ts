@@ -49,10 +49,9 @@ export class SummaryNewStockService {
   }
 
   getStockSummaryCurrentMonth() {
-    const currentMonth = this.getStockSummaryId(new Date()).month;
-    return this.db.collection('summary-stock', ref => ref.where('month', '==', currentMonth)).valueChanges();
+    const docId = this.getStockSummaryId(new Date()).docId;
+    return this.db.doc(`summary-stock/${docId}`).valueChanges();
   }
-
 
   async addOrUpdateSummary(suppliedDate: Date, quantity: number) {
     const docId = this.getStockSummaryId(suppliedDate).docId;

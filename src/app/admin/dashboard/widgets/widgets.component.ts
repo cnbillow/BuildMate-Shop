@@ -1,6 +1,6 @@
 import { StaffService } from './../../../services/staff.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, combineLatest } from 'rxjs';
+import { Subscription, combineLatest, Observable } from 'rxjs';
 
 import { SummarySale } from '../../../models/summary-sales.model';
 import { SummaryNewStockService } from './../../../services/summary-new-stock.service';
@@ -14,9 +14,9 @@ import { SummaryStaffOrdersService } from '../../../services/summary-staff-order
 })
 export class WidgetsComponent implements OnInit, OnDestroy {
 
-  saleTotal = 0;
-  stockTotal = 0;
-  orderTotal = 0;
+  saleTotal: SummarySale = {};
+  stockTotal: SummarySale = {};
+  orderTotal: SummarySale = {};
 
   staffTotal = 0;
 
@@ -34,13 +34,18 @@ export class WidgetsComponent implements OnInit, OnDestroy {
       this.stockSummary.getStockSummaryCurrentMonth(),
       this.ordersSummary.getOrderSummaryCurrentMonth(),
       this.staffService.getStaffs()
-    ).subscribe(resp => {
-      this.saleTotal = resp[0][0]['total'];
-      this.stockTotal = resp[1][0]['total'];
-      this.orderTotal = resp[2][0]['total'];
+    ).subscribe(([sale, stock, order, staff]) => {
+      this.saleTotal = sale;
+      this.stockTotal = stock;
+      this.orderTotal = order;
 
-      this.staffTotal = resp[3].length;
+      this.staffTotal = staff.length;
+    }, error =>  {
+      console.log(error);
     });
+
+
+    // this.subscription =  this.stockSummary.getStockSummaryCurrentMonth().subscribe(resp => console.log(resp));
   }
 
   ngOnDestroy(): void {

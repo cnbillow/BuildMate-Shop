@@ -48,8 +48,9 @@ export class SummaryStaffOrdersService {
   }
 
   getOrderSummaryCurrentMonth() {
-    const currentMonth = this.getOrderSummaryId(new Date()).month;
-    return this.db.collection('summary-orders', ref => ref.where('month', '==', currentMonth)).valueChanges();
+    const docId = this.getOrderSummaryId(new Date()).docId;
+    return this.db.doc(`summary-orders/${docId}`).valueChanges();
+    // return this.db.collection('summary-orders', ref => ref.where('month', '==', currentMonth)).valueChanges();
   }
 
   async addOrUpdateSummary(orderDate: Date, quantity: number) {

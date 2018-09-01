@@ -1,14 +1,14 @@
-import { ProductCategoryService, ProductCategoryService } from './../../../services/product-category.service';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+import { Category } from '../../../models/category.model';
 import { Upload } from '../../../models/upload.model';
 import { Product } from './../../../models/product.model';
+import { ProductCategoryService } from './../../../services/product-category.service';
 import { ProductService } from './../../../services/product.service';
 import { UploadService } from './../../../services/upload.service';
-import { Category } from '../../../models/category.model';
 
 @Component({
   selector: 'app-quick-products',
@@ -32,7 +32,6 @@ export class QuickProductsComponent implements OnInit, OnDestroy {
 
   showSpinner = true;
   subscription: Subscription;
-  productSubscription: Subscription;
 
   constructor(private productService: ProductService,
               private uploadService: UploadService,
@@ -40,6 +39,7 @@ export class QuickProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.uploadService.getAllGallery().pipe(switchMap(gallery => {
+      this.showSpinner = false;
       this.galleryFiles = gallery;
 
       return this.categoryService.getCategories();
@@ -49,7 +49,6 @@ export class QuickProductsComponent implements OnInit, OnDestroy {
       return this.productService.getProducts();
     })).subscribe(products => {
       this.products = products;
-      this.showSpinner = false;
 
       this.productMap = products.map(p => {
         return {
@@ -70,10 +69,6 @@ export class QuickProductsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
-    }
-
-    if (this.productSubscription) {
-      this.productSubscription.unsubscribe();
     }
   }
 
