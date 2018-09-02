@@ -81,4 +81,11 @@ export class AlertService {
     });
   }
 
+  loginSuccess() {
+    return this.toast({
+      type: 'success',
+      title: 'Login Sucessfull'
+    });
+  }
+
 }

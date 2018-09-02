@@ -41,6 +41,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { ChartsModule } from 'ng2-charts';
@@ -50,6 +51,9 @@ import { environment } from '../environments/environment';
 import { ChartComponent } from './admin/dashboard/chart/chart.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { QuickNavsComponent } from './admin/dashboard/quick-navs/quick-navs.component';
+import { QuickProductsComponent } from './admin/dashboard/quick-products/quick-products.component';
+import { QuickStaffsComponent } from './admin/dashboard/quick-staffs/quick-staffs.component';
+import { RecentOrdersComponent } from './admin/dashboard/recent-orders/recent-orders.component';
 import { WidgetsComponent } from './admin/dashboard/widgets/widgets.component';
 import { ManageStockComponent } from './admin/products/manage-stock/manage-stock.component';
 import { ProductCategoryComponent } from './admin/products/product-category/product-category.component';
@@ -66,7 +70,9 @@ import { PosComponent } from './admin/transactions/pos/pos.component';
 import {
   ProductTransactionLogComponent,
 } from './admin/transactions/product-transaction-log/product-transaction-log.component';
+import { RemitFormComponent } from './admin/transactions/remit-form/remit-form.component';
 import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shopping-cart.component';
+import { StaffOrderRemitComponent } from './admin/transactions/staff-order-remit/staff-order-remit.component';
 import { StaffTransactionLogComponent } from './admin/transactions/staff-transaction-log/staff-transaction-log.component';
 import { StockOrdersComponent } from './admin/transactions/stock-orders/stock-orders.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -79,11 +85,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
-import { RecentOrdersComponent } from './admin/dashboard/recent-orders/recent-orders.component';
-import { QuickStaffsComponent } from './admin/dashboard/quick-staffs/quick-staffs.component';
-import { QuickProductsComponent } from './admin/dashboard/quick-products/quick-products.component';
-import { StaffOrderRemitComponent } from './admin/transactions/staff-order-remit/staff-order-remit.component';
-import { RemitFormComponent } from './admin/transactions/remit-form/remit-form.component';
+import { AssignRoleComponent } from './auth/assign-role/assign-role.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -125,13 +127,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     QuickStaffsComponent,
     QuickProductsComponent,
     StaffOrderRemitComponent,
-    RemitFormComponent
+    RemitFormComponent,
+    AssignRoleComponent
   ],
   imports: [
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule,
+    AngularFireAuthModule,
 
     ChartsModule,
     FlexLayoutModule,
@@ -181,7 +185,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   entryComponents: [
     ProductCategoryComponent,
-    PosCartComponent
+    PosCartComponent,
+    AssignRoleComponent
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }

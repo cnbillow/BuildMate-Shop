@@ -1,0 +1,53 @@
+<!-- <pre>{{ f.value | json }}</pre> -->
+<form #f="ngForm">
+
+  <div class="form-field-container">
+
+    <mat-card-header>
+      <h3>Add Account</h3>
+    </mat-card-header>
+
+    <mat-form-field appearance="outline">
+      <mat-select [(ngModel)]="account.right" name="right" placeholder="Account Right" required>
+        <mat-option>--Select Right--</mat-option>
+        <mat-option value="AD">Administrator</mat-option>
+        <mat-option value="SA">Super-Administrator</mat-option>
+      </mat-select>
+
+      <mat-error>
+        Account right is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <div class="spc-10"></div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput [(ngModel)]="account.login.email" name="email" placeholder="Enter Username" [disabled]="account" required>
+      <mat-hint>Should be a valid email address</mat-hint>
+      <mat-error>
+        A valid email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input type="password" [(ngModel)]="account.login.password" name="password" #password maxlength="10" matInput placeholder="Enter Password" required>
+      <mat-hint align="end">{{ password.value?.length || 0 }} / 10</mat-hint>
+      <mat-error>
+        A strong typed is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="spc-10"></div>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addRole()" [disabled]="!f.valid">Create Account</button>
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+    </mat-card-actions>
+
+  </div>
+
+</form>

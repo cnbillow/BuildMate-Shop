@@ -1,5 +1,6 @@
+import { AssignRoleComponent } from './../../../auth/assign-role/assign-role.component';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -36,7 +37,8 @@ export class StaffProfileComponent implements OnInit, OnDestroy {
               private staffService: StaffService,
               private alertService: AlertService,
               private router: Router,
-              private uploadService: UploadService) { }
+              private uploadService: UploadService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.staffId = this.route.snapshot.paramMap.get('id');
@@ -61,6 +63,16 @@ export class StaffProfileComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  showDialog() {
+    this.staff.id = this.staffId;
+
+    this.dialog.open(AssignRoleComponent, {
+      height: '500px',
+      width: '500px',
+      data: this.staff
+    });
   }
 
   getAvatarDetails() {
