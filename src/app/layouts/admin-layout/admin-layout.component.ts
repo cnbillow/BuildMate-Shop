@@ -2,7 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { Upload } from '../../models/upload.model';
 import { AuthService } from '../../services/auth.service';
@@ -19,9 +19,7 @@ import { UploadService } from './../../services/upload.service';
 })
 export class AdminLayoutComponent implements OnInit, OnDestroy {
 
-  uid: string;
-  user: StaffAccount;
-  staffDetails$: Observable<Staff>;
+  user$: Observable<Staff>;
 
   gallery: Upload[] = [];
 
@@ -53,11 +51,14 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authSubscription = this.auth.user$.subscribe(state => {
+      if (!state) { return; }
 
-      if (state) {
-        this.uid = state.uid;
-        this.getUserAccount(this.uid);
-      }
+      // get account
+      this.roleService.getUser(state.uid).pipe(take(1)).subscribe(user => {
+
+        // get staff record
+        this.user$ = this.staffService.getStaff(user.staff);
+      });
 
     });
 
@@ -74,18 +75,6 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
-  }
-
-  private getUserAccount(uid: string) {
-    this.roleService.getUser(uid).subscribe(user => {
-      this.user = user;
-
-      this.getStaff(user.staff);
-    });
-  }
-
-  private getStaff(staffId: string) {
-    this.staffDetails$ = this.staffService.getStaff(staffId);
   }
 
   getUserAvatar(avatarId: string) {

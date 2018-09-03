@@ -1,44 +1,42 @@
 
 <pre> {{ credentials | json }} </pre>
 
- <body>
-<!--
-    <div fxLayout="row" fxLayout.xs="column" fxfxLayoutAlign="center center">
-      <div fxFlex> -->
+<body>
 
-        <mat-card class="login-box">
-          <img src="../../../assets/avatars/avatar3.png" alt="..." class="avatar">
-          <h1>Login Here</h1>
+  <mat-card class="login-box">
+    <img src="../../../assets/avatars/avatar3.png" alt="..." class="avatar">
+    <h1>Login Here</h1>
 
-          <form #f="ngForm">
+    <div class="spc-10"></div>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Username</mat-label>
-              <input matInput [(ngModel)]="details.username" name="username" placeholder="Enter Username..." required>
-              <mat-error>
-                Username is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-      
-            <mat-form-field appearance="outline">
-              <mat-label>Username</mat-label>
-              <input type="password" matInput [(ngModel)]="details.password" name="password" placeholder="Enter Password..." required>
-              <mat-error>
-                Password is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
+    <mat-error *ngIf="error">{{ error }}</mat-error>
 
-            <mat-card-actions>
-              <button mat-raised-button (click)="loginStaff()">Login</button>
-            </mat-card-actions>
+    <form #f="ngForm">
 
-            <a mat-button>Forgot Password</a>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput [(ngModel)]="details.username" name="username" placeholder="Enter Username..." required>
+        <mat-error>
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
-          </form>
-        </mat-card>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="password" matInput [(ngModel)]="details.password" name="password" placeholder="Enter Password..." required>
+        <mat-error>
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
-      <!-- </div>
-    </div> -->
+      <mat-card-actions>
+        <button mat-raised-button (click)="loginStaff()">Login</button>
+      </mat-card-actions>
+
+      <a mat-button>Forgot Password</a>
+
+    </form>
+  </mat-card>
 </body>
   
   

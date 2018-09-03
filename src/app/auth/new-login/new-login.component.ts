@@ -10,6 +10,8 @@ import { AuthService } from './../../services/auth.service';
 })
 export class NewLoginComponent implements OnInit {
 
+  error: string;
+
   details = {
     username: '',
     password: ''
@@ -18,12 +20,14 @@ export class NewLoginComponent implements OnInit {
   constructor(private authService: AuthService,
               private roleService: RoleService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async loginStaff() {
-    // console.log(details);
-    await this.authService.login(this.details.username, this.details.password);
+    try {
+      await this.authService.login(this.details.username, this.details.password);
+    } catch (error) {
+      this.error = error.message;
+    }
   }
 
 }
