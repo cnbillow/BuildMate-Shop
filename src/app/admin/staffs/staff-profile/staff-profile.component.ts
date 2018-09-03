@@ -67,7 +67,7 @@ export class StaffProfileComponent implements OnInit, OnDestroy {
     this.staff.id = this.staffId;
 
     this.dialog.open(AssignRoleComponent, {
-      height: '500px',
+      height: '600px',
       width: '500px',
       data: this.staff
     });

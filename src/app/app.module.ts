@@ -86,7 +86,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
-
+import { NgxMaterialPasswordStrengthModule } from 'ngx-material-password-strength';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -133,13 +133,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestoreModule.enablePersistence(),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
+    // AngularFirestoreModule,
     AngularFireAuthModule,
 
     ChartsModule,
     FlexLayoutModule,
     FormsModule,
+    NgxMaterialPasswordStrengthModule.forRoot(),
     ReactiveFormsModule,
     PerfectScrollbarModule,
 

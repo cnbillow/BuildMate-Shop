@@ -21,6 +21,7 @@ export class AssignRoleComponent implements OnInit, OnDestroy {
   staffAccount: StaffAccount = {}; // current loggin staff right;
 
   subscription: Subscription;
+  roleSubscription: Subscription;
 
   constructor(private roleService: RoleService,
               private alertService: AlertService,
@@ -35,7 +36,7 @@ export class AssignRoleComponent implements OnInit, OnDestroy {
     this.account.login.email = this.data.contact.email;
 
     this.subscription =  this.auth.user$.subscribe(staffAccount => {
-      this.roleService.getUser(staffAccount.uid).pipe(take(1)).subscribe(account => {
+      this.roleSubscription = this.roleService.getUser(staffAccount.uid).subscribe(account => {
         this.staffAccount = account;
       });
     });
@@ -44,6 +45,10 @@ export class AssignRoleComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+
+    if (this.roleSubscription) {
+      this.roleSubscription.unsubscribe();
     }
   }
 

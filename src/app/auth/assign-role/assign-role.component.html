@@ -32,22 +32,48 @@
       </mat-error>
     </mat-form-field>
 
+    <div class="spc-10"></div>
+
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input type="password" [(ngModel)]="account.login.password" name="password" #password maxlength="10" matInput placeholder="Enter Password" required>
-      <mat-hint align="end">{{ password.value?.length || 0 }} / 10</mat-hint>
+      <input type="password" [(ngModel)]="account.login.password" name="password" #password maxlength="10" mainlength="6" matInput placeholder="Enter Password" required>
+      <mat-hint align="end">{{ password.value?.length || 0 }} / 12</mat-hint>
       <mat-error>
         A strong typed is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
+    <!-- (onStrengthChanged)="onStrengthChanged($event)" -->
+
+    <ngx-material-password-strength #passwordComponent      
+      [password]="password.value">
+    </ngx-material-password-strength>
+
+    <div *ngIf="passwordComponent.strength === 100; then done else error"></div>
+    <ng-template #done>
+      <mat-icon color="primary">done</mat-icon>
+    </ng-template>
+    <ng-template #error>
+      <mat-icon color="warn">error</mat-icon>
+    </ng-template>
+    <div>
+      <p>Password's strength = {{passwordComponent.strength}} %100</p>
+    </div>
+
+    <!--Password's strength info-->
+    <!-- <mat-password-strength-info
+      [passwordComponent]="passwordComponent">
+    </mat-password-strength-info> -->
+
     <div class="spc-10"></div>
 
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="addRole()" [disabled]="!f.valid">Create Account</button>
+      <button mat-raised-button color="primary" (click)="addRole()" [disabled]="!f.valid || passwordComponent.strength > 70">Create Account</button>
       <button mat-raised-button mat-dialog-close>Cancel</button>
     </mat-card-actions>
 
   </div>
 
 </form>
+
+

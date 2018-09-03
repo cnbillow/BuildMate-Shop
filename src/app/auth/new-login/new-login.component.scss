@@ -9,6 +9,7 @@ body {
 
 .login-error {
     color: red;
+    text-align: center;
 }
 
 .login-box {
@@ -27,6 +28,10 @@ body {
 
 mat-form-field {
     width: 100%;
+}
+
+.placeholder{
+    color: white;
 }
 
 button {
