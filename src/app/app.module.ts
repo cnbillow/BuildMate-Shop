@@ -1,4 +1,3 @@
-import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -78,6 +77,8 @@ import { StaffTransactionLogComponent } from './admin/transactions/staff-transac
 import { StockOrdersComponent } from './admin/transactions/stock-orders/stock-orders.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AssignRoleComponent } from './auth/assign-role/assign-role.component';
+import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { NewLoginComponent } from './auth/new-login/new-login.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { HomePageComponent } from './general/home-page/home-page.component';
@@ -85,7 +86,6 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
-import { AssignRoleComponent } from './auth/assign-role/assign-role.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {

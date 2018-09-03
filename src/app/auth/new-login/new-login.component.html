@@ -9,7 +9,9 @@
 
     <div class="spc-10"></div>
 
-    <mat-error *ngIf="error">{{ error }}</mat-error>
+    <div class="login-error" *ngIf="error">Error: &nbsp;{{ error }}</div>
+    
+    <div class="spc-5"></div>
 
     <form #f="ngForm">
 
@@ -33,7 +35,7 @@
         <button mat-raised-button (click)="loginStaff()">Login</button>
       </mat-card-actions>
 
-      <a mat-button>Forgot Password</a>
+      <!-- <a mat-button>Forgot Password</a> -->
 
     </form>
   </mat-card>

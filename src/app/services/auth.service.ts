@@ -1,3 +1,4 @@
+import { AlertService } from './alert.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -12,18 +13,15 @@ export class AuthService {
   user$: Observable<firebase.User>;
 
   constructor(private auth: AngularFireAuth,
-              private router: Router) {
+              private router: Router,
+              private alertService: AlertService) {
                 this.user$ = auth.authState;
               }
 
   async login(email: string, password: string) {
-    try {
-      const user = await this.auth.auth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['account', 'dashboard']);
-      return user.user.uid;
-    } catch (error) {
-      console.log(error);
-    }
+    const user = await this.auth.auth.signInWithEmailAndPassword(email, password);
+    this.router.navigate(['account', 'dashboard']);
+    return user.user.uid;
   }
 
   logout() {
@@ -33,11 +31,7 @@ export class AuthService {
   }
 
   async emailSignUp(email: string, password: string) {
-    try {
-      const user = await this.auth.auth.createUserWithEmailAndPassword(email, password);
-      return user.user.uid;
-    } catch (error) {
-      console.log(error);
-    }
+    const user = await this.auth.auth.createUserWithEmailAndPassword(email, password);
+    return user.user.uid;
   }
 }

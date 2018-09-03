@@ -26,7 +26,7 @@ export class NewLoginComponent implements OnInit {
     try {
       await this.authService.login(this.details.username, this.details.password);
     } catch (error) {
-      this.error = error.message;
+      this.error = error.code;
     }
   }
 
