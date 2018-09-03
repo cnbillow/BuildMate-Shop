@@ -11,7 +11,7 @@
       <mat-select [(ngModel)]="account.right" name="right" placeholder="Account Right" required>
         <mat-option>--Select Right--</mat-option>
         <mat-option value="AD">Administrator</mat-option>
-        <mat-option value="SA">Super-Administrator</mat-option>
+        <mat-option *ngIf="staffAccount?.right === 'SA'" value="SA">Super-Administrator</mat-option>
       </mat-select>
 
       <mat-error>

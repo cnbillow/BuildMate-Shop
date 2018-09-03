@@ -1,7 +1,19 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-body { margin: 0; }
+html, body, app-root {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0; 
+    background: #f2f2f2;
+    font-family: 'Montserrat', 'Roboto', sans-serif !important;  
+    height: 100vh;
+    overflow: hidden;
+    margin:0;
+}
 
 .fill-remaining-space {
     flex: 1 1 auto;

@@ -52,7 +52,6 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.authSubscription = this.authService.authState().subscribe(state => {
 
       if (state) {

@@ -1,15 +1,17 @@
+import { RoleService } from './../../../services/role-service.service';
 import { AssignRoleComponent } from './../../../auth/assign-role/assign-role.component';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTabChangeEvent, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 
 import { Staff } from '../../../models/staff.model';
 import { Upload } from '../../../models/upload.model';
 import { AlertService } from '../../../services/alert.service';
 import { UploadService } from '../../../services/upload.service';
 import { StaffService } from './../../../services/staff.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-staff-profile',
@@ -51,10 +53,6 @@ export class StaffProfileComponent implements OnInit, OnDestroy {
     })).subscribe(result => {
       this.staff = result;
     });
-
-    // this.subscription = this.staffService.getStaff(this.staffId).subscribe(resp => {
-    //   this.staff = resp;
-    // });
 
     this.pushNavLinks();
   }

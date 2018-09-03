@@ -1,4 +1,4 @@
-import { AuthGuard } from './services/auth.guard';
+import { NewLoginComponent } from './auth/new-login/new-login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -19,9 +19,10 @@ import {
 import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shopping-cart.component';
 import { StaffOrderRemitComponent } from './admin/transactions/staff-order-remit/staff-order-remit.component';
 import { StaffTransactionLogComponent } from './admin/transactions/staff-transaction-log/staff-transaction-log.component';
-import { NewLoginComponent } from './auth/new-login/new-login.component';
+import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
@@ -43,12 +44,14 @@ const routes: Routes = [
     children: [
       {
         path: 'login',
+        // component: LoginFormComponent
         component: NewLoginComponent
       }
     ]
   }, {
     path: 'account',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
@@ -71,7 +74,6 @@ const routes: Routes = [
       }, {
         path: 'products',
         component: ProductRegistryComponent,
-        canActivate: [AuthGuard]
       }, {
         path: 'product-form',
         component: ProductFormComponent

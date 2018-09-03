@@ -1,3 +1,4 @@
+import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -77,7 +78,6 @@ import { StaffTransactionLogComponent } from './admin/transactions/staff-transac
 import { StockOrdersComponent } from './admin/transactions/stock-orders/stock-orders.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
 import { NewLoginComponent } from './auth/new-login/new-login.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { HomePageComponent } from './general/home-page/home-page.component';
@@ -100,7 +100,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AuthLayoutComponent,
     HomePageComponent,
     DashboardComponent,
-    LoginComponent,
     ProductProfileComponent,
     StaffsRegistryComponent,
     StaffProfileComponent,
@@ -114,6 +113,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PosComponent,
     PosCartComponent,
     LoadingSpinnerComponent,
+    LoginFormComponent,
     NewLoginComponent,
     CheckOutComponent,
     ShoppingCartComponent,

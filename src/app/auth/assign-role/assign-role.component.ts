@@ -1,20 +1,26 @@
 import { RoleService } from './../../services/role-service.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { StaffAccount } from '../../models/account.model';
 import { AlertService } from '../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
+import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-assign-role',
   templateUrl: './assign-role.component.html',
   styleUrls: ['./assign-role.component.css']
 })
-export class AssignRoleComponent implements OnInit {
+export class AssignRoleComponent implements OnInit, OnDestroy {
 
   account: StaffAccount = {
     login: {},
   };
+
+  staffAccount: StaffAccount = {}; // current loggin staff right;
+
+  subscription: Subscription;
 
   constructor(private roleService: RoleService,
               private alertService: AlertService,
@@ -27,6 +33,18 @@ export class AssignRoleComponent implements OnInit {
     this.account.right = 'AD';
     this.account.staff = this.data.id;
     this.account.login.email = this.data.contact.email;
+
+    this.subscription =  this.authService.authState().subscribe(staffAccount => {
+      this.roleService.getUser(staffAccount.uid).pipe(take(1)).subscribe(account => {
+        this.staffAccount = account;
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   async addRole() {
