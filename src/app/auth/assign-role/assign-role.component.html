@@ -68,7 +68,7 @@
     <div class="spc-10"></div>
 
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="addRole()" [disabled]="!f.valid || passwordComponent.strength > 70">Create Account</button>
+      <button mat-raised-button color="primary" (click)="addRole()" [disabled]="!f.valid || passwordComponent.strength >= 70">Create Account</button>
       <button mat-raised-button mat-dialog-close>Cancel</button>
     </mat-card-actions>
 
