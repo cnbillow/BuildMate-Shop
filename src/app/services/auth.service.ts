@@ -9,12 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth,
-              private router: Router) {}
+  user$: Observable<firebase.User>;
+
+  constructor(private auth: AngularFireAuth,
+              private router: Router) {
+                this.user$ = auth.authState;
+              }
 
   async login(email: string, password: string) {
     try {
-      const user = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+      const user = await this.auth.auth.signInWithEmailAndPassword(email, password);
       this.router.navigate(['account', 'dashboard']);
       return user.user.uid;
     } catch (error) {
@@ -22,23 +26,18 @@ export class AuthService {
     }
   }
 
+  logout() {
+    return this.auth.auth.signOut().then(() => {
+      this.router.navigate(['/']);
+    });
+  }
+
   async emailSignUp(email: string, password: string) {
     try {
-      const user = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+      const user = await this.auth.auth.createUserWithEmailAndPassword(email, password);
       return user.user.uid;
     } catch (error) {
       console.log(error);
     }
   }
-
-  logout() {
-    return this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/']);
-    });
-  }
-
-  authState(): Observable<firebase.User> {
-    return this.afAuth.authState;
-  }
-
 }

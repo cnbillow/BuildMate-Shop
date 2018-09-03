@@ -43,7 +43,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
   constructor(private breakpointObserver: BreakpointObserver,
               private router: Router,
-              private authService: AuthService,
+              private auth: AuthService,
               private roleService: RoleService,
               private staffService: StaffService,
               private uploadService: UploadService) {
@@ -52,7 +52,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.authSubscription = this.authService.authState().subscribe(state => {
+    this.authSubscription = this.auth.user$.subscribe(state => {
 
       if (state) {
         this.uid = state.uid;
@@ -98,7 +98,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
 
   signOut() {
-    this.authService.logout();
+    this.auth.logout();
   }
 
 }

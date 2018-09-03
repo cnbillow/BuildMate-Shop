@@ -26,7 +26,7 @@ export class AssignRoleComponent implements OnInit, OnDestroy {
               private alertService: AlertService,
               private dialogRef: MatDialogRef<AssignRoleComponent>,
               @Inject(MAT_DIALOG_DATA) private data: any,
-              private authService: AuthService) { }
+              private auth: AuthService) { }
 
   ngOnInit() {
     // default value
@@ -34,7 +34,7 @@ export class AssignRoleComponent implements OnInit, OnDestroy {
     this.account.staff = this.data.id;
     this.account.login.email = this.data.contact.email;
 
-    this.subscription =  this.authService.authState().subscribe(staffAccount => {
+    this.subscription =  this.auth.user$.subscribe(staffAccount => {
       this.roleService.getUser(staffAccount.uid).pipe(take(1)).subscribe(account => {
         this.staffAccount = account;
       });
@@ -50,7 +50,7 @@ export class AssignRoleComponent implements OnInit, OnDestroy {
   async addRole() {
     const confirm = await this.alertService.confirmUpdate();
     if (confirm.value) {
-      const uid = await this.authService.emailSignUp(this.account.login.email, this.account.login.password);
+      const uid = await this.auth.emailSignUp(this.account.login.email, this.account.login.password);
 
       this.account.uid = uid;
       await this.roleService.addRole(this.account);
