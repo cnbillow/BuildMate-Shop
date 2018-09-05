@@ -90,6 +90,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
 // import { SlideshowModule } from 'ng-simple-slideshow';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import { CarouselComponent } from './general/carousel/carousel.component';
+import { OurServicesComponent } from './general/our-services/our-services.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -133,7 +134,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     StaffOrderRemitComponent,
     RemitFormComponent,
     AssignRoleComponent,
-    CarouselComponent
+    CarouselComponent,
+    OurServicesComponent
   ],
   imports: [
     AngularFireStorageModule,
