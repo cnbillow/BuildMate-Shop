@@ -1,4 +1,3 @@
-import { NewLoginComponent } from './auth/new-login/new-login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -19,25 +18,27 @@ import {
 import { ShoppingCartComponent } from './admin/transactions/shopping-cart/shopping-cart.component';
 import { StaffOrderRemitComponent } from './admin/transactions/staff-order-remit/staff-order-remit.component';
 import { StaffTransactionLogComponent } from './admin/transactions/staff-transaction-log/staff-transaction-log.component';
-import { LoginFormComponent } from './auth/login-form/login-form.component';
+import { NewLoginComponent } from './auth/new-login/new-login.component';
+import { HomePageComponent } from './general/home-page/home-page.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '/auth/login', pathMatch: 'full'
+    path: '', redirectTo: '/home', pathMatch: 'full'
   },
-  // {
-  //   path: 'home',
-  //   component: GeneralLayoutComponent,
-  //   children: [
-  //     {
-  //       path: 'home',
-  //       component: HomePageComponent
-  //     }
-  //   ]
-  // },
+  {
+    path: '',
+    component: GeneralLayoutComponent,
+    children: [
+      {
+        path: 'home',
+        component: HomePageComponent
+      }
+    ]
+  },
   {
     path: 'auth',
     component: AuthLayoutComponent,
@@ -113,7 +114,7 @@ const routes: Routes = [
       }
     ]
   }, {
-    path: '**', redirectTo: '/auth/login', pathMatch: 'full'
+    path: '**', redirectTo: '/home', pathMatch: 'full'
   }
 ];
 

@@ -45,6 +45,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { ChartsModule } from 'ng2-charts';
+import { NgxMaterialPasswordStrengthModule } from 'ngx-material-password-strength';
 import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { environment } from '../environments/environment';
@@ -86,7 +87,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
-import { NgxMaterialPasswordStrengthModule } from 'ngx-material-password-strength';
+import { SlideshowModule } from 'ng-simple-slideshow';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -143,6 +145,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxMaterialPasswordStrengthModule.forRoot(),
     ReactiveFormsModule,
     PerfectScrollbarModule,
+    SlideshowModule,
 
     AppRoutingModule,
     BrowserAnimationsModule,
