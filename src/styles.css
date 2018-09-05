@@ -1,4 +1,6 @@
+@import "https://fonts.googleapis.com/css?family=Catamaran:400,900|Cormorant+Garamond";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html, body, app-root {
@@ -9,8 +11,8 @@ html, body, app-root {
 body {
     margin: 0; 
     background: #f2f2f2;
-    font-family: 'Montserrat', 'Roboto', sans-serif !important;  
-    height: 100vh;
+    font-family: 'Catamaran', 'Roboto', sans-serif !important;  
+    /* height: 100vh; */
     overflow: hidden;
     margin:0;
 }

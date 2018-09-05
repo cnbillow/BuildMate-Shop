@@ -1,0 +1,76 @@
+
+<ngx-hm-carousel
+  [(ngModel)]="index"
+  (ngModelChange)="indexChanged($event)"
+  [autoplay-speed]="5000"
+  [autoplay]="autoplay"
+  [autoplay-direction]="direction"
+  [infinite]="infinite"
+  [align]="left"
+  [between-delay]="2000"
+  class="carousel c-accent">
+
+  <section ngx-hm-carousel-container class="content">
+    <article class="item cursor-pointer"
+      *ngFor="let avatar of avatars"
+      ngx-hm-carousel-item>
+      <div class="img"
+        [style.backgroundImage]="'url('+avatar.url+')'">
+
+        <div class="verticle-center">          
+          <h2>Interior Decor</h2>
+          <h1>With specialty in wall designs, wall pallets structuring designs <br> & <br> 3D floor and designs </h1>
+
+          <button mat-raised-button>
+            <span>Read More</span> &nbsp;
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+    </article>
+  </section>
+
+  <!-- <ng-template #carouselPrev>
+    <div class="click-area">
+      <i class="material-icons">keyboard_arrow_left</i>
+    </div>
+  </ng-template>
+  <ng-template #carouselNext>
+    <div class="click-area">
+      <i class="material-icons">keyboard_arrow_right</i>
+    </div>
+  </ng-template> -->
+
+  <ng-template #carouselDot let-model>
+    <div class="ball bg-accent"
+      [class.visible]="model.index === model.currentIndex"></div>
+  </ng-template>
+
+  <ng-template #carouselProgress let-progress>
+    <div class="progress" *ngIf="progress > 0"
+    [style.width]="(direction==='right' ? progress : 100 - progress) + '%'"></div>
+  </ng-template>
+
+</ngx-hm-carousel>
+
+<h2 class="center">
+  One Picture
+</h2>
+
+<div>
+  <mat-checkbox [(ngModel)]="autoplay" color="primary">Autoplay</mat-checkbox>
+  <mat-checkbox *ngIf="!autoplay" [(ngModel)]="infinite" color="primary">Infinite</mat-checkbox>
+
+  <mat-slide-toggle
+    color="primary"
+    [(ngModel)]="directionToggle" (change)="toggleDirection($event)">
+    {{directionToggle ? 'go right' : 'go left'}}
+  </mat-slide-toggle>
+</div>
+
+<div style="padding-top:1rem">
+  <button mat-raised-button color="warn" (click)="index = 0">Go Index 0</button>
+  <button mat-raised-button color="primary" (click)="index = 2">Go Index 2</button>
+  <button mat-raised-button color="accent" (click)="index = 4">Go Index 4</button>
+</div>

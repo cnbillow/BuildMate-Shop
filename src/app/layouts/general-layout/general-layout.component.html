@@ -1,16 +1,14 @@
-<mat-toolbar class="main-nav mat-elevation-z4">
+<mat-toolbar class="main-nav mat-elevation-z5">
   
-    <span fxShow.xs="false">BuildMate</span>
+    <a mat-button class="header-brand" routerLink="/" fxShow.xs="false">BuildMate Interior</a>
             
     <span class="fill-remaining-space"></span>
-
-    <a mat-button routerLink="/auth/login" routerLinkActive="active">Login</a>    
-    <!-- <a mat-button routerLink="/account/dashboard" routerLinkActive="active">Dashboard</a> -->
-        
-
-    <button mat-icon-button class="icon-padding">
-        <mat-icon aria-hidden="true">notifications</mat-icon>
-    </button>
+    
+    <a mat-button routerLinkActive="active">Services</a>    
+    <a mat-button routerLink="" routerLinkActive="active">Portfolio</a>    
+    <a mat-button routerLink="" routerLinkActive="active">Contact</a>    
+    <a mat-button routerLink="/auth/login" routerLinkActive="active">Account</a>            
+    
 
 </mat-toolbar>
 

@@ -87,7 +87,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
-import { SlideshowModule } from 'ng-simple-slideshow';
+// import { SlideshowModule } from 'ng-simple-slideshow';
+import { NgxHmCarouselModule } from 'ngx-hm-carousel';
+import { CarouselComponent } from './general/carousel/carousel.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -130,7 +132,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     QuickProductsComponent,
     StaffOrderRemitComponent,
     RemitFormComponent,
-    AssignRoleComponent
+    AssignRoleComponent,
+    CarouselComponent
   ],
   imports: [
     AngularFireStorageModule,
@@ -145,7 +148,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxMaterialPasswordStrengthModule.forRoot(),
     ReactiveFormsModule,
     PerfectScrollbarModule,
-    SlideshowModule,
+    // SlideshowModule,
+    NgxHmCarouselModule,
 
     AppRoutingModule,
     BrowserAnimationsModule,

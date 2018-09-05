@@ -1,13 +1,29 @@
 
- <ng-container *ngIf="imageUrls?.length > 1">
-    <slideshow [height]="'800px'"
-               [minHeight]="'500px'"
-               [autoPlay]="true"
-               [showArrows]="true"
-               [showDots]="true"
-               [imageUrls]="imageUrls"
-               [lazyLoad]="imageUrls?.length > 1"
-               [autoPlayWaitForLazyLoad]="true">
+<!-- <div class="home-banner" *ngIf="imageUrls?.length > 1">
+    <slideshow [height]="'400px'"
+                [minHeight]="'400px'"
+                [autoPlay]="true"
+                [showArrows]="true"
+                [showDots]="true"
+                [imageUrls]="imageUrls"
+                [lazyLoad]="imageUrls?.length > 1"
+                [autoPlayWaitForLazyLoad]="true">
     </slideshow>
-</ng-container> 
+</div>  -->
+<div class="carousel">
+    <app-carousel></app-carousel>
+</div>
+
+<div>
+    
+</div>
+
+
+
+
+
+
+
+<!-- <section class="home-banner">
+</section> -->
 

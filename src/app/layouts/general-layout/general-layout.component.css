@@ -1,14 +1,21 @@
 /* tool-bar */
 mat-toolbar {
-    /* background: url('../../../assets/banners/banner1.jpg');
-    background-repeat: no-repeat; */
-
-    height:  64px !important;
-    min-height: 64px !important;
+    height:  100px !important;
+    min-height: 100px !important;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
 }
 
 mat-toolbar mat-toolbar-row {
-    height: 64px !important;
+    height: 100px !important;
+}
+
+.main-nav .header-brand {
+    font-size: 24px;
+    color: #111;
+    text-transform: uppercase;
+    display: block;
 }
 
 /* links */
@@ -17,5 +24,12 @@ mat-toolbar mat-toolbar-row {
 }
 
 .mat-button {
-    line-height: 64px;
+    font-size: 18px;
+    color: #111;
+    display: block;
+    line-height: 100px;
+}
+
+body {
+    background-color: #f3f3f3;
 }
