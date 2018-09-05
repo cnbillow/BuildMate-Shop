@@ -33,3 +33,16 @@ mat-toolbar mat-toolbar-row {
 body {
     background-color: #f3f3f3;
 }
+
+.footer {
+    height: 300px;
+    line-height: 150px;
+    background: url(../../../assets/banners/banner1.jpg);
+    text-indent: 30px;
+
+    span {
+        color: whitesmoke;
+        font-size: 30px;
+        font-weight: 400;
+    }
+}

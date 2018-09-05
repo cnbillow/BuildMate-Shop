@@ -1,13 +1,14 @@
-.carousel {    
+.carousel {  
+    
     .content {
         display: flex;
         .item {
             width: 100%;
-            height: 100vh;
+            height: calc(100vh - 100px); 
             display: block;
             .img {
                 width: 100%;
-                height: 100%;
+                height: 100%; 
                 display: block;
                 text-align: center;
                 background-size: cover;
@@ -17,7 +18,7 @@
                 // padding: 5% 0;
 
                 .verticle-center {
-                    padding-top: calc(20% + 100px);
+                    padding-top: calc(10% + 100px);
                     // padding-bottom: 5%;
                     
                     h2 {

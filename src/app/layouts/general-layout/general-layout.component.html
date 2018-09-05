@@ -12,6 +12,16 @@
 
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<perfect-scrollbar [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-300px'}" [config]="config">
+    <div>
+        <router-outlet></router-outlet> 
+    </div>
+
+    <div style="height: 300px"></div> 
+</perfect-scrollbar> 
+
+<footer class="footer">
+    <span>Powered By CYBOTECH CORP</span>
+</footer> 
 
 

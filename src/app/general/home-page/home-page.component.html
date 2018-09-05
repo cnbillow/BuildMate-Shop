@@ -1,29 +1,70 @@
 
-<!-- <div class="home-banner" *ngIf="imageUrls?.length > 1">
-    <slideshow [height]="'400px'"
-                [minHeight]="'400px'"
-                [autoPlay]="true"
-                [showArrows]="true"
-                [showDots]="true"
-                [imageUrls]="imageUrls"
-                [lazyLoad]="imageUrls?.length > 1"
-                [autoPlayWaitForLazyLoad]="true">
-    </slideshow>
-</div>  -->
 <div class="carousel">
     <app-carousel></app-carousel>
 </div>
 
-<div>
+<mat-card class="our-services">
+
+        <div class="spc-20"></div>
+
+    <div class="category-header text-center">
+        <h1>Our Services</h1>
+    </div>
+
+    <div class="spc-10"></div>
     
-</div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" >
+        <div fxFlex="30">
+            <div class="service-block text-center">
+                <mat-card>
+                    <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
+                    <mat-card-content class="service-content text-center">
+                        <h2>Interior</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Expedita sapiente voluptate, quam a eveniet omnis eum alias 
+                            dicta tempora sed cupiditate! Blanditiis expedita, 
+                            vero quos qui ipsum possimus cum fugit.
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div fxFlex="30">
+            <div class="service-block text-center">
+                <mat-card>
+                    <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
+                    <mat-card-content class="service-content text-center">
+                        <h2>Exterior</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Expedita sapiente voluptate, quam a eveniet omnis eum alias 
+                            dicta tempora sed cupiditate! Blanditiis expedita, 
+                            vero quos qui ipsum possimus cum fugit.
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div fxFlex="30">
+            <div class="service-block text-center">
+                <mat-card>
+                    <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
+                    <mat-card-content class="service-content text-center">
+                        <h2>Landscape</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Expedita sapiente voluptate, quam a eveniet omnis eum alias 
+                            dicta tempora sed cupiditate! Blanditiis expedita, 
+                            vero quos qui ipsum possimus cum fugit.
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+</mat-card>
 
 
-
-
-
-
-
-<!-- <section class="home-banner">
-</section> -->
 
