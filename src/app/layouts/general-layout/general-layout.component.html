@@ -1,28 +1,28 @@
-<mat-toolbar class="main-nav mat-elevation-z5">
+<mat-toolbar color="primary" class="main-nav mat-elevation-z5">
   
-    <a mat-button class="header-brand" routerLink="/" fxShow.xs="false">BuildMate Interior</a>
+    <a mat-button class="header-brand" routerLink="/" [class.activated]="currentUrl == '/'" fxShow.xs="false">BuildMate Interior</a>
             
     <span class="fill-remaining-space"></span>
     
-    <a mat-button routerLinkActive="active">Services</a>    
-    <a mat-button routerLink="" routerLinkActive="active">Portfolio</a>    
-    <a mat-button routerLink="" routerLinkActive="active">Contact</a>    
-    <a mat-button routerLink="/auth/login" routerLinkActive="active">Account</a>            
+    <a mat-button class="nav-links" routerLink="/service-list" [class.activated]="currentUrl == '/service-list'">Services</a>    
+    <a mat-button class="nav-links" routerLink="" routerLinkActive="active">Portfolio</a>    
+    <a mat-button class="nav-links" routerLink="" routerLinkActive="active">Contact</a>    
+    <a mat-button class="nav-links" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>            
     
 
 </mat-toolbar>
 
-<perfect-scrollbar [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-500px'}" [config]="config">
+<perfect-scrollbar [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-620px'}" [config]="config">
     <div>
         <router-outlet></router-outlet> 
     </div>
 
-    <div style="height: 500px;"></div> 
+    <div style="height: 620px;"></div> 
 </perfect-scrollbar> 
 
 <footer class="footer">
 
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+    <div class="footer-contacts" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
 
         <div fxFlex="50" class="footer-notes">
             <h2>About Us</h2>
@@ -39,12 +39,12 @@
                 Colton, CA 92325
             </p>
 
-            <h2>Email Us</h2>
+            <h2 fxHide.xs>Email Us</h2>
             <p>
                 info@yourwebsitedomain.com
             </p>
 
-            <h2>Call Us</h2>
+            <h2 fxHide.xs>Call Us</h2>
             <p>
                 180-874-5234,
                 180-752-3957
@@ -54,7 +54,7 @@
 
     </div>
 
-    <div fxHide.lt-lg class="branding mat-elevation-z5">
+    <div fxLayout fxHide.lt-sm class="branding mat-elevation-z5">
         <span>Powered By CYBOTECH CORP</span>
     </div>
 

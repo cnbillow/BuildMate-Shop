@@ -36,6 +36,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
       map(result => result.matches)
     );
 
+    subscription: Subscription;
     authSubscription: Subscription;
     uploadSubscription: Subscription;
 
@@ -45,7 +46,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
               private roleService: RoleService,
               private staffService: StaffService,
               private uploadService: UploadService) {
-                router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
+                this.subscription = router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
                 this.clientHeight = window.innerHeight;
   }
 
@@ -68,6 +69,10 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
     if (this.uploadSubscription) {
       this.uploadSubscription.unsubscribe();
     }

@@ -11,23 +11,35 @@ mat-toolbar mat-toolbar-row {
     height: 100px !important;
 }
 
-.main-nav .header-brand {
-    font-size: 24px;
-    color: #111;
-    text-transform: uppercase;
-    display: block;
+.main-nav {
+
+    // padding: 50px;
+
+    .header-brand {
+        font-family: 'Catamaran'; 
+        font-weight: 400;
+        font-size: 24px;
+        padding: 20px;
+        line-height: 100px;
+        color: whitesmoke;
+        text-transform: uppercase;
+        display: block;
+    }
+
+    .nav-links {
+        font-family: 'Catamaran'; 
+        font-size: 16px;
+        line-height: 100px;
+        color: whitesmoke;
+        text-transform: uppercase;
+        display: block;
+    }
 }
 
 /* links */
 .activated {
-    background: #1c8adb;  
-}
-
-.mat-button {
-    font-size: 18px;
-    color: #111;
-    display: block;
-    line-height: 100px;
+    background: url(../../../assets/banners/banner1.jpg);  
+    border-bottom: 5px solid #1c8adb;
 }
 
 body {
@@ -35,8 +47,13 @@ body {
 }
 
 .footer {
-    height: 500px;
+    height: 620px;
     background: url(../../../assets/banners/banner1.jpg);
+
+    .footer-contacts {
+        display: block;
+        margin-bottom: 20px;
+    }
 
     .branding {
         position: static;

@@ -1,3 +1,4 @@
+import { OurServicesComponent } from './general/our-services/our-services.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -36,6 +37,9 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomePageComponent
+      }, {
+        path: 'service-list',
+        component: OurServicesComponent
       }
     ]
   },
