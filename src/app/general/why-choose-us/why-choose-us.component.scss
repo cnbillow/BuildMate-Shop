@@ -1,25 +1,38 @@
 
-.our-recent-projects {
-    background-color: whitesmoke;
+.why-choose-us {
+    background-color: white;
     padding: 20px 0;
 }
 
-.project-block {
+.choose-block {
     margin-bottom: 30px;
     padding: 10px;
-    width: 400px;
+    width: 370px;
     display: inline-block;
 
-    .project-content {
+    .card-image {
+       height: 100px;
+       padding: 20px;
+
+        .mat-card-image {
+            height: 100%;
+            width: 50%;
+            margin: 0;
+        }
+    }
+
+    .choose-content {
         h2 {
             font-family: 'Catamaran';  
             font-weight: 200;
             font-size: 30px;
+            margin-bottom: 10px;
             text-transform: uppercase;
             color: #111;
         }
 
         p {
+            margin-top: 0;
             font-family: 'Cormorant Garamond';  
             font-weight: 200;
             font-size: 28px;
@@ -43,13 +56,13 @@
 }
 
 
-mat-card:hover {
-    background:rgba(0,0,0,.04);
-}
+// mat-card:hover {
+//     background:rgba(0,0,0,.04);
+// }
 
-.mat-card .last-child {
-    margin-bottom: 0;
-}
+// .mat-card .last-child {
+//     margin-bottom: 0;
+// }
 
 .all-projects {
 

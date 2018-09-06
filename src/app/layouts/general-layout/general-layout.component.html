@@ -12,16 +12,52 @@
 
 </mat-toolbar>
 
-<perfect-scrollbar [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-300px'}" [config]="config">
+<perfect-scrollbar [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-500px'}" [config]="config">
     <div>
         <router-outlet></router-outlet> 
     </div>
 
-    <div style="height: 300px"></div> 
+    <div style="height: 500px;"></div> 
 </perfect-scrollbar> 
 
 <footer class="footer">
-    <span>Powered By CYBOTECH CORP</span>
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+
+        <div fxFlex="50" class="footer-notes">
+            <h2>About Us</h2>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                Totam, exercitationem dolores optio, vel omnis adipisci.
+            </p>
+        </div>
+        
+        <div fxFlex="50" class="footer-notes">
+            <h2>Our Address</h2>
+            <p>
+                1309 Roosevelt Wilson Lane 
+                Colton, CA 92325
+            </p>
+
+            <h2>Email Us</h2>
+            <p>
+                info@yourwebsitedomain.com
+            </p>
+
+            <h2>Call Us</h2>
+            <p>
+                180-874-5234,
+                180-752-3957
+            </p>
+        </div>
+        
+
+    </div>
+
+    <div fxHide.lt-lg class="branding mat-elevation-z5">
+        <span>Powered By CYBOTECH CORP</span>
+    </div>
+
 </footer> 
 
 

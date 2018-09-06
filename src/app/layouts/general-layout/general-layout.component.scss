@@ -35,14 +35,46 @@ body {
 }
 
 .footer {
-    height: 300px;
-    line-height: 150px;
+    height: 500px;
     background: url(../../../assets/banners/banner1.jpg);
-    text-indent: 30px;
 
-    span {
-        color: whitesmoke;
-        font-size: 30px;
-        font-weight: 400;
+    .branding {
+        position: static;
+        bottom: 0;
+        padding: 20px;
+        span {
+            padding: 20px;
+            color: whitesmoke;
+            font-family: 'Catamaran';  
+            font-size: 25px;
+            font-weight: 400;
+            background: url(../../../assets/banners/banner1.jpg); 
+        }
     }
+   
+
+    .footer-notes {
+        padding: 30px;
+        height: 250px;
+        margin: 0;
+
+        h2 {
+            margin: 0;
+            color: whitesmoke;
+            font-family: 'Catamaran';  
+            font-size: 25px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+    
+        p {
+            font-family: 'Cormorant Garamond';  
+            font-weight: 200;
+            font-size: 22px;
+            color: whitesmoke;
+            line-height: 32px;
+            letter-spacing: 2px;
+        }
+    }
+
 }
