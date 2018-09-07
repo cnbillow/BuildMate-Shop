@@ -9,7 +9,7 @@
         <div fxFlex fxLayout fxLayoutAlign="flex-end">
             <a mat-button class="nav-links-lg" routerLink="/service-list" [class.activated-lg]="currentUrl == '/service-list'">Services</a>    
             <a mat-button class="nav-links-lg" routerLink="" routerLinkActive="active">Portfolio</a>    
-            <a mat-button class="nav-links-lg" routerLink="" routerLinkActive="active">Contact</a>    
+            <a mat-button class="nav-links-lg" routerLink="/contact-us" routerLinkActive="active">Contact</a>    
             <a mat-button class="nav-links-lg" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>  
         </div>   
     </mat-toolbar-row>
@@ -25,18 +25,18 @@
     <mat-toolbar-row class="nav-links mat-elevation-z12" fxLayoutAlign="center" fxHide.gt-xs>
         <a mat-button class="nav-links-sm" routerLink="/service-list" [class.activated-sm]="currentUrl == '/service-list'">Services</a>    
         <a mat-button class="nav-links-sm" routerLink="" routerLinkActive="active">Portfolio</a>    
-        <a mat-button class="nav-links-sm" routerLink="" routerLinkActive="active">Contact</a>    
+        <a mat-button class="nav-links-sm" routerLink="/contact-us" [class.activated-sm]="currentUrl == '/contact-us'" routerLinkActive="active">Contact</a>    
         <a mat-button class="nav-links-sm" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>  
     </mat-toolbar-row>
     
 </mat-toolbar>
 
-<perfect-scrollbar [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-620px'}" [config]="config">
+<perfect-scrollbar [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-650px'}" [config]="config">
     <div>
         <router-outlet></router-outlet> 
     </div>
 
-    <div style="height: 620px;"></div> 
+    <div style="height: 650px;"></div> 
 </perfect-scrollbar> 
 
 <footer class="footer">

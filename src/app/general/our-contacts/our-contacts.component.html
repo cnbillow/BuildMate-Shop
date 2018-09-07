@@ -1,0 +1,83 @@
+<app-breadcrum *ngIf="showBreadcrum" [pageHeader]="pageHeader" [pageText]="pageText"></app-breadcrum>
+
+<div class="contact-us">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div fxFlex="50" class="contact-form">
+      <h2>Get In Touch with Us</h2>
+      <p>Please complete the form below. We'll do everything we can to respond to you as quickly as possible.</p>
+
+      <div class="form-fields" fxLayoutGap="20px">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email">
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Subject</mat-label>
+          <input matInput placeholder="Subject">
+          <mat-icon matSuffix>language</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input type="number" matInput placeholder="Phone">
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Message</mat-label>
+          <textarea matInput name="message" cols="30" rows="10" placeholder="Message"></textarea>
+        </mat-form-field>
+
+      </div>
+
+    </div>
+    <div fxFlex="50">
+      <div class="details-image">
+        <mat-card>
+          <img mat-card-image src="../../../assets/carousel/carousel6.jpg" alt="...">
+
+          <mat-card-content>
+            <h2>buildMate interior-exterior design</h2>
+            <article>
+              <mat-icon color="primary">location_on</mat-icon> &nbsp;
+              <strong>Address</strong>
+              <mat-divider></mat-divider> <br>
+              <div class="spc-5"></div>
+
+              1309 Roosevelt Wilson Lane 
+              Colton, CA 92324
+            </article>
+
+            <article>
+              <mat-icon color="primary">phone</mat-icon> &nbsp;
+              <strong>Contact Phone</strong>
+              <mat-divider></mat-divider> <br>
+              <div class="spc-5"></div>
+
+              STUDIO: <strong>180-751-3956</strong> <br>
+              MOBILE: <strong>180-752-3957</strong> 
+            </article>
+
+            <article>
+              <mat-icon color="primary">mail</mat-icon> &nbsp;
+              <strong>Email</strong>
+              <mat-divider></mat-divider> <br>
+              <div class="spc-5"></div>
+
+              <strong>info@yourwebsitedomain.com</strong> 
+            </article>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div> 

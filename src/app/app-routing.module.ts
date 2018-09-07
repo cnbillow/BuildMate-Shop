@@ -25,6 +25,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { AuthGuard } from './services/auth.guard';
+import { OurContactsComponent } from './general/our-contacts/our-contacts.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,9 @@ const routes: Routes = [
       }, {
         path: 'service-list',
         component: OurServicesComponent
+      }, {
+        path: 'contact-us',
+        component: OurContactsComponent
       }
     ]
   },
