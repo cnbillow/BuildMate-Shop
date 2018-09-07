@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-breadcrum',
   templateUrl: './breadcrum.component.html',
-  styleUrls: ['./breadcrum.component.css']
+  styleUrls: ['./breadcrum.component.scss']
 })
 export class BreadcrumComponent implements OnInit {
+
+  @Input() pageHeader;
+  @Input() pageText;
 
   constructor() { }
 

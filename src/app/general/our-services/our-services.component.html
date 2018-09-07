@@ -1,8 +1,11 @@
+
+<app-breadcrum *ngIf="showBreadcrum" [pageHeader]="pageHeader" [pageText]="pageText"></app-breadcrum>
+
 <div class="our-services">
 
   <div class="spc-20"></div>
 
-  <div class="category-header text-center">
+  <div *ngIf="!showBreadcrum" class="category-header text-center">
       <h1>Our Services</h1>
   </div>
 

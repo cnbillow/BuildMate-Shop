@@ -1,15 +1,34 @@
-<mat-toolbar color="primary" class="main-nav mat-elevation-z5">
-  
-    <a mat-button class="header-brand" routerLink="/" [class.activated]="currentUrl == '/'" fxShow.xs="false">BuildMate Interior</a>
-            
-    <span class="fill-remaining-space"></span>
-    
-    <a mat-button class="nav-links" routerLink="/service-list" [class.activated]="currentUrl == '/service-list'">Services</a>    
-    <a mat-button class="nav-links" routerLink="" routerLinkActive="active">Portfolio</a>    
-    <a mat-button class="nav-links" routerLink="" routerLinkActive="active">Contact</a>    
-    <a mat-button class="nav-links" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>            
-    
+<mat-toolbar color="primary" class="main-nav mat-elevation-z5">     
 
+    <!-- for large displays -->
+    <mat-toolbar-row fxHide.xs fxShow.gt-xs>
+        <div>
+            <a mat-button class="header-brand-lg" routerLink="/" [class.activated]="currentUrl == '/'">BuildMate</a>
+        </div>
+        
+        <div fxFlex fxLayout fxLayoutAlign="flex-end">
+            <a mat-button class="nav-links-lg" routerLink="/service-list" [class.activated-lg]="currentUrl == '/service-list'">Services</a>    
+            <a mat-button class="nav-links-lg" routerLink="" routerLinkActive="active">Portfolio</a>    
+            <a mat-button class="nav-links-lg" routerLink="" routerLinkActive="active">Contact</a>    
+            <a mat-button class="nav-links-lg" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>  
+        </div>   
+    </mat-toolbar-row>
+
+
+    <!-- for small displays -->
+    <mat-toolbar-row fxHide.gt-xs>
+        <div class="header-brand">
+            <a mat-button class="header-brand-sm" routerLink="/">BuildMate</a>
+        </div>
+    </mat-toolbar-row>
+    
+    <mat-toolbar-row class="nav-links mat-elevation-z12" fxLayoutAlign="center" fxHide.gt-xs>
+        <a mat-button class="nav-links-sm" routerLink="/service-list" [class.activated-sm]="currentUrl == '/service-list'">Services</a>    
+        <a mat-button class="nav-links-sm" routerLink="" routerLinkActive="active">Portfolio</a>    
+        <a mat-button class="nav-links-sm" routerLink="" routerLinkActive="active">Contact</a>    
+        <a mat-button class="nav-links-sm" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>  
+    </mat-toolbar-row>
+    
 </mat-toolbar>
 
 <perfect-scrollbar [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-620px'}" [config]="config">

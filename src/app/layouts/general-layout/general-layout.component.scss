@@ -16,17 +16,28 @@ mat-toolbar mat-toolbar-row {
     // padding: 50px;
 
     .header-brand {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .header-brand-lg {
         font-family: 'Catamaran'; 
-        font-weight: 400;
-        font-size: 24px;
+        font-weight: 900;
+        font-size: 30px;
         padding: 20px;
         line-height: 100px;
         color: whitesmoke;
         text-transform: uppercase;
         display: block;
     }
-
-    .nav-links {
+    
+    .nav-links-lg {
         font-family: 'Catamaran'; 
         font-size: 16px;
         line-height: 100px;
@@ -34,11 +45,38 @@ mat-toolbar mat-toolbar-row {
         text-transform: uppercase;
         display: block;
     }
+
+    .header-brand-sm {
+        font-family: 'Catamaran'; 
+        font-weight: 900;
+        font-size: 30px;
+        padding: 20px;
+        color: whitesmoke;
+        text-transform: uppercase;
+    }
+
+    .nav-links-sm {
+        color: whitesmoke;
+    }
+
+    .mat-button {
+        span {
+            font-family: 'Catamaran'; 
+            font-size: 16px;
+            line-height: 100px;
+            color: whitesmoke;
+            text-transform: uppercase;
+        }
+    }
 }
 
 /* links */
-.activated {
+.activated-lg {
     background: url(../../../assets/banners/banner1.jpg);  
+    border-bottom: 5px solid #1c8adb;
+}
+
+.activated-sm {
     border-bottom: 5px solid #1c8adb;
 }
 

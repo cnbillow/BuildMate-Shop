@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-our-services',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./our-services.component.scss']
 })
 export class OurServicesComponent implements OnInit {
+
+  @Input() showBreadcrum = true;
+
+  pageHeader = 'Our Services';
+  pageText = `Lorem ipsum dolor sit amet consectetur adipisicing elit.`;
 
   constructor() { }
 
