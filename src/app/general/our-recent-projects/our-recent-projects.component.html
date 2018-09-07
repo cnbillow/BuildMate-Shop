@@ -1,8 +1,11 @@
+
+<app-breadcrum *ngIf="showBreadcrum" [pageHeader]="pageHeader" [pageText]="pageText"></app-breadcrum>
+
 <div class="our-recent-projects">
     
     <div class="spc-20"></div>
 
-    <div class="category-header text-center">
+    <div *ngIf="!showBreadcrum" class="category-header text-center">
         <h1>Our Recent Projects</h1>
     </div>
     
@@ -10,72 +13,72 @@
   
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center">
     
-        <div class="project-block text-center" fxFlex="33">
+        <div class="project-block text-center" fxFlex="30">
             <mat-card mat-ripple>
                 <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
                 <mat-card-content class="project-content text-center last-child">
                     <h2>Project Caption</h2>
-                    <p>
+                    <p *ngIf="!showBreadcrum">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     </p>
                 </mat-card-content>
             </mat-card>
         </div>
 
-        <div class="project-block text-center" fxFlex="33">
+        <div class="project-block text-center" fxFlex="30">
             <mat-card mat-ripple>
                 <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
                 <mat-card-content class="project-content text-center last-child">
                     <h2>Project Caption</h2>
-                    <p>
+                    <p *ngIf="!showBreadcrum">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     </p>
                 </mat-card-content>
             </mat-card>
         </div>
 
-        <div class="project-block text-center" fxFlex="33">
+        <div class="project-block text-center" fxFlex="30">
             <mat-card mat-ripple>
                 <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
                 <mat-card-content class="project-content text-center last-child">
                     <h2>Project Caption</h2>
-                    <p>
+                    <p *ngIf="!showBreadcrum">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     </p>
                 </mat-card-content>
             </mat-card>
         </div>
         
-        <div class="project-block text-center" fxFlex="33">
+        <div class="project-block text-center" fxFlex="30">
             <mat-card mat-ripple>
                 <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
                 <mat-card-content class="project-content text-center last-child">
                     <h2>Project Caption</h2>
-                    <p>
+                    <p *ngIf="!showBreadcrum">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     </p>
                 </mat-card-content>
             </mat-card>
         </div>
 
-        <div class="project-block text-center" fxFlex="33">
+        <div class="project-block text-center" fxFlex="30">
             <mat-card mat-ripple>
                 <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
                 <mat-card-content class="project-content text-center last-child">
                     <h2>Project Caption</h2>
-                    <p>
+                    <p *ngIf="!showBreadcrum">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     </p>
                 </mat-card-content>
             </mat-card>
         </div>
 
-        <div class="project-block text-center" fxFlex="33">
+        <div class="project-block text-center" fxFlex="30">
             <mat-card mat-ripple>
                 <img mat-card-image src="../../../assets/carousel/carousel1.jpg" alt="">
                 <mat-card-content class="project-content text-center last-child">
                     <h2>Project Caption</h2>
-                    <p>
+                    <p *ngIf="!showBreadcrum">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     </p>
                 </mat-card-content>
@@ -84,8 +87,8 @@
          
     </div>
     
-    <div class="all-projects">
-        <button mat-raised-button color="primary">
+    <div class="actions">
+        <button *ngIf="!showBreadcrum" mat-raised-button color="primary">
             <span>View All Projects</span>
         </button>
     </div>

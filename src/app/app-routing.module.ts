@@ -1,3 +1,4 @@
+import { OurRecentProjectsComponent } from './general/our-recent-projects/our-recent-projects.component';
 import { OurServicesComponent } from './general/our-services/our-services.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -44,6 +45,9 @@ const routes: Routes = [
       }, {
         path: 'contact-us',
         component: OurContactsComponent
+      }, {
+        path: 'projects',
+        component: OurRecentProjectsComponent
       }
     ]
   },
