@@ -1,3 +1,4 @@
+import { ServiceDetailsComponent } from './general/service-details/service-details.component';
 import { OurRecentProjectsComponent } from './general/our-recent-projects/our-recent-projects.component';
 import { OurServicesComponent } from './general/our-services/our-services.component';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
 import { AuthGuard } from './services/auth.guard';
 import { OurContactsComponent } from './general/our-contacts/our-contacts.component';
+import { ProjectDetailsComponent } from './general/project-details/project-details.component';
 
 const routes: Routes = [
   {
@@ -40,15 +42,21 @@ const routes: Routes = [
         path: 'home',
         component: HomePageComponent
       }, {
+        path: 'service/:id',
+        component: ServiceDetailsComponent
+      }, {
         path: 'service-list',
         component: OurServicesComponent
       }, {
         path: 'contact-us',
         component: OurContactsComponent
       }, {
+        path: 'project/:id',
+        component: ProjectDetailsComponent
+      }, {
         path: 'projects',
         component: OurRecentProjectsComponent
-      }
+      },
     ]
   },
   {

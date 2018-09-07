@@ -22,7 +22,9 @@
             font-size: 28px;
             color: #111;
         }
-    }
+
+        margin: 0;
+    }    
 }
 
 .category-header {
@@ -33,6 +35,15 @@
         text-transform: uppercase;
         color: #111;
     }
+}
+
+mat-card:hover {
+    background:rgba(249, 253, 1, 0.424);
+    // color: #aa9144;
+}
+
+.mat-card .last-child {
+    margin-bottom: 0;
 }
 
 .text-center {
