@@ -2,7 +2,7 @@
 <ngx-hm-carousel
   [(ngModel)]="index"
   (ngModelChange)="indexChanged($event)"
-  [autoplay-speed]="5000"
+  [autoplay-speed]="10000"
   [autoplay]="autoplay"
   [autoplay-direction]="direction"
   [infinite]="infinite"
@@ -13,11 +13,14 @@
   <section ngx-hm-carousel-container class="content">
     <article class="item cursor-pointer"
       *ngFor="let avatar of avatars"
+      [style.height]="showControls ? 'calc(100vh - 100px)' : '320px'"
       ngx-hm-carousel-item>
       <div class="img"
-        [style.backgroundImage]="'url('+avatar.url+')'">
+        [style.backgroundImage]="'url('+avatar.url+')'"
+        [style.backgroundPosition]="'center'"
+        [style.backgroundSize]="'cover'">
 
-        <div class="verticle-center">          
+        <div class="verticle-center" *ngIf="showControls">          
           <h2>Interior Decor</h2>
           <h1>With specialty in wall designs, wall pallets structuring designs <br> & <br> 3D floor and designs </h1>
 
@@ -31,23 +34,23 @@
     </article>
   </section>
 
-  <!-- <ng-template #carouselPrev>
+  <!-- <ng-template #carouselPrev *ngIf="!showControls">
     <div class="click-area">
       <i class="material-icons">keyboard_arrow_left</i>
     </div>
   </ng-template>
-  <ng-template #carouselNext>
+  <ng-template #carouselNext *ngIf="!showControls">
     <div class="click-area">
       <i class="material-icons">keyboard_arrow_right</i>
     </div>
   </ng-template> -->
 
-  <ng-template #carouselDot let-model>
+  <ng-template #carouselDot let-model *ngIf="showControls">
     <div class="ball bg-accent"
       [class.visible]="model.index === model.currentIndex"></div>
   </ng-template>
 
-  <ng-template #carouselProgress let-progress>
+  <ng-template #carouselProgress let-progress *ngIf="showControls">
     <div class="progress" *ngIf="progress > 0"
     [style.width]="(direction==='right' ? progress : 100 - progress) + '%'"></div>
   </ng-template>

@@ -1,37 +1,70 @@
-<app-breadcrum *ngIf="showBreadcrum" [pageHeader]="pageHeader" [pageText]="pageText"></app-breadcrum>
+<!-- <app-breadcrum *ngIf="showBreadcrum" [pageHeader]="pageHeader" [pageText]="pageText"></app-breadcrum> -->
 
 <div class="product-details">
 
-  <div fxLayout="row" fxLayout.xs="column">
+  <div fxHide.xs class="spc-20"></div>
 
-    <div class="product-thumb" fxFlex="20">
-      <div class="thumbnail">
-        <img src="../../../assets/carousel/carousel2.jpg" alt="">
-        <img src="../../../assets/carousel/carousel4.jpg" alt="">
-        <img src="../../../assets/carousel/carousel8.jpg" alt="">
-      </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutGap.xs="20px">
 
-      <!-- <div class="thumbnail">
-      </div>
-
-      <div class="thumbnail">
-      </div> -->
-    </div>
-
-    <div fxFlex="20">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Debitis id sint molestias praesentium cumque eaque tempora 
-      rerum iste facere unde, aspernatur voluptatem dolores rem 
-      voluptates eligendi atque assumenda minima natus.
+    <div class="product-thumb" fxFlex="50">
+      <app-carousel [showControls]="false"></app-carousel>      
     </div>
 
     <div fxFlex="40">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Debitis id sint molestias praesentium cumque eaque tempora 
-      rerum iste facere unde, aspernatur voluptatem dolores rem 
-      voluptates eligendi atque assumenda minima natus.
+      <div class="product-info">
+        <h2>Pattern</h2>
+        <article>
+          <div class="product-description">
+            <strong>Description</strong> <br>
+            <mat-divider></mat-divider>
+            <div class="spc-5"></div>
+            <span>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+              Itaque earum, laborum ipsa ea eveniet quis expedita dolorum.
+            </span>
+          </div>
+          <div class="spc-5"></div>
+
+          <div class="product-size">
+            <strong>Size</strong> <br>
+            <mat-divider></mat-divider>
+            <div class="spc-5"></div>
+            <span>
+              70 / 7 ft <small>(-+ 1 ft)</small>
+            </span>
+          </div>
+
+          <div class="spc-10"></div>
+
+          <div class="social-buttons">
+            <button mat-mini-fab color="primary" matTooltip="Share on facebook">f</button>
+            <button mat-mini-fab color="accent" matTooltip="Share on twitter">t</button>
+            <button mat-mini-fab color="warn" matTooltip="Share on google +">G+</button>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="actions">
+            <div fxFlex="70">
+              <strong>GHC 100</strong> &nbsp;
+              <small>(Negociable)</small>
+            </div>
+
+            <!-- <div fxFlex></div> -->
+
+            <div fxFlex>
+              <button mat-raised-button color="primary">Place Order</button>
+            </div>
+          </div>
+
+          <div class="spc-20"></div>
+
+        </article>
+      </div>
     </div>
 
   </div>
+
+  <div fxHide.xs class="spc-30"></div>
 
 </div>

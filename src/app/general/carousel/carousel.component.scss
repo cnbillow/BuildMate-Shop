@@ -4,7 +4,7 @@
         display: flex;
         .item {
             width: 100%;
-            height: calc(100vh - 100px); 
+            // height: calc(100vh - 100px); 
             display: block;
             .img {
                 width: 100%;
@@ -15,12 +15,8 @@
                 background-position: center;
                 padding-bottom: 50%;
 
-                // padding: 5% 0;
-
                 .verticle-center {
-                    padding-top: calc(10% + 100px);
-                    // padding-bottom: 5%;
-                    
+                    padding-top: calc(10% + 100px);                    
                     h2 {
                         padding: 0;
                         margin: 0;
