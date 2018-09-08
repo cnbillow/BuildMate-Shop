@@ -97,6 +97,8 @@ import { BreadcrumComponent } from './general/breadcrum/breadcrum.component';
 import { OurContactsComponent } from './general/our-contacts/our-contacts.component';
 import { ProjectDetailsComponent } from './general/project-details/project-details.component';
 import { ServiceDetailsComponent } from './general/service-details/service-details.component';
+import { ProductListComponent } from './general/product-list/product-list.component';
+import { ProductDetailsComponent } from './general/product-details/product-details.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -147,7 +149,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BreadcrumComponent,
     OurContactsComponent,
     ProjectDetailsComponent,
-    ServiceDetailsComponent
+    ServiceDetailsComponent,
+    ProductListComponent,
+    ProductDetailsComponent
   ],
   imports: [
     AngularFireStorageModule,

@@ -1,15 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-service-details',
-  templateUrl: './service-details.component.html',
-  styleUrls: ['./service-details.component.scss']
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.scss']
 })
-export class ServiceDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit {
 
   @Input() showBreadcrum = true;
 
-  pageHeader = 'Service';
+  pageHeader = 'Product';
   pageText = `Lorem ipsum dolor sit amet consectetur adipisicing elit.`;
 
   constructor() { }

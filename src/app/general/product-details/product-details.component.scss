@@ -1,0 +1,21 @@
+.product-details {
+    padding: 20px;
+    background-color: white;
+
+    .thumbnail {
+        display: block;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        
+        img {
+            height: 60px;
+            width: 60px;
+            padding: 10px;
+        }
+    }
+
+    img:hover {
+        background:rgba(249, 253, 1, 0.424);
+    }
+}

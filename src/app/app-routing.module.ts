@@ -29,6 +29,7 @@ import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.
 import { AuthGuard } from './services/auth.guard';
 import { OurContactsComponent } from './general/our-contacts/our-contacts.component';
 import { ProjectDetailsComponent } from './general/project-details/project-details.component';
+import { ProductDetailsComponent } from './general/product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,9 @@ const routes: Routes = [
       }, {
         path: 'projects',
         component: OurRecentProjectsComponent
+      }, {
+        path: 'product/:pattern',
+        component: ProductDetailsComponent
       },
     ]
   },
