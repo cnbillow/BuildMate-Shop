@@ -1,58 +1,81 @@
+<div class="carousel-container">
 
-<ngx-hm-carousel
-  [(ngModel)]="index"
-  (ngModelChange)="indexChanged($event)"
-  [autoplay-speed]="10000"
-  [autoplay]="autoplay"
-  [autoplay-direction]="direction"
-  [infinite]="infinite"
-  [align]="left"
-  [between-delay]="2000"
-  class="carousel c-accent">
-
-  <section ngx-hm-carousel-container class="content">
-    <article class="item cursor-pointer"
-      *ngFor="let avatar of avatars"
-      [style.height]="showControls ? 'calc(100vh - 100px)' : '320px'"
-      ngx-hm-carousel-item>
-      <div class="img"
-        [style.backgroundImage]="'url('+avatar.url+')'"
-        [style.backgroundPosition]="'center'"
-        [style.backgroundSize]="'cover'">
-
-        <div class="verticle-center" *ngIf="showControls">          
-          <h2>Interior Decor</h2>
-          <h1>With specialty in wall designs, wall pallets structuring designs <br> & <br> 3D floor and designs </h1>
-
-          <button mat-raised-button color="primary">
-            <span>Read More</span> &nbsp;
-            <mat-icon>add</mat-icon>
-          </button>
+  <ngx-hm-carousel
+    [(ngModel)]="index"
+    (ngModelChange)="indexChanged($event)"
+    [autoplay-speed]="10000"
+    [autoplay]="autoplay"
+    [autoplay-direction]="direction"
+    [infinite]="infinite"
+    [align]="left"
+    [between-delay]="2000"
+    class="carousel c-accent">
+  
+    <section ngx-hm-carousel-container class="content">
+      <article class="item cursor-pointer"
+        *ngFor="let avatar of avatars"
+        [style.height]="showControls ? 'calc(100vh - 100px)' : '400px'"
+        ngx-hm-carousel-item>
+        <div class="img"
+          [style.backgroundImage]="'url('+avatar.url+')'"
+          [style.backgroundPosition]="'center'"
+          [style.backgroundSize]="'cover'">
+  
+          <div class="verticle-center" *ngIf="showControls">          
+            <h2>Interior Decor</h2>
+            <h1>With specialty in wall designs, wall pallets structuring designs <br> & <br> 3D floor and designs </h1>
+  
+            <button mat-raised-button color="primary">
+              <span>Read More</span> &nbsp;
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
         </div>
+  
+      </article>
+    </section>
+  
+    <ng-template #carouselPrev *ngIf="!showControls">
+      <div class="click-area">
+        <i class="material-icons">keyboard_arrow_left</i>
       </div>
+    </ng-template>
+    <ng-template #carouselNext *ngIf="!showControls">
+      <div class="click-area">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </div>
+    </ng-template>
+  
+    <ng-template #carouselDot let-model>
+      <div class="ball bg-accent"
+        [class.visible]="model.index === model.currentIndex"></div>
+    </ng-template>
+  
+    <ng-template #carouselProgress let-progress>
+      <div class="progress" *ngIf="progress > 0"
+      [style.width]="(direction==='right' ? progress : 100 - progress) + '%'"></div>
+    </ng-template>
+  
+  </ngx-hm-carousel>
 
-    </article>
-  </section>
+  <ngx-hm-carousel *ngIf="!showControls"
+    (ngModelChange)="change($event)"
+    align="left"
+    show-num="auto"
+    [drag-many]="true"
+    class="link-container">
+    <section ngx-hm-carousel-container class="content">
+      <article class="item cursor-pointer t-al-c"
+        *ngFor="let avatar of avatars"
+        ngx-hm-carousel-item>
+        <div class="img"
+          [style.backgroundImage]="'url('+avatar.url+')'">
+        </div>
+      </article>
+    </section>
+  </ngx-hm-carousel>
 
-  <!-- <ng-template #carouselPrev *ngIf="!showControls">
-    <div class="click-area">
-      <i class="material-icons">keyboard_arrow_left</i>
-    </div>
-  </ng-template>
-  <ng-template #carouselNext *ngIf="!showControls">
-    <div class="click-area">
-      <i class="material-icons">keyboard_arrow_right</i>
-    </div>
-  </ng-template> -->
+</div>
 
-  <ng-template #carouselDot let-model *ngIf="showControls">
-    <div class="ball bg-accent"
-      [class.visible]="model.index === model.currentIndex"></div>
-  </ng-template>
 
-  <ng-template #carouselProgress let-progress *ngIf="showControls">
-    <div class="progress" *ngIf="progress > 0"
-    [style.width]="(direction==='right' ? progress : 100 - progress) + '%'"></div>
-  </ng-template>
 
-</ngx-hm-carousel>

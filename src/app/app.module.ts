@@ -99,6 +99,7 @@ import { ProjectDetailsComponent } from './general/project-details/project-detai
 import { ServiceDetailsComponent } from './general/service-details/service-details.component';
 import { ProductListComponent } from './general/product-list/product-list.component';
 import { ProductDetailsComponent } from './general/product-details/product-details.component';
+import { ProductCardComponent } from './general/product-card/product-card.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -151,7 +152,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProjectDetailsComponent,
     ServiceDetailsComponent,
     ProductListComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ProductCardComponent
   ],
   imports: [
     AngularFireStorageModule,

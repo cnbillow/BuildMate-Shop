@@ -6,7 +6,9 @@
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutGap.xs="20px">
 
-    <div class="product-thumb" fxFlex="50">
+      <div fxHide.xs class="product-thumb" fxFlex="5"></div>
+
+    <div class="product-thumb" fxFlex="40">
       <app-carousel [showControls]="false"></app-carousel>      
     </div>
 
@@ -66,5 +68,7 @@
   </div>
 
   <div fxHide.xs class="spc-30"></div>
+
+  <app-product-list></app-product-list>
 
 </div>
