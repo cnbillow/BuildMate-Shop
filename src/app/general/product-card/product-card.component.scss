@@ -1,18 +1,25 @@
-.product-details {
-    padding: 20px;
-    background-color: white;
+mat-card {
+    max-height: 530px;
+    max-width: 300px;
+}
+
+mat-card:hover {
+    background:rgba(249, 253, 1, 0.424);
+}
+
+.product-content {
+    margin: 0;
+
+    h2 {
+        font-family: 'Catamaran';  
+        font-weight: 400;
+        font-size: 20px;
+        text-transform: uppercase;
+        color: #111;
+    }
 
     .product-info {
-        h2 {
-            font-family: 'Catamaran';  
-            font-weight: 200;
-            font-size: 40px;
-            text-transform: uppercase;
-            color: #111;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-
+          
         article {
             strong {
                 font-family: 'Catamaran';
@@ -23,7 +30,7 @@
             }
             span {
                 font-family: 'Catamaran';  
-                font-weight: 240;
+                font-weight: 200;
                 font-size: 20px;
                 color: #111;
             }
@@ -43,19 +50,16 @@
                 }
             }
 
-            .actions {
-                padding: 20px;
-
-                button {
-                    font-family: 'Cormorant Garamond';  
-                    font-weight: 200;
-                    font-size: 20px;
-                }
-            }
         }
     }
+}
 
-    img:hover {
-        background:rgba(249, 253, 1, 0.424);
+.product-price {
+    span {
+        font-size: 30px;
     }
+}
+
+.text-center {
+    text-align: center;
 }

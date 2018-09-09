@@ -11,6 +11,26 @@ mat-toolbar mat-toolbar-row {
     height: 100px !important;
 }
 
+.cart-lg {
+    line-height: 100px;
+    text-align: center;
+    
+    mat-icon {
+        font-size: 50px;
+        height: 100%;
+        padding: 20px;
+    }
+}
+
+.cart-sm {
+    text-align: center;
+    
+    mat-icon {
+        font-size: 30px;
+        height: 100%;
+    }
+}
+
 .main-nav {
 
     // padding: 50px;

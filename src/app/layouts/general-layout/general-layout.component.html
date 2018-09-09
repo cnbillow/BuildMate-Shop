@@ -7,6 +7,9 @@
         </div>
         
         <div fxFlex fxLayout fxLayoutAlign="flex-end">
+            <button mat-button class="cart-lg">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
             <a mat-button class="nav-links-lg" routerLink="/service-list" [class.activated-lg]="currentUrl == '/service-list'">Services</a>    
             <a mat-button class="nav-links-lg" routerLink="/projects" [class.activated-lg]="currentUrl == '/projects'">Portfolio</a>    
             <a mat-button class="nav-links-lg" routerLink="/contact-us" [class.activated-lg]="currentUrl == '/contact-us'">Contact</a>    
@@ -19,10 +22,13 @@
     <mat-toolbar-row fxHide.gt-xs>
         <div class="header-brand">
             <a mat-button class="header-brand-sm" routerLink="/">BuildMate</a>
+            <button mat-icon-button class="cart-sm">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
         </div>
     </mat-toolbar-row>
     
-    <mat-toolbar-row class="nav-links mat-elevation-z12" fxLayoutAlign="center" fxHide.gt-xs>
+    <mat-toolbar-row class="nav-links mat-elevation-z12" fxLayoutAlign="center" fxHide.gt-xs>        
         <a mat-button class="nav-links-sm" routerLink="/service-list" [class.activated-sm]="currentUrl == '/service-list'">Services</a>    
         <a mat-button class="nav-links-sm" routerLink="/projects" [class.activated-lg]="currentUrl == '/projects'">Portfolio</a>    
         <a mat-button class="nav-links-sm" routerLink="/contact-us" [class.activated-sm]="currentUrl == '/contact-us'">Contact</a>    
