@@ -1,6 +1,8 @@
 
 <div class="carousel">
-    <app-carousel [showControls]="true"></app-carousel>
+    <!-- <ng-template *ngIf="gallery | async as gallery"> -->
+        <app-carousel [showControls]="true" [gallery]="gallery"></app-carousel> 
+    <!-- </ng-template> -->
 </div>
 
 <div class="home-page">

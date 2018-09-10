@@ -1,6 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Component, OnInit, Input } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { Upload } from '../../models/upload.model';
@@ -11,7 +11,7 @@ import { UploadService } from '../../services/upload.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   @Input() showBreadcrum = true;
 
@@ -22,17 +22,19 @@ export class ProductDetailsComponent implements OnInit {
   product: Observable<Product>;
   gallery: Upload[] = [];
 
+  subsription: Subscription;
+  routeSubsription: Subscription;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private uploadService: UploadService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(param => {
+    this.routeSubsription = this.route.paramMap.subscribe(param => {
       this.productId = param.get('id');
 
       const avatars = [];
-      this.uploadService.getAllGallery().subscribe(gallery => {
+      this.subsription = this.uploadService.getAllGallery().subscribe(gallery => {
         gallery.forEach(item => {
           if (item.sourceId === this.productId) {
             avatars.push(item);
@@ -45,6 +47,16 @@ export class ProductDetailsComponent implements OnInit {
       });
     });
 
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSubsription) {
+      this.routeSubsription.unsubscribe();
+    }
+
+    if (this.subsription) {
+      this.subsription.unsubscribe();
+    }
   }
 
   // getProductAvatar(avatarId: string) {

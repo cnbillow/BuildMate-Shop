@@ -1,6 +1,7 @@
 <div class="carousel-container">
 
   <ngx-hm-carousel
+    *ngIf="gallery.length > 0"
     [(ngModel)]="index"
     (ngModelChange)="indexChanged($event)"
     [autoplay-speed]="10000"
@@ -17,7 +18,7 @@
         [style.height]="showControls ? 'calc(100vh - 100px)' : '400px'"
         ngx-hm-carousel-item>
         <div class="img"
-          [style.backgroundImage]="'url('+avatar.url+')'"
+          [style.backgroundImage]="'url('+avatar?.url+')'"
           [style.backgroundPosition]="'center'"
           [style.backgroundSize]="'cover'">
   

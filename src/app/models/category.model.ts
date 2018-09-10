@@ -3,5 +3,5 @@ export interface Category {
     name?: string;
     description?: string;
     created?: any;
-    lastUpdate?: any
+    lastUpdate?: any;
 }
