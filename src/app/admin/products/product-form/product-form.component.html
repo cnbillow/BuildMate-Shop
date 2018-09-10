@@ -71,6 +71,24 @@
         </mat-expansion-panel-header>
   
         <div class="form-field-container">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Service Type</mat-label>           
+            <mat-select [(ngModel)]="product.serviceType" name="serviceType" placeholder="Service Type" required>
+              <mat-option value=""></mat-option>
+              <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType.id">
+                {{ serviceType.name }}
+              </mat-option>
+            </mat-select>
+            <mat-hint>Enter type of being rendered with this product</mat-hint>
+            <mat-error>
+              Service Type is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <div class="spc-10"></div>
   
           <mat-form-field>
             <input matInput [(ngModel)]="product.pattern" name="pattern" placeholder="Pattern Number" required>

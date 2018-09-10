@@ -23,6 +23,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   productId: string;
 
   product: Product = {};
+  serviceTypes = [
+    { id: 'INTERIOR', name: 'Interior' },
+    { id: 'EXTERIOR', name: 'Exterior' },
+    { id: 'LANDSCAPE', name: 'Landscape' },
+  ];
   categories$: Observable<Category[]>;
 
   step = 0;

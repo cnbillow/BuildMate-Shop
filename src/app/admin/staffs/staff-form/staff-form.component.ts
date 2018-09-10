@@ -1,14 +1,14 @@
-import { UploadService } from './../../../services/upload.service';
-import { TimestampService } from './../../../services/timestamp.service';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AlertService } from './../../../services/alert.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { StaffService } from '../../../services/staff.service';
-import { Staff } from '../../../models/staff.model';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
-import { Ng2ImgMaxService } from 'ng2-img-max';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Ng2ImgMaxService } from 'ng2-img-max';
+import { Subscription } from 'rxjs';
+
+import { Staff } from '../../../models/staff.model';
+import { StaffService } from '../../../services/staff.service';
+import { AlertService } from './../../../services/alert.service';
+import { TimestampService } from './../../../services/timestamp.service';
+import { UploadService } from './../../../services/upload.service';
 
 @Component({
   selector: 'app-staff-form',

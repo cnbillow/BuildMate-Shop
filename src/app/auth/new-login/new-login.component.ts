@@ -25,12 +25,12 @@ export class NewLoginComponent implements OnInit {
   ngOnInit() {}
 
   async loginStaff() {
-    // try {
-    //   await this.authService.login(this.details.username, this.details.password);
-    // } catch (error) {
-    //   this.error = error.code;
-    // }
-    this.router.navigate(['account', 'dashboard']);
+    try {
+      await this.authService.login(this.details.username, this.details.password);
+    } catch (error) {
+      this.error = error.code;
+    }
+    // this.router.navigate(['account', 'dashboard']);
   }
 
 }

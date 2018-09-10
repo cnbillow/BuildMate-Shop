@@ -5,6 +5,7 @@ export interface Product {
     size?: string;
     unitPrice?: number;
     category?: string;
+    serviceType?: string;
     availableQTY?: number;
     avatar?: string;
     created?: any;

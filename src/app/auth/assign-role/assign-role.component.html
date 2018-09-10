@@ -36,7 +36,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input type="password" [(ngModel)]="account.login.password" name="password" #password maxlength="10" mainlength="6" matInput placeholder="Enter Password" required>
+      <input type="password" [(ngModel)]="account.login.password" name="password" #password maxlength="12" mainlength="6" matInput placeholder="Enter Password" required>
       <mat-hint align="end">{{ password.value?.length || 0 }} / 12</mat-hint>
       <mat-error>
         A strong typed is <strong>required</strong>
@@ -57,7 +57,7 @@
       <mat-icon color="warn">error</mat-icon>
     </ng-template>
     <div>
-      <p>Password's strength = {{passwordComponent.strength}} %100</p>
+      <p>Password's strength = {{passwordComponent.strength}} % 100</p>
     </div>
 
     <!--Password's strength info-->
@@ -68,7 +68,7 @@
     <div class="spc-10"></div>
 
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="addRole()" [disabled]="!f.valid || passwordComponent.strength >= 70">Create Account</button>
+      <button mat-raised-button color="primary" (click)="addRole()" [disabled]="!f.valid || passwordComponent.strength < 70">Create Account</button>
       <button mat-raised-button mat-dialog-close>Cancel</button>
     </mat-card-actions>
 

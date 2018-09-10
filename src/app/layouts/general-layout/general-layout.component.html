@@ -13,9 +13,18 @@
             <a mat-button class="nav-links-lg" routerLink="/service-list" [class.activated-lg]="currentUrl == '/service-list'">Services</a>    
             <a mat-button class="nav-links-lg" routerLink="/projects" [class.activated-lg]="currentUrl == '/projects'">Portfolio</a>    
             <a mat-button class="nav-links-lg" routerLink="/contact-us" [class.activated-lg]="currentUrl == '/contact-us'">Contact</a>    
-            <a mat-button class="nav-links-lg" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>  
+            
+            <a mat-button *ngIf="auth.user$ | async; else anonymousUser_lg" class="nav-links-lg" routerLink="/account/dashboard" [class.activated]="currentUrl == '/account/dashboard'">Dashboard</a>           
         </div>   
     </mat-toolbar-row>
+    
+    <ng-template #anonymousUser_lg>
+        <a mat-button class="nav-links-lg" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>
+    </ng-template>
+
+    <ng-template #anonymousUser_sm>
+        <a mat-button class="nav-links-sm" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>
+    </ng-template>
 
 
     <!-- for small displays -->
@@ -32,7 +41,7 @@
         <a mat-button class="nav-links-sm" routerLink="/service-list" [class.activated-sm]="currentUrl == '/service-list'">Services</a>    
         <a mat-button class="nav-links-sm" routerLink="/projects" [class.activated-lg]="currentUrl == '/projects'">Portfolio</a>    
         <a mat-button class="nav-links-sm" routerLink="/contact-us" [class.activated-sm]="currentUrl == '/contact-us'">Contact</a>    
-        <a mat-button class="nav-links-sm" routerLink="/auth/login" [class.activated]="currentUrl == '/auth/login'">Account</a>  
+        <a mat-button *ngIf="auth.user$ | async; else " class="nav-links-sm" routerLink="/account/dashboard" [class.activated]="currentUrl == '/account/dashboard'">Dashboard</a>  
     </mat-toolbar-row>
     
 </mat-toolbar>

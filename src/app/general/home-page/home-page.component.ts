@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.subsription = this.uploadService.getAllGallery().subscribe(gallery => {
       const images = [];
       gallery.forEach(item => {
-        if (item.tag = 'PRODUCT') {
+        if (item.tag === 'PRODUCT') {
           images.push(item);
         }
       });
