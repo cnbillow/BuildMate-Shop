@@ -1,5 +1,5 @@
 
-<ng-container *ngIf="user$ | async as user">
+<!-- <ng-container *ngIf="user$ | async as user"> -->
 
     <mat-toolbar class="main-nav mat-elevation-z4">
         <button
@@ -15,9 +15,9 @@
         
         <div class="user-menu">
             <button mat-icon-button [matMenuTriggerFor]="userMenu">
-                <img [src]="getUserAvatar(user.avatar)" [alt]="user.nick" style='height: 50px; width: 50px; border-radius: 45%;'/> 
-                <!-- <img src="../../../assets/avatars/avatar4.png" alt="User" style='height: 50px; width: 50px; border-radius: 45%;'/>  -->
-                <small>{{ user.nick }}</small>
+                <!-- <img [src]="getUserAvatar(user.avatar)" [alt]="user.nick" style='height: 50px; width: 50px; border-radius: 45%;'/>  -->
+                <img src="../../../assets/avatars/avatar4.png" alt="User" style='height: 50px; width: 50px; border-radius: 45%;'/> 
+                <!-- <small>{{ user.nick }}</small> -->
                 
                 <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
@@ -61,8 +61,8 @@
         
             <perfect-scrollbar style="max-width: 600px; height: 100%;" [config]="config">
                 <div class="user-profile">
-                    <img [src]="getUserAvatar(user.avatar)" [alt]="user.nick"/> 
-                    <!-- <img src="../../../assets/avatars/avatar4.png" alt="User"/>  -->
+                    <!-- <img [src]="getUserAvatar(user.avatar)" [alt]="user.nick"/>  -->
+                    <img src="../../../assets/avatars/avatar4.png" alt="User"/> 
                 </div>
         
                 <div class="spc-30"></div>
@@ -136,5 +136,5 @@
         
     </mat-sidenav-container>
 
-</ng-container>
+<!-- </ng-container> -->
 

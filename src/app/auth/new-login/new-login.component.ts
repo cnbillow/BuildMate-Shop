@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { RoleService } from '../../services/role-service.service';
 import { AuthService } from './../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-login',
@@ -18,16 +19,18 @@ export class NewLoginComponent implements OnInit {
   };
 
   constructor(private authService: AuthService,
-              private roleService: RoleService) { }
+              private roleService: RoleService,
+              private router: Router) { }
 
   ngOnInit() {}
 
   async loginStaff() {
-    try {
-      await this.authService.login(this.details.username, this.details.password);
-    } catch (error) {
-      this.error = error.code;
-    }
+    // try {
+    //   await this.authService.login(this.details.username, this.details.password);
+    // } catch (error) {
+    //   this.error = error.code;
+    // }
+    this.router.navigate(['account', 'dashboard']);
   }
 
 }

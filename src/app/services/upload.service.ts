@@ -73,20 +73,21 @@ export class UploadService {
     return this.db.doc(`gallery/${profileImgId}`).valueChanges();
   }
 
-  async pushUpload(event: FileList, sourceId: string, avatar?: string) {
+  async pushUpload(fileToUpload: File[], sourceId: string, uploadTag: string, avatar?: string) {
 
-    console.log('file upload service', event);
-    Array.from(event).forEach(file => {
+    console.log('file upload service', fileToUpload);
+
+    Array.from(fileToUpload).forEach(file => {
 
       const path = this.uploadPath(sourceId, this.basePath);
       const fileRef = this.storageRef.ref(path);
 
       const customMetadata = { app: 'buildMate-Shop!' };
 
-      if (file.type.split('/')[0] !== 'image') {
-        console.log('Unsupported file type :(' );
-        return;
-      }
+      // if (file.type.split('/')[0] !== 'image') {
+      //   console.log('Unsupported file type :(' );
+      //   return;
+      // }
 
       this.uploadTask = this.storageRef.upload(path, file, {
         customMetadata: customMetadata
@@ -104,7 +105,7 @@ export class UploadService {
         downloadURL.subscribe(url => {
 
           this.fileToUpload.sourceId = sourceId;
-
+          this.fileToUpload.tag = uploadTag;
           this.fileToUpload.url = url;
           this.fileToUpload.path = path;
           this.fileToUpload.createdDate = new Date();

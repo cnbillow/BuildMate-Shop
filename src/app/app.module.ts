@@ -100,7 +100,7 @@ import { ServiceDetailsComponent } from './general/service-details/service-detai
 import { ProductListComponent } from './general/product-list/product-list.component';
 import { ProductDetailsComponent } from './general/product-details/product-details.component';
 import { ProductCardComponent } from './general/product-card/product-card.component';
-
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -170,6 +170,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     // SlideshowModule,
     NgxHmCarouselModule,
+
+    Ng2ImgMaxModule,
 
     AppRoutingModule,
     BrowserAnimationsModule,

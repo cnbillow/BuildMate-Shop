@@ -10,6 +10,8 @@ import { AlertService } from './../../../services/alert.service';
 import { ProductCategoryService } from './../../../services/product-category.service';
 import { ProductService } from './../../../services/product.service';
 import { UploadService } from './../../../services/upload.service';
+import { Ng2ImgMaxService } from 'ng2-img-max';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-form',
@@ -26,7 +28,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   step = 0;
 
   imageUrl = '../../../../assets/avatars/avatar3.png';
-  fileToUpload: FileList;
+  fileToUpload: File[] = [];
+  imagePreview: any;
+  uploadError;
   isHovering: boolean;
 
   subscription: Subscription;
@@ -37,7 +41,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
               private alertService: AlertService,
               private router: Router,
               private route: ActivatedRoute,
-              private uploadService: UploadService) {
+              private uploadService: UploadService,
+              private ng2ImgMax: Ng2ImgMaxService,
+              public sanitizer: DomSanitizer) {
                 this.categories$ = this.categoryService.getCategories();
               }
 
@@ -74,7 +80,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       const productId = (await productData.product).id;
       const avatar = productData.avatar;
 
-      this.uploadService.pushUpload(this.fileToUpload, productId, avatar);
+      this.uploadService.pushUpload(this.fileToUpload, productId, 'PRODUCT', avatar);
 
       this.alertService.afterUpdateSuccess();
       this.router.navigate(['account', 'products']);
@@ -85,20 +91,50 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.isHovering = $event;
   }
 
-  handleFileInput(file: FileList) {
-    this.fileToUpload = file;
+  onImageChange(event) {
+    const image: File = event.target.files[0];
+    this.uploadError = null;
 
-    // if (this.fileToUpload.item(0).type !== 'image') {
-    //   console.log('unsupported file type :( ');
-    // }
+    if (image.size > 512000) {
+      this.uploadError = 'File should not exceed 500KB';
+      console.log('😢 File should not exceed 500KB');
+      return;
+    }
 
-    // show image preview
-    const reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageUrl = event.target.result;
-    };
-    reader.readAsDataURL(this.fileToUpload.item(0));
+    this.ng2ImgMax.compressImage(image, 0.050).subscribe(
+      result => {
+        this.fileToUpload.push(new File([result], result.name));
+        this.getImagePreview(this.fileToUpload[0]);
+      },
+      error => {
+        this.uploadError = error.reason;
+        console.log('😢 Oh no!', error);
+      }
+    );
   }
+
+  getImagePreview(file: File) {
+    const reader: FileReader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.imageUrl = reader.result.toString();
+    };
+  }
+
+  // handleFileInput(file: FileList) {
+  //   this.fileToUpload = file;
+
+  //   // if (this.fileToUpload.item(0).type !== 'image') {
+  //   //   console.log('unsupported file type :( ');
+  //   // }
+
+  //   // show image preview
+  //   const reader = new FileReader();
+  //   reader.onload = (event: any) => {
+  //     this.imageUrl = event.target.result;
+  //   };
+  //   reader.readAsDataURL(this.fileToUpload.item(0));
+  // }
 
   addCategory() {
     this.dialog.open(ProductCategoryComponent, {

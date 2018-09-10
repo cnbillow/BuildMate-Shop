@@ -28,20 +28,27 @@
             <mat-icon>cloud_upload</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
+
+        <mat-error style="text-align: center;" *ngIf="uploadError">
+          😢 Oh no! {{ uploadError }}
+        </mat-error>
+
+        <div class="spc-10"></div>
   
         <div class="image_upload">
-          <img class="profile-image" [src]="imageUrl" style="width:250px;height:250px;" alt="">
+          <img class="profile-image" [src]="sanitizer.bypassSecurityTrustUrl(imageUrl)" style="width:250px;height:250px;" alt="">
           <br>
           
           <div class="dropzone" 
             appDropZone
             (hovered)="toggleHover($event)"
-            (dropped)="handleFileInput($event)"
+            (dropped)="onImageChange($event)"
             [class.hovering]="isHovering">
   
             <!-- <h3>Drop Zone</h3> -->
             <mat-icon>cloud_upload</mat-icon>
-            <input type="file" (change)="handleFileInput($event.target.files)">
+            <!-- <input type="file" (change)="handleFileInput($event.target.files)"> -->
+            <input type="file" (change)="onImageChange($event)">
           </div>
       
         </div>

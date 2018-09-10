@@ -18,8 +18,14 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subsription = this.uploadService.getAllGallery().subscribe(gallery => {
-      this.gallery = gallery;
-      console.log(gallery);
+      const images = [];
+      gallery.forEach(item => {
+        if (item.tag = 'PRODUCT') {
+          images.push(item);
+        }
+      });
+
+      this.gallery = images;
     });
   }
 
