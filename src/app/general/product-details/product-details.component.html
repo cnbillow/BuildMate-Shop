@@ -6,64 +6,69 @@
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutGap.xs="20px">
 
-      <div fxHide.xs class="product-thumb" fxFlex="5"></div>
+    <div fxHide.xs class="product-thumb" fxFlex="5"></div>
 
-    <div class="product-thumb" fxFlex="40">
-      <app-carousel [showControls]="false"></app-carousel>      
-    </div>
+    <ng-container *ngIf="product | async as product">
 
-    <div fxFlex="40">
-      <div class="product-info">
-        <h2>Pattern</h2>
-        <article>
-          <div class="product-description">
-            <strong>Description</strong> <br>
-            <mat-divider></mat-divider>
-            <div class="spc-5"></div>
-            <span>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              Itaque earum, laborum ipsa ea eveniet quis expedita dolorum.
-            </span>
-          </div>
-          <div class="spc-5"></div>
+      <div class="product-thumb" fxFlex="40">
+        <app-carousel [showControls]="false" [gallery]="gallery"></app-carousel>      
+      </div>    
 
-          <div class="product-size">
-            <strong>Size</strong> <br>
-            <mat-divider></mat-divider>
-            <div class="spc-5"></div>
-            <span>
-              70 / 7 ft <small>(-+ 1 ft)</small>
-            </span>
-          </div>
-
-          <div class="spc-10"></div>
-
-          <div class="social-buttons">
-            <button mat-mini-fab color="primary" matTooltip="Share on facebook">f</button>
-            <button mat-mini-fab color="accent" matTooltip="Share on twitter">t</button>
-            <button mat-mini-fab color="warn" matTooltip="Share on google +">G+</button>
-          </div>
-
-          <mat-divider></mat-divider>
-
-          <div class="actions">
-            <div fxFlex="70">
-              <strong>GHC 100</strong> &nbsp;
-              <small>(Negociable)</small>
+      <div fxFlex="40">
+        <div class="product-info">
+          <h2>{{ product.pattern }}</h2>
+          <article>
+            <div class="product-description">
+              <strong>Description</strong> <br>
+              <mat-divider></mat-divider>
+              <div class="spc-5"></div>
+              <span>
+               {{ product.description }}
+              </span>
             </div>
 
-            <!-- <div fxFlex></div> -->
-
-            <div fxFlex>
-              <button mat-raised-button color="primary">Place Order</button>
+            <div class="spc-10"></div>
+  
+            <div class="product-size">
+              <strong>Size</strong> <br>
+              <mat-divider></mat-divider>
+              <div class="spc-5"></div>
+              <span>
+                70 / 7 ft <small>(-+ 1 ft)</small>
+              </span>
             </div>
-          </div>
-
-          <div class="spc-20"></div>
-
-        </article>
+  
+            <div class="spc-10"></div>
+  
+            <div class="social-buttons">
+              <button mat-mini-fab color="primary" matTooltip="Share on facebook">f</button>
+              <button mat-mini-fab color="accent" matTooltip="Share on twitter">t</button>
+              <button mat-mini-fab color="warn" matTooltip="Share on google +">G+</button>
+            </div>
+  
+            <mat-divider></mat-divider>
+  
+            <div class="actions">
+              <div fxFlex="70">
+                <strong>GHC {{ product.unitPrice | number }}</strong> &nbsp;
+                <small>(Negociable)</small>
+              </div>
+  
+              <!-- <div fxFlex></div> -->
+  
+              <div fxFlex>
+                <button mat-raised-button color="primary">Place Order</button>
+              </div>
+            </div>
+  
+            <div class="spc-20"></div>
+  
+          </article>
+        </div>
       </div>
-    </div>
+
+    </ng-container>
+
 
   </div>
 

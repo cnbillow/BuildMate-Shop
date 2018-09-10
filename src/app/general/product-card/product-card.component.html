@@ -1,4 +1,4 @@
-<mat-card mat-ripple routerLink="/product/XY67383893879">
+<mat-card mat-ripple routerLink="/product/{{ product.id }}">
   <img mat-card-image [src]="avatar" [alt]="product.pattern">
   <!-- <img mat-card-image src="../../../assets/carousel/carousel2.jpg" alt=""> -->
   <mat-card-content class="product-content text-center">
@@ -27,7 +27,7 @@
     <div class="spc-10"></div>
 
     <div class="product-price">
-      <span>GHC {{ product.unitPrice }}</span> <br>
+      <span>GHC {{ product.unitPrice | number }}</span> <br>
       <small>(Negociable)</small>
     </div>
 

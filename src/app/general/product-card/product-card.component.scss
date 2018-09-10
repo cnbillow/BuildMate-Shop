@@ -1,6 +1,11 @@
 mat-card {
     max-height: 530px;
-    max-width: 300px;
+    // width: 260px;
+    // max-width: 300px;
+
+    img {
+        height: 250px;
+    }
 }
 
 mat-card:hover {

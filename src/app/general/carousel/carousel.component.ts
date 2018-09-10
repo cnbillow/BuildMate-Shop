@@ -1,4 +1,6 @@
+import { UploadService } from './../../services/upload.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { Upload } from '../../models/upload.model';
 
 @Component({
   selector: 'app-carousel',
@@ -8,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CarouselComponent implements OnInit {
 
   @Input() showControls = true;
-  @Input() avatar;
+  @Input() gallery = [];
 
   index = 0;
   infinite = true;
@@ -30,6 +32,7 @@ export class CarouselComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.gallery);
   }
 
   change($event) {

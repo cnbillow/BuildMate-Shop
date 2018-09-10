@@ -58,7 +58,7 @@ const routes: Routes = [
         path: 'projects',
         component: OurRecentProjectsComponent
       }, {
-        path: 'product/:pattern',
+        path: 'product/:id',
         component: ProductDetailsComponent
       },
     ]

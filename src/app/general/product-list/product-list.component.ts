@@ -24,12 +24,10 @@ export class ProductListComponent implements OnInit,  OnDestroy {
   ngOnInit() {
     this.subscription = this.uploadService.getAllGallery().pipe(switchMap(gallery => {
       this.gallery = gallery;
-      console.log(gallery);
 
       return this.productService.getProducts();
     })).subscribe(products => {
       this.products = products;
-      console.log(products);
     });
   }
 

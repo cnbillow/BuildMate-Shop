@@ -1,15 +1,15 @@
-import { UploadService } from './../../../services/upload.service';
-import { AlertService } from './../../../services/alert.service';
-import { ProductService } from './../../../services/product.service';
-import { ProductCategoryService } from './../../../services/product-category.service';
-import { Observable, Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { ProductCategoryComponent } from '../product-category/product-category.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+
 import { Category } from '../../../models/category.model';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../../models/product.model';
-import { Upload } from '../../../models/upload.model';
+import { ProductCategoryComponent } from '../product-category/product-category.component';
+import { AlertService } from './../../../services/alert.service';
+import { ProductCategoryService } from './../../../services/product-category.service';
+import { ProductService } from './../../../services/product.service';
+import { UploadService } from './../../../services/upload.service';
 
 @Component({
   selector: 'app-product-form',
