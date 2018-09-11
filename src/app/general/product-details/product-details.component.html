@@ -40,14 +40,7 @@
   
             <div class="spc-10"></div>  
 
-            <share-buttons [theme]="'circles-dark'"
-              [include]="['facebook','twitter','google']"
-              [show]="3"
-              [showCount]="true"
-              [size]="4"
-              [url]="'http://localhost:4200/product'"
-              [description]="'Share'"
-            ></share-buttons>
+            <app-social-share-buttons matTooltip="Share on social media" [pageUrl]="pageUrl" [iconSize]="4"></app-social-share-buttons>
               
             <mat-divider></mat-divider>
   

@@ -9,7 +9,7 @@
       </ng-template>
       
       <div class="products-list" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" >
-        <div *ngFor="let product of products" class="product-block" fxFlex="30">
+        <div *ngFor="let product of products" class="product-block" fxFlex="32">
          <app-product-card [product]="product" [avatar]="getProductAvatar(product.avatar)"></app-product-card>
         </div>       
       </div>

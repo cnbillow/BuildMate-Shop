@@ -2,7 +2,7 @@
   <img mat-card-image [src]="avatar" [alt]="product.pattern">
   <!-- <img mat-card-image src="../../../assets/carousel/carousel2.jpg" alt=""> -->
   <mat-card-content class="product-content text-center">
-    <h2>{{ product.pattern }}</h2>
+    <h2 class="text-center">{{ product.pattern }}</h2>
     
     <div class="product-description">
       <strong>Description</strong> <br>
@@ -33,15 +33,13 @@
 
     <div class="spc-10"></div>
 
-    <div class="social-buttons">
-      <button mat-mini-fab color="primary" matTooltip="Share on facebook">f</button>
-      <button mat-mini-fab color="accent" matTooltip="Share on twitter">t</button>
-      <button mat-mini-fab color="warn" matTooltip="Share on google +">G+</button>
+    <div class="text-center ">
+      <app-social-share-buttons matTooltip="Share on social media" [pageUrl]="pageUrl" [iconSize]="-4"></app-social-share-buttons>
     </div>
 
     <div class="spc-10"></div>
   
-    <button mat-raised-button color="primary">Add To Order</button>
+    <button mat-raised-button color="primary" (click)="addToCart($event)">Add To Order</button>
 
   </mat-card-content>
 </mat-card>

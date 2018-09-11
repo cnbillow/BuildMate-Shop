@@ -17,12 +17,16 @@ export class ProductCardComponent implements OnInit, OnDestroy {
 
   user;
 
+  pageUrl: string;
+
   subscription: Subscription;
 
   constructor(private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
+    this.pageUrl = this.router.url;
+
     this.subscription = this.authService.user$.subscribe(user => {
       this.user = user;
     });
@@ -34,9 +38,11 @@ export class ProductCardComponent implements OnInit, OnDestroy {
     }
   }
 
-  async productDetails() {
+  addToCart($event) {
+    $event.stopPropagation();
+  }
 
-    console.log(this.product.id);
+  async productDetails() {
     try {
       if (this.user) {
         return this.router.navigate(['product', this.product.id]);

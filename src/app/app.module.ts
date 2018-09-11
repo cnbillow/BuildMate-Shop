@@ -103,6 +103,7 @@ import { ProductCardComponent } from './general/product-card/product-card.compon
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { SocialShareButtonsComponent } from './ui/social-share-buttons/social-share-buttons.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -155,7 +156,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ServiceDetailsComponent,
     ProductListComponent,
     ProductDetailsComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    SocialShareButtonsComponent
   ],
   imports: [
     AngularFireStorageModule,
