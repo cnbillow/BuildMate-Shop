@@ -30,6 +30,7 @@ import { AuthGuard } from './services/auth.guard';
 import { OurContactsComponent } from './general/our-contacts/our-contacts.component';
 import { ProjectDetailsComponent } from './general/project-details/project-details.component';
 import { ProductDetailsComponent } from './general/product-details/product-details.component';
+import { AdminAuthGuard } from './services/admin-auth.guard';
 
 const routes: Routes = [
   {

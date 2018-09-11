@@ -24,10 +24,19 @@ export class AuthService {
     return user.user.uid;
   }
 
-  logout() {
-    return this.auth.auth.signOut().then(() => {
-      this.router.navigate(['/']);
-    });
+  async loginFacebook() {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    const signIn = await firebase.auth().signInWithPopup(provider);
+    console.log(signIn.user);
+
+    return signIn;
+    // return await this.auth.auth.signInWithPopup(provider);
+  }
+
+
+  async logout() {
+    await this.auth.auth.signOut();
+    this.router.navigate(['/']);
   }
 
   async emailSignUp(email: string, password: string) {

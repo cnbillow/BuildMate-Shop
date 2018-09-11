@@ -1,4 +1,4 @@
-<mat-card mat-ripple routerLink="/product/{{ product.id }}">
+<mat-card mat-ripple (click)="productDetails()">
   <img mat-card-image [src]="avatar" [alt]="product.pattern">
   <!-- <img mat-card-image src="../../../assets/carousel/carousel2.jpg" alt=""> -->
   <mat-card-content class="product-content text-center">

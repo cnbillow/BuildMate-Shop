@@ -20,7 +20,7 @@ export class AdminAuthGuard implements CanActivate {
     return this.auth.user$.pipe(switchMap(user => this.roleService.getUser(user.uid)),
       map(staffAccount =>  {
 
-      if (staffAccount.right === 'Administrator') {
+      if (staffAccount) {
         return true;
       }
     }));

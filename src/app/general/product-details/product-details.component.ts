@@ -1,10 +1,11 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { Upload } from '../../models/upload.model';
 import { UploadService } from '../../services/upload.service';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-product-details',
@@ -22,16 +23,21 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   product: Observable<Product>;
   gallery: Upload[] = [];
 
+  pageUrl: string;
+
   subsription: Subscription;
   routeSubsription: Subscription;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
-              private uploadService: UploadService) { }
+              private uploadService: UploadService,
+              private router: Router) { }
 
   ngOnInit() {
     this.routeSubsription = this.route.paramMap.subscribe(param => {
       this.productId = param.get('id');
+
+      this.pageUrl = this.router.url;
 
       const avatars = [];
       this.subsription = this.uploadService.getAllGallery().subscribe(gallery => {

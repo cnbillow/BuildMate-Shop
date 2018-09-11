@@ -5,6 +5,9 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import 'hammerjs';
 
+// Import icons
+import './icons.ts';
+
 if (environment.production) {
   enableProdMode();
 }

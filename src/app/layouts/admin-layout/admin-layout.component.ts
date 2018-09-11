@@ -38,6 +38,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
     subscription: Subscription;
     authSubscription: Subscription;
+    roleSubscription: Subscription;
     uploadSubscription: Subscription;
 
   constructor(private breakpointObserver: BreakpointObserver,
@@ -55,9 +56,8 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
       if (!state) { return; }
 
       // get account
-      this.roleService.getUser(state.uid).pipe(take(1)).subscribe(user => {
-
-        // get staff record
+      this.roleSubscription = this.roleService.getUser(state.uid).pipe(take(1)).subscribe(user => {
+        console.log(user);
         this.user$ = this.staffService.getStaff(user.staff);
       });
 
@@ -75,6 +75,10 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
     if (this.uploadSubscription) {
       this.uploadSubscription.unsubscribe();
+    }
+
+    if (this.roleSubscription) {
+      this.roleSubscription.unsubscribe();
     }
 
     if (this.authSubscription) {

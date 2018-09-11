@@ -101,6 +101,8 @@ import { ProductListComponent } from './general/product-list/product-list.compon
 import { ProductDetailsComponent } from './general/product-details/product-details.component';
 import { ProductCardComponent } from './general/product-card/product-card.component';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
+import { ShareButtonsModule } from '@ngx-share/buttons';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -172,6 +174,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxHmCarouselModule,
 
     Ng2ImgMaxModule,
+
+    // @ngx-share/buttons
+    HttpClientModule,       // (Required) For share counts
+    HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
+    ShareButtonsModule.forRoot(),
 
     AppRoutingModule,
     BrowserAnimationsModule,

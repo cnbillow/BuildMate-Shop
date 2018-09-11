@@ -38,14 +38,17 @@
               </span>
             </div>
   
-            <div class="spc-10"></div>
-  
-            <div class="social-buttons">
-              <button mat-mini-fab color="primary" matTooltip="Share on facebook">f</button>
-              <button mat-mini-fab color="accent" matTooltip="Share on twitter">t</button>
-              <button mat-mini-fab color="warn" matTooltip="Share on google +">G+</button>
-            </div>
-  
+            <div class="spc-10"></div>  
+
+            <share-buttons [theme]="'circles-dark'"
+              [include]="['facebook','twitter','google']"
+              [show]="3"
+              [showCount]="true"
+              [size]="4"
+              [url]="'http://localhost:4200/product'"
+              [description]="'Share'"
+            ></share-buttons>
+              
             <mat-divider></mat-divider>
   
             <div class="actions">
@@ -53,9 +56,7 @@
                 <strong>GHC {{ product.unitPrice | number }}</strong> &nbsp;
                 <small>(Negociable)</small>
               </div>
-  
-              <!-- <div fxFlex></div> -->
-  
+    
               <div fxFlex>
                 <button mat-raised-button color="primary">Place Order</button>
               </div>
