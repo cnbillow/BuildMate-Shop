@@ -1,3 +1,5 @@
+import { CartItem } from './../../models/cartItem.model';
+import { ClientShoppingCartService } from './../../services/client-shopping-cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
@@ -20,18 +22,23 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   pageText = `Lorem ipsum dolor sit amet consectetur adipisicing elit.`;
 
   productId: string;
-  product: Observable<Product>;
+  product: Product = {};
   gallery: Upload[] = [];
+
+  clientCart: CartItem[] = [];
 
   pageUrl: string;
 
   subsription: Subscription;
   routeSubsription: Subscription;
+  productSubsription: Subscription;
+  cartSubsription: Subscription;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private uploadService: UploadService,
-              private router: Router) { }
+              private router: Router,
+              private clientCartService: ClientShoppingCartService) { }
 
   ngOnInit() {
     this.routeSubsription = this.route.paramMap.subscribe(param => {
@@ -48,8 +55,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         });
 
         this.gallery = avatars;
+      });
 
-        this.product = this.productService.getProduct(this.productId);
+      this.productSubsription = this.productService.getProduct(this.productId).subscribe(async product => {
+        this.product = product;
+
+        this.cartSubsription = (await this.clientCartService.getCart()).subscribe(cart => {
+          this.clientCart = cart;
+        });
+
       });
     });
 
@@ -63,13 +77,36 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     if (this.subsription) {
       this.subsription.unsubscribe();
     }
+
+    if (this.productSubsription) {
+      this.productSubsription.unsubscribe();
+    }
+
+    if (this.cartSubsription) {
+      this.cartSubsription.unsubscribe();
+    }
   }
 
-  // getProductAvatar(avatarId: string) {
-  //   if (!avatarId) { return; }
+  async addToCart($event) {
+    $event.stopPropagation();
 
-  //   const index = this.gallery.findIndex(g => g.Id === avatarId);
-  //   return this.gallery[index].url;
-  // }
+    // set productId
+    this.product.id = this.productId;
+    await this.clientCartService.addToCart(this.product);
+  }
+
+  async removeItemFromCart(event) {
+    event.stopPropagation();
+
+    // set productId
+    this.product.id = this.productId;
+    await this.clientCartService.removeFromCart(this.product);
+  }
+
+  getProduct() {
+    if (this.clientCart.length < 1) { return 0; }
+
+    return this.clientCart.find(c => c.id === this.productId);
+  }
 
 }

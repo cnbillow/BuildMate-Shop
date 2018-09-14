@@ -1,11 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map, switchMap } from 'rxjs/operators';
-import { ProductService } from '../../services/product.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 import { Product } from '../../models/product.model';
 import { Upload } from '../../models/upload.model';
+import { ProductService } from '../../services/product.service';
 import { UploadService } from '../../services/upload.service';
+import { ClientShoppingCartService } from '../../services/client-shopping-cart.service';
+import { CartItem } from '../../models/cartItem.model';
 
 @Component({
   selector: 'app-product-list',
@@ -14,26 +16,38 @@ import { UploadService } from '../../services/upload.service';
 })
 export class ProductListComponent implements OnInit,  OnDestroy {
 
+  clientCart: CartItem[] = [];
+
   products: Product[] = [];
   gallery: Upload[] = [];
 
   subscription: Subscription;
+  cartSubscription: Subscription;
   constructor(private productService: ProductService,
-              private uploadService: UploadService) { }
+              private uploadService: UploadService,
+              private clientCartService: ClientShoppingCartService) { }
 
-  ngOnInit() {
-    this.subscription = this.uploadService.getAllGallery().pipe(switchMap(gallery => {
-      this.gallery = gallery;
+  async ngOnInit() {
+    this.cartSubscription = (await this.clientCartService.getCart()).subscribe(cart => {
+      this.clientCart = cart;
 
-      return this.productService.getProducts();
-    })).subscribe(products => {
-      this.products = products;
+      this.subscription = this.uploadService.getAllGallery().pipe(switchMap(gallery => {
+        this.gallery = gallery;
+
+        return this.productService.getProducts();
+      })).subscribe(products => {
+        this.products = products;
+      });
     });
   }
 
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
     }
   }
 

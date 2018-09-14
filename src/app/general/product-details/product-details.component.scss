@@ -21,37 +21,37 @@
                 text-transform: uppercase;
                 color: #111;
             }
-            span {
+            .description {
                 font-family: 'Catamaran';  
                 font-weight: 240;
                 font-size: 20px;
                 color: #111;
             }
 
-            .social-buttons {
-                padding: 20px;
-                text-align: center;
+            // .social-buttons {
+            //     padding: 20px;
+            //     text-align: center;
 
-                button {
-                    font-weight: 400;
-                    font-size: 20px;
-                    margin: 5px;
-                }
+            //     button {
+            //         font-weight: 400;
+            //         font-size: 20px;
+            //         margin: 5px;
+            //     }
 
-                button:hover {
-                    color: blue($color: #4137d1)
-                }
-            }
+            //     button:hover {
+            //         color: blue($color: #4137d1)
+            //     }
+            // }
 
-            .actions {
-                padding: 20px;
+            // .actions {
+            //     padding: 20px;
 
-                button {
-                    font-family: 'Cormorant Garamond';  
-                    font-weight: 200;
-                    font-size: 20px;
-                }
-            }
+            //     button {
+            //         font-family: 'Cormorant Garamond';  
+            //         font-weight: 200;
+            //         font-size: 20px;
+            //     }
+            // }
         }
     }
 

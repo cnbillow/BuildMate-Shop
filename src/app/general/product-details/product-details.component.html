@@ -8,7 +8,7 @@
 
     <div fxHide.xs class="product-thumb" fxFlex="5"></div>
 
-    <ng-container *ngIf="product | async as product">
+    <ng-container *ngIf="gallery.length > 0 && product">
 
       <div class="product-thumb" fxFlex="40">
         <app-carousel [showControls]="false" [gallery]="gallery"></app-carousel>      
@@ -22,7 +22,7 @@
               <strong>Description</strong> <br>
               <mat-divider></mat-divider>
               <div class="spc-5"></div>
-              <span>
+              <span class="description">
                {{ product.description }}
               </span>
             </div>
@@ -51,7 +51,17 @@
               </div>
     
               <div fxFlex>
-                <button mat-raised-button color="primary">Place Order</button>
+                <button *ngIf="!getProduct(); else removeFromCart" mat-raised-button color="primary" (click)="addToCart($event)">
+                  <mat-icon>shopping_cart</mat-icon>
+                  <span>Add To Cart</span> &nbsp;
+                </button>
+            
+                <ng-template #removeFromCart>
+                  <button mat-raised-button matTooltip="Click to remove item from cart"  color="primary" (click)="removeItemFromCart($event)">
+                    <mat-icon>delete</mat-icon> &nbsp;
+                    <span>Remove From Cart</span>
+                  </button>
+                </ng-template>
               </div>
             </div>
   

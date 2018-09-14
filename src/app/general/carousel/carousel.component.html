@@ -59,22 +59,26 @@
   
   </ngx-hm-carousel>
 
-  <ngx-hm-carousel *ngIf="!showControls"
-    (ngModelChange)="change($event)"
-    align="center"
-    show-num="auto"
-    [drag-many]="true"
-    class="link-container">
-    <section ngx-hm-carousel-container class="content">
-      <article class="item cursor-pointer t-al-c"
-        *ngFor="let avatar of gallery"
-        ngx-hm-carousel-item>
-        <div class="img"
-          [style.backgroundImage]="'url('+avatar.url+')'">
-        </div>
-      </article>
-    </section>
-  </ngx-hm-carousel>
+  <div *ngIf="!showControls">
+    <ngx-hm-carousel
+      (ngModelChange)="change($event)"
+      align="center"
+      show-num="auto"
+      [drag-many]="true"
+      class="link-container">
+      <section ngx-hm-carousel-container class="content">
+        <article class="item cursor-pointer t-al-c"
+          *ngFor="let avatar of gallery"
+          ngx-hm-carousel-item>
+          <div class="img"
+            [style.backgroundImage]="'url('+avatar.url+')'">
+          </div>
+        </article>
+      </section>
+    </ngx-hm-carousel>
+
+  </div>
+
 
 </div>
 

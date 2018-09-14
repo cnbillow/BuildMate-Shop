@@ -1,3 +1,4 @@
+import { ClientAccountService } from './client-account.service';
 import { AlertService } from './alert.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,7 +15,7 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth,
               private router: Router,
-              private alertService: AlertService) {
+              private clientService: ClientAccountService) {
                 this.user$ = auth.authState;
               }
 
@@ -30,7 +31,6 @@ export class AuthService {
     console.log(signIn.user);
 
     return signIn;
-    // return await this.auth.auth.signInWithPopup(provider);
   }
 
 
