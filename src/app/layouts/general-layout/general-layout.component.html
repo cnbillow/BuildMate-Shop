@@ -7,9 +7,13 @@
         </div>
         
         <div fxFlex fxLayout fxLayoutAlign="flex-end">
-            <button mat-button class="cart-lg">
-                <mat-icon>shopping_cart</mat-icon>
-            </button>
+
+            <ng-container *ngIf="clientCart | async as cart">
+                <button mat-icon-button *ngIf="getCartItemTotal(cart) > 0" class="cart-lg">
+                    <mat-icon [matBadge]="getCartItemTotal(cart)" matBadgeColor="accent">shopping_cart</mat-icon>
+                </button>
+            </ng-container>
+
             <a mat-button class="nav-links-lg" routerLink="/service-list" [class.activated-lg]="currentUrl == '/service-list'">Services</a>    
             <a mat-button class="nav-links-lg" routerLink="/projects" [class.activated-lg]="currentUrl == '/projects'">Portfolio</a>    
             <a mat-button class="nav-links-lg" routerLink="/contact-us" [class.activated-lg]="currentUrl == '/contact-us'">Contact</a> 
@@ -43,11 +47,16 @@
 
     <!-- for small displays -->
     <mat-toolbar-row fxHide.gt-xs>
-        <div class="header-brand">
+        <div fxFlexAlign="center" class="header-brand">
             <a mat-button class="header-brand-sm" routerLink="/">BuildMate</a>
-            <button mat-icon-button class="cart-sm">
-                <mat-icon>shopping_cart</mat-icon>
-            </button>
+        </div>
+
+        <div class="cart-count">
+            <ng-container *ngIf="clientCart | async as cart">
+                <button mat-icon-button *ngIf="getCartItemTotal(cart) > 0">
+                    <mat-icon [matBadge]="getCartItemTotal(cart)" matBadgeColor="accent">shopping_cart</mat-icon>
+                </button>
+            </ng-container>
         </div>
     </mat-toolbar-row>
     
